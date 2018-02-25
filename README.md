@@ -158,6 +158,13 @@ let users = await api.getUsers({limit: 10});
 let rooms = await api.getRooms();
 ```
 
+## Получить комнату
+
+Возвращает сущность комнаты по её идентефикатору `roomId` (`Room._id`)
+
+```javascript
+let room = await api.getRoom(roomId);
+```
 
 ## Получить список комнат текущего пользователя
 
