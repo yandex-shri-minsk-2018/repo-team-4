@@ -90,12 +90,6 @@ import SendMessage from './components/SendMessage/SendMessage';
 //
 //    console.log(api);
 //})();
-const textOne = 'Hi Andrea! How are you?';
-const textTwo = 'Doing good, how do you feel about grabbing a coffee sometime?';
-const sty = {
-  'display': 'flex',
-  'flexDirection': 'column'
-}
 
 ReactDOM.render(
   <div style={sty}>
