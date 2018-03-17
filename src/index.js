@@ -87,9 +87,17 @@ import Bolloon from './components/bolloon/Bolloon'
 //
 //    console.log(api);
 //})();
+const textOne = 'Hi Andrea! How are you?';
 const textTwo = 'Doing good, how do you feel about grabbing a coffee sometime?';
+const sty = {
+  'display': 'flex',
+  'flexDirection': 'column'
+}
 
-
-ReactDOM.render(<Bolloon message={textTwo}/>, 
+ReactDOM.render(
+  <div style={sty}>
+    <Bolloon message={textOne} typeMessage={true}/>
+    <Bolloon message={textTwo}/>
+  </div>,
   document.getElementById('root'));
 registerServiceWorker();
