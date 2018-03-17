@@ -1,0 +1,28 @@
+.bolloon {
+  max-width: 233px;
+  padding: 17px 8px 17px 28px;
+  display: flex;
+  flex-direction: column;
+  background: #F13564;
+  box-shadow: 0 13px 25px 0 rgba(0,0,0,0.12);
+  border-radius: 16px;
+}
+.bolloon__content {
+  max-width: 197px;
+  margin: 0 0 5px;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+
+.styleBolloon {
+  background: #fff;
+}
+
+.styleBolloon .bolloon__content {
+  color: #46454C;
+}
+
+.styleBolloon .data-message {
+  color: #F13564;
+}
