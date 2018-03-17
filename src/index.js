@@ -100,7 +100,7 @@ const store = createStore(rootReducer, composeEnhancers(
 //
 //    console.log(api);
 //})();
-//
+const textTwo = 'Doing good, how do you feel about grabbing a coffee sometime?';
 
 
 ReactDOM.render(
