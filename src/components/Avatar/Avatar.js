@@ -7,8 +7,11 @@ class Avatar extends Component{
         super(props);
 
         if (this.props.size === "small")
-            this.classAvatarSize = 'avatar__img__chat';
-        else this.classAvatarSize = 'avatar__img__profile';
+            this.classAvatarSize = 'avatar__img__small';
+        else if (this.props.size === "medium")
+            this.classAvatarSize = 'avatar__img__medium';
+        else
+            this.classAvatarSize = 'avatar__img__large';
 
         if (this.props.url)
             this.image = this.props.url;
