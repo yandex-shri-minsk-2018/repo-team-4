@@ -1,7 +1,3 @@
-* {
-    font-size: 12px;
-}
-
 .sendmessage {
     height: 45px;
     width: calc(100% - 40px);
@@ -22,6 +18,8 @@
 
     font-family: Roboto;
 
+    position: fixed;
+    bottom: 0;
 }
 
 .attachement__icon>i,
