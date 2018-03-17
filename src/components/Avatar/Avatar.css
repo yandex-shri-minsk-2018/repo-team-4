@@ -7,6 +7,10 @@
     width: 36px;
     height: 36px;
 }
+.avatar__img__contacts {
+    width: 70px;
+    height: 70px;
+}
 
 .avatar__img__profile,
 .avatar__img_chat{

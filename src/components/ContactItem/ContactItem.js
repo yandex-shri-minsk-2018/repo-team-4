@@ -4,7 +4,12 @@ import './ContactItem.css';
 class ContactItem extends Component {
     render() {
         return (
-            <Avatar/>
+            <div className="contactItem">
+                <Avatar size="medium"/>
+                <span>
+                    {this.props.name}
+                </span>
+            </div>
 
         );
     }

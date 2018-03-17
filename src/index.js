@@ -7,7 +7,6 @@ import registerServiceWorker from './registerServiceWorker';
 import Balloon from './components/Balloon/Balloon';
 import Avatar from './components/Avatar/Avatar';
 import SendMessage from './components/SendMessage/SendMessage';
-
 //import api from './api';
 //
 // Example of usage API
