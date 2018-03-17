@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
+import Contacts from "./components/Contacts/Contacts";
+import ChatListLayout from "./components/ChatListLayout/ChatListLayout";
 //import api from './api';
 //
 // Example of usage API
@@ -86,5 +88,6 @@ import App from './components/App/App';
 //})();
 ReactDOM.render(
   <div>
+    <ChatListLayout/>
   </div>,
   document.getElementById('root'));
