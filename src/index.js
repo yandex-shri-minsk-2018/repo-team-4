@@ -4,7 +4,7 @@ import './index.css';
 import App from './components/App/App';
 import Header from './components/Header/Header';
 import registerServiceWorker from './registerServiceWorker';
-import Balloon from './components/balloon/Balloon';
+import Balloon from './components/Balloon/Balloon';
 import Avatar from './components/Avatar/Avatar';
 
 //import api from './api';
@@ -98,7 +98,7 @@ const sty = {
 
 ReactDOM.render(
   <div style={sty}>
-    <Header />
+    <Header />;
     <div>
       <Avatar url='https://dcnt5qvi2hv76.cloudfront.net/b833369/resize_cache/74316/2e7fb5fb2ab1ebdd663145ea3b6c2c2e/main/e51/e51a3c0243a0c3463d729bea7c5b18b7/photo.jpg?h=ncaby.bitrix24.by' size='small'/>
       <Balloon message={textOne} typeMessage={true}/>
