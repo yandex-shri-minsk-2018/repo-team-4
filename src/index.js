@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
+import Header from './components/Header/Header'
 import registerServiceWorker from './registerServiceWorker';
 import Bolloon from './components/bolloon/Bolloon'
 
@@ -100,4 +101,3 @@ ReactDOM.render(
     <Bolloon message={textTwo}/>
   </div>,
   document.getElementById('root'));
-registerServiceWorker();
