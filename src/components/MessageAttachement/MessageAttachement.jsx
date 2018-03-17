@@ -20,7 +20,7 @@ class MessageAttachement extends Component {
         return (
             <div className="sendmessage__attachement">
                 <div className="attachement__icon" onClick={this.toggleAttachement}>
-                    <i className="fas fa-paperclip"></i>
+                    <i className="fa fa-paperclip"></i>
                 </div>
                 <MessageAttachementList isOpen={this.state.attachementIsOpen}/>
             </div>

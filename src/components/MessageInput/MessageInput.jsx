@@ -10,7 +10,7 @@ class MessageInput extends Component {
                 </div>
                 <div className="sendmessage__smiles">
                     <div className="smiles__icon">
-                        <i className="far fa-smile"></i>
+                        <i className="fa fa-smile-o"></i>
                     </div>
                 </div>
             </div>

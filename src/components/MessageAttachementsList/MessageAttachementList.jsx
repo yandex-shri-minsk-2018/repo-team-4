@@ -20,9 +20,9 @@ class MessageAttachementsList extends Component {
         }
         return (
             <ul className={this.state.isOpen ? "message-attachements message-attachement_opened" : "message-attachements message-attachement_close"}>
-                <li className="message-attachements__li"><i className="fas fa-images"></i> Photo</li>
-                <li className="message-attachements__li"><i className="fas fa-video"></i> Video</li>
-                <li className="message-attachements__li"><i className="fas fa-file"></i> Document</li>
+                <li className="message-attachements__li"><i className="fa fa-images"></i> Photo</li>
+                <li className="message-attachements__li"><i className="fa fa-video"></i> Video</li>
+                <li className="message-attachements__li"><i className="fa fa-file"></i> Document</li>
             </ul>
         );
     }
