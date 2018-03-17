@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
+import Bolloon from './components/bolloon/Bolloon'
 
 //import api from './api';
 //
@@ -86,7 +87,7 @@ import registerServiceWorker from './registerServiceWorker';
 //
 //    console.log(api);
 //})();
+const textTwo = 'Doing good, how do you feel about grabbing a coffee sometime?';
 
-
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<Bolloon message={textTwo}/>, document.getElementById('root'));
 registerServiceWorker();
