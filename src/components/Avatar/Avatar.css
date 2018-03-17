@@ -12,12 +12,12 @@
 .avatar__img_chat{
     background: white;
     overflow: hidden;
-    border-radius: 50%;
 }
 
 .avatar__img{
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 50%;
     image-rendering: optimizeSpeed;
 }
