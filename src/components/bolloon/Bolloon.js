@@ -6,17 +6,20 @@ class Bolloon extends Component {
         super();
 
         this.state = {
-            message: true,
+          typeMessage: true
         };
     }
 
 
   render() {
-    const textOne = 'Hi Andrea! How are you? ';
     const textTwo = 'Doing good, how do you feel about grabbing a coffee';
     const date = '5';
-    const style = message ? 'styleBolloon' : null;
-    let {message} = this.state;
+    let style ='styleBolloon';
+    let {typeMessage} = this.state;
+
+    if (typeMessage) {
+      style = null;
+    }
 
 
 

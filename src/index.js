@@ -89,5 +89,7 @@ import Bolloon from './components/bolloon/Bolloon'
 //})();
 const textTwo = 'Doing good, how do you feel about grabbing a coffee sometime?';
 
-ReactDOM.render(<Bolloon message={textTwo}/>, document.getElementById('root'));
+
+ReactDOM.render(<Bolloon message={textTwo}/>, 
+  document.getElementById('root'));
 registerServiceWorker();
