@@ -1,0 +1,46 @@
+.listItem
+  width 90%
+  height 70px
+  background #FFFFFF
+  box-shadow 0 13px 25px 0 rgba(0,0,0,0.12)
+  border-radius 100px
+  display flex
+  justify-content space-between
+  align-items center
+  box-sizing border-box
+  cursor pointer
+  .listItem__leftInfo
+    display flex
+    .listItem__leftInfo__avatar
+      height 36px
+      width 36px
+      border-radius 50%
+      background red
+      margin 0 15px
+    .listItem__leftInfo__userInfo
+      display flex
+      flex-direction column
+      text-align left
+      .listItem__leftInfo__userInfo__name
+        font-family: Avenir-Black;
+        font-size: 14px;
+        line-height 19px
+        color: #46454C;
+      .listItem__leftInfo__userInfo__lastActivity
+        font-family: Avenir-Heavy;
+        font-size: 12px;
+        line-height: 16px;
+        color: #0e4cf1;
+  .listItem__newMessage
+    height 22px
+    width 22px
+    justify-self flex-end
+    border-radius 50%
+    background #0e4cf1
+    margin-right 15px
+  .listItem__newMessage__quantity
+    font-family: Avenir-Heavy;
+    color white;
+    line-height 22px;
+    font-size 16px;
+
