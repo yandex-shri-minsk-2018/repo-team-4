@@ -2,11 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
-import Header from './components/Header/Header';
-import registerServiceWorker from './registerServiceWorker';
-import Balloon from './components/Balloon/Balloon';
-import Avatar from './components/Avatar/Avatar';
-import SendMessage from './components/SendMessage/SendMessage';
 //import api from './api';
 //
 // Example of usage API
@@ -89,9 +84,7 @@ import SendMessage from './components/SendMessage/SendMessage';
 //
 //    console.log(api);
 //})();
-
 ReactDOM.render(
   <div>
-      
   </div>,
   document.getElementById('root'));

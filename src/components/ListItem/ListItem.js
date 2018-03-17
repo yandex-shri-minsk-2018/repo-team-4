@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './ListItem.css';
+import Avatar from "../Avatar/Avatar";
+
 
 class ListItem extends Component {
     render() {
         return (
             <div className="listItem">
                 <div className="listItem__leftInfo">
-                    <div className="listItem__leftInfo__avatar">
-
-                    </div>
+                  <Avatar size={this.props.sizeAvatar} url={this.props.urlAvatar}/>
                     <div className="listItem__leftInfo__userInfo">
                         <span className="listItem__leftInfo__userInfo__name">
                             {this.props.name}
