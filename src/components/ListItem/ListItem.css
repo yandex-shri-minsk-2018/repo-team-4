@@ -29,7 +29,7 @@
   max-width: 70%;
 }
 .listItem .listItem__leftInfo .listItem__leftInfo__userInfo .listItem__leftInfo__userInfo__name {
-  font-family: Avenir-Black;
+  font-family: Roboto;
   font-size: 14px;
   line-height: 19px;
   color: #46454c;
@@ -39,7 +39,7 @@
   overflow: hidden;
 }
 .listItem .listItem__leftInfo .listItem__leftInfo__userInfo .listItem__leftInfo__userInfo__lastMessage {
-  font-family: Avenir-Book;
+  font-family: Roboto;
   font-size: 14px;
   color: #000;
   line-height: 19px;
@@ -55,7 +55,7 @@
   width: 30%;
 }
 .listItem .listItem__newMessages .listItem__newMessages__date {
-  font-family: Avenir-Heavy;
+  font-family: Roboto;
   font-size: 12px;
   color: #f13564;
 }
@@ -64,7 +64,7 @@
   width: 22px;
   background: #f13564;
   border-radius: 50%;
-  font-family: Avenir-Heavy;
+  font-family: Roboto;
   color: #fff;
   line-height: 22px;
   font-size: 16px;

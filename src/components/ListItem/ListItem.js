@@ -18,17 +18,18 @@ class ListItem extends Component {
                         </span>
                     </div>
                 </div>
-                {this.props.newMessages && this.props.date &&
+
                 <div className="listItem__newMessages">
                     <span className="listItem__newMessages__date">
                         {this.props.date}
                     </span>
+                    {this.props.newMessages && this.props.date &&
                     <span className="listItem__newMessages__quantity">
                         {this.props.newMessages}
                     </span>
-
+                    }
                 </div>
-                }
+
             </div>
         );
     }
