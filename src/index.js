@@ -4,7 +4,7 @@ import './index.css';
 import App from './components/App/App';
 import Header from './components/Header/Header';
 import registerServiceWorker from './registerServiceWorker';
-import Balloon from './components/balloon/Balloon';
+import Balloon from './components/Balloon/Balloon';
 import Avatar from './components/Avatar/Avatar';
 import SendMessage from './components/SendMessage/SendMessage';
 
