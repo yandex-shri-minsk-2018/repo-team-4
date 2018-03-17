@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import SendMessage from '../SendMessage/SendMessage';
 import logo from './logo.svg';
 import './App.css';
-import ListItem from "../ListItem/ListItem"
-import Contacts from "../Contacts/Contacts";
 
 class App extends Component {
   render() {
