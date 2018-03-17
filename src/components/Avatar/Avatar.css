@@ -1,0 +1,24 @@
+.avatar__img__profile{
+    width: 119px;
+    height: 119px;
+    border-radius: 60px;
+}
+
+.avatar__img__chat{
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+}
+
+.avatar__img__profile,
+.avatar__img_chat{
+    background: white;
+    overflow: hidden;
+}
+
+.avatar__img{
+    border-radius: 18px;
+    width: 100%;
+
+    image-rendering: optimizeSpeed;
+}
