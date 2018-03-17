@@ -1,5 +1,5 @@
 import React from 'react';
-import './ChatListHeader.css';
+import './HeaderTemplate.css';
 import '../ChatTitle/ChatName/ChatName'
 import ChatTitle from "../ChatTitle/ChatTitle";
 
@@ -21,7 +21,7 @@ class ChatListHeader extends React.Component {
           <div className="button button-1">
             <i className="fa fa-arrow-left"></i>
           </div>
-          <h2>Сообщения</h2>
+          <h2>{this.props.title}</h2>
           <div className="button button-2">
             <i className="fa fa-ellipsis-h"></i>
           </div>

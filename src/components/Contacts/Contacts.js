@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Contacts.css';
 import '../ContactItem/ContactItem';
 import ContactItem from "../ContactItem/ContactItem";
-import Header from "../Header/Header";
+import HeaderTemplate from "../HeaderTemplate/HeaderTemplate";
 
 
 
@@ -10,7 +10,7 @@ class Contacts extends Component {
     render() {
         return (
             <div className="contacts">
-                <Header/>
+              <HeaderTemplate title='Контакты'/>
                 <ContactItem name="Вася"/>
                 <ContactItem name="Игорь"/>
                 <ContactItem name="Гена"/>
