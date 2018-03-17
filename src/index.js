@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
+import Header from './components/Header/Header'
 import registerServiceWorker from './registerServiceWorker';
 import Bolloon from './components/bolloon/Bolloon'
 
@@ -89,7 +90,6 @@ import Bolloon from './components/bolloon/Bolloon'
 //})();
 const textTwo = 'Doing good, how do you feel about grabbing a coffee sometime?';
 
-
+ MessageBalloon
 ReactDOM.render(<Bolloon message={textTwo}/>, 
   document.getElementById('root'));
-registerServiceWorker();
