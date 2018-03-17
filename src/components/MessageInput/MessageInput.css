@@ -21,10 +21,13 @@
     width: 100%;
 
     color: white;
-    font-size: 1.7em;
+    font-size: 1.4em;
     background: transparent;
 
     border: none;
+
+    
+    outline: none;
 }
 
 .sendmessage__textarea::placeholder {
