@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
-import Header from './components/Header/Header'
+import Header from './components/Header/Header';
 import registerServiceWorker from './registerServiceWorker';
-import Bolloon from './components/bolloon/Bolloon'
+import Balloon from './components/balloon/Balloon';
 
 //import api from './api';
 //
@@ -88,8 +88,16 @@ import Bolloon from './components/bolloon/Bolloon'
 //
 //    console.log(api);
 //})();
+const textOne = 'Hi Andrea! How are you?';
 const textTwo = 'Doing good, how do you feel about grabbing a coffee sometime?';
+const sty = {
+  'display': 'flex',
+  'flexDirection': 'column'
+}
 
- MessageBalloon
-ReactDOM.render(<Bolloon message={textTwo}/>, 
+ReactDOM.render(
+  <div style={sty}>
+    <Balloon message={textOne} typeMessage={true}/>
+    <Balloon message={textTwo}/>
+  </div>,
   document.getElementById('root'));
