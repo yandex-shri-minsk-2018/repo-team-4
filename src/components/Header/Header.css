@@ -1,0 +1,16 @@
+.header{
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  padding: 1em;
+}
+
+.header h2{
+  margin-top: 0;
+}
+
+.button{
+  align-self: flex-start;
+}
