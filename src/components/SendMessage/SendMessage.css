@@ -12,6 +12,8 @@
     border-radius: 16px;
     color: white;
     font-family: Roboto;
+    position: fixed;
+    bottom: 0;
 }
 
 .attachement__icon>i,
