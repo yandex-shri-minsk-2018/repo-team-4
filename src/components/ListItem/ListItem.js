@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './listItem.css';
+import './ListItem.css';
 
 class ListItem extends Component {
     render() {
@@ -11,18 +11,24 @@ class ListItem extends Component {
                     </div>
                     <div className="listItem__leftInfo__userInfo">
                         <span className="listItem__leftInfo__userInfo__name">
-                            Vladimir Zubritskiy
+                            {this.props.name}
                         </span>
-                        <span className="listItem__leftInfo__userInfo__lastActivity">
-                            1 day ago
+                        <span className="listItem__leftInfo__userInfo__lastMessage">
+                            {this.props.lastMessage}
                         </span>
                     </div>
                 </div>
-                <div className="listItem__newMessage">
-                    <span className="listItem__newMessage__quantity">
-                        1
+                {this.props.newMessages && this.props.date &&
+                <div className="listItem__newMessages">
+                    <span className="listItem__newMessages__date">
+                        {this.props.date}
                     </span>
+                    <span className="listItem__newMessages__quantity">
+                        {this.props.newMessages}
+                    </span>
+
                 </div>
+                }
             </div>
         );
     }
