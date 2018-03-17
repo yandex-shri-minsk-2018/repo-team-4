@@ -26,6 +26,13 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "client": "react-scripts start",
-    "server": "nodemon -w server.js -w src/server server.js"
+    "server": "nodemon -w server.js -w src/server server.js",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "devDependencies": {
+    "@storybook/react": "^3.3.15",
+    "@storybook/addon-actions": "^3.3.15",
+    "@storybook/addon-links": "^3.3.15"
   }
 }
