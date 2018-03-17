@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.message-attachements {
+    position: absolute;
+    width: 50vw;
+
+    bottom: 35px;
+    left: -15px;
+
+    border-radius: 16px;
+    
+    background: rgb(204, 46, 86);
+
+    list-style: none;
+
+    flex-direction: column;
+
+    padding: 10px 0;
+
+    z-index: 2;
+}
+
+.message-attachements::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: -1;
+
+    background-color: rgb(204, 46, 86);;
+
+    bottom: -9px;
+    left: 15px;
+
+    transform: rotate(45deg);
+}
+
+.message-attachement_opened {
+    display: flex;
+}
+
+.message-attachement_close {
+    display: none;
+}
+
+.message-attachements__li {
+    padding: 10px 20px;
+    font-size: 1.4em;
+    font-family: Roboto;
+}

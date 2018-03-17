@@ -1,0 +1,43 @@
+* {
+    font-size: 12px;
+}
+
+.sendmessage {
+    height: 45px;
+    width: calc(100% - 40px);
+    margin: 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 0 10px;
+
+    background: #F13564;
+    border-radius: 16px;
+
+    color: white;
+
+    font-family: Roboto;
+
+}
+
+.attachement__icon>i,
+.send-button__button>i,
+.smiles__icon>i {
+    font-size: 1.4em;
+}
+
+.send-button__button {
+    display: block;
+    border: none;
+    background: transparent;
+    color: white;
+    
+}
+
+.sendmessage__attachement {
+    position: relative;
+}

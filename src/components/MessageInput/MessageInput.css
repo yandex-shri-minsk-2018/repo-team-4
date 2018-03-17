@@ -1,0 +1,32 @@
+.sendmessage__message-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 73%;
+    height: 100%;
+}
+
+.sendmessage__input {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    padding: 0.8em;
+    box-sizing: border-box;
+
+    font-size: 0.9em;
+}
+
+.sendmessage__textarea {
+    width: 100%;
+
+    color: white;
+    font-size: 1.7em;
+    background: transparent;
+
+    border: none;
+}
+
+.sendmessage__textarea::placeholder {
+    color: white;
+}
