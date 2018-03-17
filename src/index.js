@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
-import Header from './components/Header/Header'
+import Header from './components/Header/Header';
 import registerServiceWorker from './registerServiceWorker';
-import Bolloon from './components/bolloon/Bolloon'
+import Balloon from './components/balloon/Balloon';
 
 //import api from './api';
 //
@@ -97,7 +97,7 @@ const sty = {
 
 ReactDOM.render(
   <div style={sty}>
-    <Bolloon message={textOne} typeMessage={true}/>
-    <Bolloon message={textTwo}/>
+    <Balloon message={textOne} typeMessage={true}/>
+    <Balloon message={textTwo}/>
   </div>,
   document.getElementById('root'));

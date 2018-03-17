@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import DateMessage from '../DateMessage/DateMessage'
-import './Bolloon.css';
+import './Balloon.css';
 
-class Bolloon extends Component {
+class Balloon extends Component {
   render() {
     const date = '5';
-    let style = this.props.typeMessage ? 'styleBolloon' : ' ';
+    let style = this.props.typeMessage ? 'styleballoon' : ' ';
 
     return (
-      <div className= {'bolloon ' + style} >
-        <div className='bolloon__content' message=''>
+      <div className= {'balloon ' + style} >
+        <div className='balloon__content' message=''>
           {this.props.message}
         </div>
          <DateMessage dateMessage={date}/>
@@ -18,4 +18,4 @@ class Bolloon extends Component {
   }
 }
 
-export default Bolloon;
+export default Balloon;
