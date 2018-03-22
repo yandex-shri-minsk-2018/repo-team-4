@@ -6,19 +6,11 @@ import Balloon from "../Balloon/Balloon";
 import './IncomingMessage.css';
 
 class IncomingMessage extends Component{
-    constructor(props){
-        super(props);
-
-        if (props.url)
-            this.imageUrl = props.url;
-        this.incomingMessage = props.incomingMessage
-    }
-
     render() {
         return (
             <div className="incomingMessage messagesLayout__message">
-                <Avatar url={this.imageUrl} size='small'/>
-                <Balloon message={this.incomingMessage} typeMessage={true}/>
+                <Avatar url={this.props.url} size='small'/>
+                <Balloon message={this.props.incomingMessage} typeMessage={true}/>
             </div>
         )
     }
