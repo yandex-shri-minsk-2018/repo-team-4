@@ -1,0 +1,10 @@
+.outgoingMessage{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+    margin-right: 29px;
+}
+
+.outgoingMessage > div{
+    margin: auto 0 auto 19px;
+}
