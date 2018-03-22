@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Profile from './components/Profile/Profile'
 
 //import api from './api';
 //
@@ -86,5 +87,6 @@ import './index.css';
 //})();
 ReactDOM.render(
   <div>
+    <Profile name='Егор Куц'/>
   </div>,
   document.getElementById('root'));
