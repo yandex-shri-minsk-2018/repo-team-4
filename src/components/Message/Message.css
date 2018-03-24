@@ -1,0 +1,22 @@
+.outgoingMessage,
+.incomingMessage {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.incomingMessage {
+    margin-left: 29px;
+}
+
+.incomingMessage > div {
+    margin: auto 19px auto 0;
+}
+
+.outgoingMessage {
+    justify-content: flex-end;
+    margin-right: 29px;
+}
+
+.outgoingMessage > div {
+    margin: auto 0 auto 19px;
+}

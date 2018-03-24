@@ -1,9 +1,0 @@
-.incomingMessage{
-    display: flex;
-    margin-bottom: 40px;
-    margin-left: 29px;
-}
-
-.incomingMessage > div{
-    margin: auto 19px auto 0;
-}
