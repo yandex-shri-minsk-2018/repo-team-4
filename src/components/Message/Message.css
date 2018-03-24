@@ -13,7 +13,7 @@
 }
 
 .outgoingMessage {
-    justify-content: flex-end;
+    flex-direction: row-reverse;
     margin-right: 29px;
 }
 

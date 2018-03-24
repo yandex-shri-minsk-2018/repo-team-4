@@ -10,9 +10,8 @@ class Message extends Component {
         return (
             <div className={this.props.isMyMessage ?
                 'outgoingMessage  messagesLayout__message' : 'incomingMessage messagesLayout__message'}>
-                {this.props.isMyMessage && <Balloon message={this.props.messageText}/>}
                 <Avatar url={this.props.url} size='small'/>
-                {!this.props.isMyMessage && <Balloon message={this.props.messageText} typeMessage={true}/>}
+                <Balloon message={this.props.messageText} typeMessage={!this.props.isMyMessage}/>
             </div>
         )
     }
