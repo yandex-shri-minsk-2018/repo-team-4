@@ -2,27 +2,28 @@
     width: 53.7%;
     height: 3em;
     margin: 0 auto;
-    background: #FFFFFF;
     border-radius: 100px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
     border: none;
     font-size: 18px;
-    color: #919EC4;
 }
 
-.login-layout-button_highlighted {
+.login-layout-button_theme_white {
+  background: #FFFFFF;
+  color: #919EC4;
+
+}
+
+.login-layout-button_theme_default {
     background: #F13564;
     color: white;
     box-shadow: 0 13px 25px 0 rgba(0,0,0,0.12);
 }
 
 .login-layout-button__sign-up-btn {
-    width: 55%;
-    justify-content: flex-start;
-    padding-left: 40px;
-    margin-right: -30px;
+    width: 35%;
+    border-radius: 100px 0 0 100px;
     background-color: #ef5c81;
 }

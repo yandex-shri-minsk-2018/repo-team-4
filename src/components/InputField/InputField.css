@@ -12,7 +12,7 @@
     box-sizing: border-box;
 }
 
-.login-form__input-field__input {
+.login-form__input {
     border: none;
     outline: none;
     height: 100%;
@@ -24,6 +24,6 @@
     background-color: transparent;
 }
 
-.login-form__input-field__logo {
+.login-form__input-logo {
     margin-right: 10px;
 }

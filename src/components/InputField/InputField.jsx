@@ -10,8 +10,8 @@ class InputField extends Component {
     render() {
         return (
             <div className="login-form__input-field">
-                <i className={this.props.faClass + " login-form__input-field__logo"} aria-hidden="true"></i>
-                <input type={this.props.typeOfField} placeholder={this.props.placeholder} className="login-form__input-field__input"/>
+                <i className={this.props.faClass + " login-form__input-logo"} aria-hidden="true"></i>
+                <input type={this.props.typeOfField} placeholder={this.props.placeholder} className="login-form__input"/>
             </div>
         );
     }
