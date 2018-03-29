@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SendMessage from '../SendMessage/SendMessage';
 import './Profile.css';
-import out from './images/out.svg';
 
 const IconBack = () => (
   <svg x="0px" y="0px"
