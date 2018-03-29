@@ -1,0 +1,22 @@
+.outgoing-message,
+.incoming-message {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.incoming-message {
+    margin-left: 29px;
+}
+
+.incoming-message > div {
+    margin: auto 19px auto 0;
+}
+
+.outgoing-message {
+    flex-direction: row-reverse;
+    margin-right: 29px;
+}
+
+.outgoing-message > div {
+    margin: auto 0 auto 19px;
+}

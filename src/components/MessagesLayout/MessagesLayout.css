@@ -1,0 +1,29 @@
+.messages-layout{
+    margin-top: 80px;
+    margin-bottom: 85px;
+}
+
+.messages-layout__header{
+    background: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.messages-layout__messages{
+    overflow-y: scroll;
+    height: calc(100vh - 165px);
+}
+
+.messages-layout__message:first-child{
+    padding-top: 20px;
+}
+
+.messages-layout__send-message{
+    background: white;
+    min-height: 85px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0 -3px 10px 0 rgba(0, 0, 0, 0.09)
+}
