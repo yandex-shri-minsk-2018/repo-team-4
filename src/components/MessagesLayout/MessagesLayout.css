@@ -1,25 +1,25 @@
-.messagesLayout{
+.messages-layout{
     margin-top: 80px;
     margin-bottom: 85px;
 }
 
-.messagesLayout__header{
+.messages-layout__header{
     background: white;
     position: fixed;
     width: 100%;
     top: 0;
 }
 
-.messagesLayout__messageList{
+.messages-layout__messages{
     overflow-y: scroll;
     height: calc(100vh - 165px);
 }
 
-.messagesLayout__message:first-child{
+.messages-layout__message:first-child{
     padding-top: 20px;
 }
 
-.messagesLayout__textInput{
+.messages-layout__send-message{
     background: white;
     min-height: 85px;
     width: 100%;

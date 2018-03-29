@@ -5,16 +5,14 @@ import Balloon from '../Balloon/Balloon'
 
 import './Message.css';
 
-class Message extends Component {
+export class Message extends Component {
     render() {
         return (
             <div className={this.props.isMyMessage ?
-                'outgoingMessage  messagesLayout__message' : 'incomingMessage messagesLayout__message'}>
+                'outgoing-message  messages-layout__message' : 'incoming-message messages-layout__message'}>
                 <Avatar url={this.props.url} size='small'/>
                 <Balloon message={this.props.messageText} typeMessage={!this.props.isMyMessage}/>
             </div>
         )
     }
 }
-
-export default Message;

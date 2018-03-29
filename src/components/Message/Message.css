@@ -1,22 +1,22 @@
-.outgoingMessage,
-.incomingMessage {
+.outgoing-message,
+.incoming-message {
     display: flex;
     margin-bottom: 40px;
 }
 
-.incomingMessage {
+.incoming-message {
     margin-left: 29px;
 }
 
-.incomingMessage > div {
+.incoming-message > div {
     margin: auto 19px auto 0;
 }
 
-.outgoingMessage {
+.outgoing-message {
     flex-direction: row-reverse;
     margin-right: 29px;
 }
 
-.outgoingMessage > div {
+.outgoing-message > div {
     margin: auto 0 auto 19px;
 }
