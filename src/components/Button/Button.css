@@ -1,0 +1,29 @@
+.login-layout-button {
+    width: 53.7%;
+    height: 3em;
+    margin: 0 auto;
+    border-radius: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: none;
+    font-size: 18px;
+}
+
+.login-layout-button_theme_white {
+  background: #FFFFFF;
+  color: #919EC4;
+
+}
+
+.login-layout-button_theme_default {
+    background: #F13564;
+    color: white;
+    box-shadow: 0 13px 25px 0 rgba(0,0,0,0.12);
+}
+
+.login-layout-button__sign-up-btn {
+    width: 35%;
+    border-radius: 100px 0 0 100px;
+    background-color: #ef5c81;
+}
