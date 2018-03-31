@@ -13,7 +13,6 @@ class LoginLayout extends React.Component {
         this.props.changeLayout("chatListLayout");
     }
 
-
     render() {
         return(
             <div className='loginPage'>
@@ -43,5 +42,3 @@ export default connect(
         changeLayout
     }
 )(LoginLayout)
-
-

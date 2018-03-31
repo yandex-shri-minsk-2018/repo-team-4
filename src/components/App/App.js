@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { changeLayout } from '../../reducers/navigation/action';
 import LoginLayout from "../LoginLayout/LoginLayout";
 import ChatListLayout from "../ChatListLayout/ChatListLayout";
+import MessagesLayout from "../MessagesLayout/MessagesLayout";
 
 
 class App extends Component {
@@ -17,6 +18,12 @@ class App extends Component {
                 break;
             case 'chatListLayout':
                 layout = <ChatListLayout/>;
+                break;
+            case 'messagesLayout':
+                layout = <MessagesLayout/>;
+                break;
+            case 'contacts':
+                layout = <Contacts/>;
                 break;
         }
 
