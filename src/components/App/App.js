@@ -6,8 +6,7 @@ import { changeLayout } from '../../reducers/navigation/action';
 import LoginLayout from "../LoginLayout/LoginLayout";
 import ChatListLayout from "../ChatListLayout/ChatListLayout";
 import MessagesLayout from "../MessagesLayout/MessagesLayout";
-
-
+import api from '../../api';
 class App extends Component {
     render() {
         let layout;
@@ -34,7 +33,23 @@ class App extends Component {
                 { layout }
             </div>
         );
+
     }
+    // componentDidMount() {
+    //   // console.log('mount');
+    //   api.onMessage((message) => {
+    //     // console.log('New message: ', message);
+    //   });
+    // }
+    //
+    // render() {
+    //   return (
+    //     <div className="App">
+    //       <MessagesLayout roomId={'5abf4fbe53f9331578c86dfa'} />,
+    //       {/* <Contacts /> */}
+    //     </div>
+    //   );
+    // }
 }
 
 
@@ -51,5 +66,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(App)
-
-

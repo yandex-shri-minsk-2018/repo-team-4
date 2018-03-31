@@ -11,14 +11,7 @@ export default class MessagesLayout extends Component {
     /**
      * todo: передавать в балун Timestamp сообщения в формате 'hh:mm', реализовать поддержку
      * todo: получать аватар пользователя в зависимости от его id. Для этого добавить в сущность User поле 'Avatar'
-     */
-
-    /**
      * todo: получать аватарку получив информацию о юзере. userId брать из сообщения
-     *
-     * userId = this.dbMessage[i]._id
-     * let user = await api.getUser(userId);
-     * url={user.avatar}
      */
 
     state = {
@@ -31,7 +24,7 @@ export default class MessagesLayout extends Component {
     componentDidMount() {
         api.getRoomMessages(this.props.roomId)
             .then((messages) => {
-                this.setState({ messages: messages.items });
+                this.setState({ messages: messages.items.reverse() });
                 document.getElementById('messages-layout__messages')
                     .scrollTo(0, document.getElementById('messages-layout__messages').scrollHeight);
             });
