@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Contacts.css';
 import '../ContactItem/ContactItem';
 import ContactItem from "../ContactItem/ContactItem";
 import HeaderTemplate from "../HeaderTemplate/HeaderTemplate";
 
 import api from '../../api';
-
 
 class Contacts extends Component {
 
@@ -25,9 +24,11 @@ class Contacts extends Component {
         return (
             <div className="contacts">
                 <HeaderTemplate title='Контакты'/>
+
                 {users && users.map(function(user){
                         return <ContactItem key={user._id} name={user.name} userId={user._id}/>
                 })}
+
             </div>
         );
     }
