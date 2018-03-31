@@ -84,7 +84,7 @@ import App from './components/App/App';
 //
 //    console.log(api);
 //})();
-ReactDOM.render(
-  <div>
-  </div>,
+//
+  ReactDOM.render(
+    <App />,
   document.getElementById('root'));
