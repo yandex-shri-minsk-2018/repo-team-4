@@ -19,7 +19,7 @@ class ChatTitle extends React.Component {
 
     return(
         <div>
-          <ChatName online={this.state.isGroup ? false : this.state.online} name={name}/>
+          <ChatName online={this.state.isGroup ? false : this.state.online} name={this.props.chatName}/>
           {title}
         </div>
     );

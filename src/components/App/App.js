@@ -52,17 +52,11 @@ class App extends Component {
     // }
 }
 
-
-const mapStateToProps = state => ({
-    layout: state.navigation.layout
-});
-
-const mapDispatchToProps = dispatch => ({
-    changeLayout: changeLayout
-});
-
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    state => ({
+        layout: state.navigation.layout
+    }), {
+        changeLayout
+    }
 )(App)
+

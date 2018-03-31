@@ -6,3 +6,11 @@ export function changeLayout(layout) {
         })
     }
 }
+
+export function goPrevLayout() {
+    return (dispatch, getState) => {
+        dispatch({
+            type: "PREV_LAYOUT"
+        })
+    }
+}
