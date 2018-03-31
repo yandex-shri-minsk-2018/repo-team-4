@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ChatListLayout from './components/ChatListLayout/ChatListLayout';
-import MessagesLayout from './components/MessagesLayout/MessagesLayout';
-import Profile from './components/Profile/Profile';
-import Contacts from './components/Contacts/Contacts';
+import LoginLayout from "./components/LoginLayout/LoginLayout";
+
 //import api from './api';
 //
 // Example of usage API
@@ -86,37 +84,10 @@ import Contacts from './components/Contacts/Contacts';
 //    console.log('Leave current user to room', await api.currentUserLeaveRoom(rooms.items[0]._id));
 //
 //    console.log(api);
-//})();
-class Demo extends Component {
-  state = {
-    i: 0,
-    masLay: ''
-  };
-  ise = (MasLay, i) => () =>
-  this.setState(prevState => ({
-    masLay: MasLay[i],
-    i: i === 3 ? 0 : i + 1
-  }));
-  render() {
-    const {i, masLay} = this.state;
-    const {ise} = this;
-    const MasLay =  [<MessagesLayout />,
-            <ChatListLayout />,
-      <Profile name='Егор Куц'/>,
-      <Contacts />];
 
-    return (
-      <div className='wrap' onClick={ise(MasLay, i)}>
-        {masLay}
-      </div>  )
-  }
-}
+
+
 ReactDOM.render(
-  <div className='wrap'>
-   {/* <ChatListLayout /> */}
-    {/* <MessagesLayout /> */}
-    {/* <Profile name='Егор Куц'/> */}
-    {/* {masLay[i]} */}
-    <Demo />
+  <div>
   </div>,
   document.getElementById('root'));
