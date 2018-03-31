@@ -6,31 +6,17 @@ import './SendMessage.css';
 
 
 class SendMessage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: this.props.roomId
+    clickTextHundler() {
+        const valueText = document.querySelector('.sendmessage__textarea').value;
+        console.log(valueText);
+
+        (async () => {
+            await api.currentUserJoinRoom(this.props.roomId);
+            await api.sendMessage(this.props.roomId, valueText);
+        })();
     }
-    this.clickTextHundler = this.clickTextHundler.bind(this);
-  }
-
-
-  clickTextHundler() {
-    const valueText = document.querySelector('.sendmessage__textarea').value;
-    console.log(valueText);
-
-  (async () => {
-    let rooms = await api.getRooms();
-    console.log(rooms);
-    let room = await api.currentUserJoinRoom(this.state.text);
-    console.log(room);
-     console.log(valueText);
-     let message = await api.sendMessage(this.state.text, valueText);
-  })();
-}
 
     render() {
-      const { clickTextHundler } = this;
         return (
             <div className="sendmessage">
                 <MessageAttachement />

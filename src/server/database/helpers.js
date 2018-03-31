@@ -20,7 +20,7 @@ async function pageableCollection(collection, {lastId, order, limit = 10, ...que
 
     if (lastId) {
         query._id = {
-            $gt: ObjectId(_id)
+            $gt: ObjectId(lastId.toString())
         };
     }
 
@@ -30,7 +30,7 @@ async function pageableCollection(collection, {lastId, order, limit = 10, ...que
         queryBuilder = queryBuilder.sort(order);
     }
 
-    if (query._id) {
+    if (typeof query._id === 'string') {
         query._id = ObjectId(query._id.toString());
     }
 
