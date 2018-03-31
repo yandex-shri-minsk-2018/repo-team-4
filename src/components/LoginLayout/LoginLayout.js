@@ -1,11 +1,18 @@
 import React from 'react';
 import './LoginLayout.css';
+import { connect } from 'react-redux'
+import { changeLayout } from '../../reducers/navigation/action';
 
 class LoginLayout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
+
+    onLoginClick() {
+        this.props.changeLayout("chatListLayout");
+    }
+
 
     render() {
         return(
@@ -20,7 +27,7 @@ class LoginLayout extends React.Component {
                         <input type='text'></input>
                     </div>
                     <div className='buttonContainer'>
-                        <div className='button'>Войти</div>
+                        <div className='button' onClick={this.onLoginClick.bind(this)}>Войти</div>
                         <div className='button'>Регистрация</div>
                     </div>
                 </div>
@@ -29,4 +36,12 @@ class LoginLayout extends React.Component {
     }
 }
 
-export default LoginLayout;
+export default connect(
+    state => ({
+        layout: state.navigation.layout
+    }), {
+        changeLayout
+    }
+)(LoginLayout)
+
+

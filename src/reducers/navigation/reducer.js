@@ -2,9 +2,6 @@ const initialState = {
     layout: "autorization"
 };
 
-
-
-
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case "CHANGE_LAYOUT": {
@@ -13,8 +10,8 @@ export default function reducer(state = initialState, action) {
                 layout: action.layout
             }
         }
+        default: {
+            return state
+        }
     }
-
-    return state;
-
 }
