@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import SendMessage from '../SendMessage/SendMessage';
-import logo from './logo.svg';
 import './App.css';
+import Contacts from "../Contacts/Contacts";
+
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
-        <header className="app-header">
-          <h1>Header</h1>
-        </header>
-        <div className="app-content">
-        </div>
-        <SendMessage />
+        <Contacts />
       </div>
     );
   }
+
 }
 
 export default App;

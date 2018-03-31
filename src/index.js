@@ -84,10 +84,8 @@ import LoginLayout from "./components/LoginLayout/LoginLayout";
 //    console.log('Leave current user to room', await api.currentUserLeaveRoom(rooms.items[0]._id));
 //
 //    console.log(api);
-
-
-
-ReactDOM.render(
-  <div>
-  </div>,
+//})();
+//
+  ReactDOM.render(
+    <App />,
   document.getElementById('root'));

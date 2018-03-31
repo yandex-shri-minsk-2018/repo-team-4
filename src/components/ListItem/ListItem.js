@@ -8,7 +8,7 @@ class ListItem extends Component {
         return (
             <div className="listItem">
                 <div className="listItem__leftInfo">
-                  <Avatar size={this.props.sizeAvatar} url={this.props.urlAvatar}/>
+                    <Avatar size={this.props.sizeAvatar} url={this.props.urlAvatar}/>
                     <div className="listItem__leftInfo__userInfo">
                         <span className="listItem__leftInfo__userInfo__name">
                             {this.props.name}
