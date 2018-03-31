@@ -1,19 +1,21 @@
-.avatar__img__profile{
-    width: 119px;
-    height: 119px;
+.avatar__img__small{
+     width: 36px;
+     height: 36px;
 }
 
-.avatar__img__chat{
-    width: 36px;
-    height: 36px;
-}
-.avatar__img__contacts {
+.avatar__img__medium{
     width: 70px;
     height: 70px;
 }
 
-.avatar__img__profile,
-.avatar__img_chat{
+.avatar__img__large{
+    width: 119px;
+    height: 119px;
+}
+
+.avatar__img__small,
+.avatar__img__medium,
+.avatar__img__large{
     background: white;
     overflow: hidden;
 }
