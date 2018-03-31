@@ -4,7 +4,20 @@ import './ContactItem.css';
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
 
+import api from "../../api";
 class ContactItem extends Component {
+    constructor(props){
+        super(props);
+        this.clickHandler = this.clickHandler.bind(this);
+    }
+
+    async clickHandler(){
+        let chatUser = await api.getUser(this.props.userId);
+
+        let room = await api.createRoom({name: chatUser.name, users: [chatUser._id]});
+        console.log(room);
+    }
+  
     onContactItemClick() {
         this.props.changeLayout("messagesLayout");
     }
@@ -12,6 +25,7 @@ class ContactItem extends Component {
     render() {
         return (
             <div className="contactItem" onClick={this.onContactItemClick.bind(this)}>
+
                 <Avatar size="medium" url={this.props.url}/>
                 <span className="name">
                     {this.props.name}

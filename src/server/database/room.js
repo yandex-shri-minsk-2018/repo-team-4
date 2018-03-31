@@ -51,8 +51,8 @@ async function getRooms(db, filter) {
  */
 async function getUserRooms(db, userId, filter) {
     return pageableCollection(db.collection(TABLE), {
-        users: [ObjectId(userId.toString())],
-        ...filter
+        ...filter,
+        users: ObjectId(userId.toString())
     });
 }
 
@@ -76,15 +76,14 @@ async function createRoom(db, currentUser, room) {
         delete room._id;
 
         room.users = room.users || [];
-        room.users.push(currentUser._id);
+        room.users.push(currentUser._id.toString());
+
+        room.users = [...new Set(room.users)].map((userId) => ObjectId(userId));
 
         return insertOrUpdateEntity(collection, room);
     }
 
-    return {
-        error: 'Room with same name already exists',
-        code: 409
-    };
+    return existsRoom;
 }
 
 /**

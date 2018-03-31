@@ -4,6 +4,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/index';
 import './index.css';
+
+import Contacts from "./components/Contacts/Contacts";
+
 import App from "./components/App/App";
 import thunk from 'redux-thunk';
 
@@ -15,6 +18,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(...middleware)
 ));
+
 
 //import api from './api';
 //
@@ -99,6 +103,7 @@ const store = createStore(rootReducer, composeEnhancers(
 //    console.log(api);
 //})();
 //
+
 
 ReactDOM.render(
     <Provider store={store}>
