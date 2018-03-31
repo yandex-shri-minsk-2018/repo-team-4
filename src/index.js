@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import ChatListLayout from './components/ChatListLayout/ChatListLayout';
+import MessagesLayout from './components/MessagesLayout/MessagesLayout';
+import Profile from './components/Profile/Profile';
+import Contacts from './components/Contacts/Contacts';
 //import api from './api';
 //
 // Example of usage API
@@ -83,7 +87,36 @@ import './index.css';
 //
 //    console.log(api);
 //})();
+class Demo extends Component {
+  state = {
+    i: 0,
+    masLay: ''
+  };
+  ise = (MasLay, i) => () =>
+  this.setState(prevState => ({
+    masLay: MasLay[i],
+    i: i === 3 ? 0 : i + 1
+  }));
+  render() {
+    const {i, masLay} = this.state;
+    const {ise} = this;
+    const MasLay =  [<MessagesLayout />,
+            <ChatListLayout />,
+      <Profile name='Егор Куц'/>,
+      <Contacts />];
+
+    return (
+      <div className='wrap' onClick={ise(MasLay, i)}>
+        {masLay}
+      </div>  )
+  }
+}
 ReactDOM.render(
-  <div>
+  <div className='wrap'>
+   {/* <ChatListLayout /> */}
+    {/* <MessagesLayout /> */}
+    {/* <Profile name='Егор Куц'/> */}
+    {/* {masLay[i]} */}
+    <Demo />
   </div>,
   document.getElementById('root'));

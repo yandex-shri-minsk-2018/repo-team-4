@@ -2,10 +2,11 @@
   font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: center;
-  padding: 1em;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.09)
+  padding: 1em 2em;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.09);
+  margin-bottom: 34px;
 }
 
 .header h2{
@@ -13,5 +14,5 @@
 }
 
 .button{
-  align-self: flex-start;
+  align-self: center;
 }

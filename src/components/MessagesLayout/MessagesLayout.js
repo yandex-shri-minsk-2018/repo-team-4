@@ -6,7 +6,7 @@ import {Message} from '../Message/Message'
 
 import './MessagesLayout.css';
 
-export class MessagesLayout extends Component {
+export default class MessagesLayout extends Component {
     constructor(props) {
         super(props);
 
