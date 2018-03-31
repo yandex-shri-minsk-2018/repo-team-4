@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import LoginLayout from "./components/LoginLayout/LoginLayout";
+import Contacts from "./components/Contacts/Contacts";
 
 //import api from './api';
 //
@@ -87,5 +87,5 @@ import LoginLayout from "./components/LoginLayout/LoginLayout";
 //})();
 //
   ReactDOM.render(
-    <App />,
+    <Contacts/>,
   document.getElementById('root'));
