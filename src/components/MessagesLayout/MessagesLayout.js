@@ -47,7 +47,6 @@ export default class MessagesLayout extends Component {
         let currentUserId = this.state.currentUserId;
         let myAvatar = this.state.myAvatar;
         let incomingMessageAvatar = this.state.incomingMessageAvatar;
-
         return (
             <div className='messages-layout'>
                 <div className='messages-layout__header'>
