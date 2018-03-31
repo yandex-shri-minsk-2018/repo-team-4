@@ -1,22 +1,33 @@
 import React from 'react';
 import './ChatListLayout.css';
-// import Header from "../Header/Header";
-// import ListItem from "../ListItem/ListItem";
-// import ChatTitle from "../ChatTitle/ChatTitle";
 import ChatList from "../ChatList/ChatList";
 import HeaderTemplate from "../HeaderTemplate/HeaderTemplate";
 
+import {connect} from 'react-redux'
+import {changeLayout} from '../../reducers/navigation/action';
+
+
 class ChatListLayout extends React.Component {
 
-  render() {
-    return(
-        <div>
-          <HeaderTemplate title='Диалоги'/>
-          <ChatList/>
-          <div className='mockFooter'> Mock Footer</div>
-        </div>
-    );
-  }
+    onFooterClick() {
+        this.props.changeLayout("contacts");
+    }
+
+    render() {
+        return (
+            <div>
+                <HeaderTemplate title='Диалоги'/>
+                <ChatList/>
+                <div className='mockFooter' onClick={this.onFooterClick.bind(this)}>Контакты</div>
+            </div>
+        );
+    }
 }
 
-export default ChatListLayout;
+export default connect(
+    state => ({
+        layout: state.navigation.layout
+    }), {
+        changeLayout
+    }
+)(ChatListLayout)

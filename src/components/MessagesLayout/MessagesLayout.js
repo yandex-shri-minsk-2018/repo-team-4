@@ -7,7 +7,10 @@ import {Message} from '../Message/Message'
 import './MessagesLayout.css';
 import api from '../../api';
 
-export default class MessagesLayout extends Component {
+import {connect} from "react-redux";
+import {joinChat} from "../../reducers/chat/action";
+
+class MessagesLayout extends Component {
     /**
      * todo: передавать в балун Timestamp сообщения в формате 'hh:mm', реализовать поддержку
      * todo: получать аватар пользователя в зависимости от его id. Для этого добавить в сущность User поле 'Avatar'
@@ -33,6 +36,11 @@ export default class MessagesLayout extends Component {
                 const currentUser = user._id;
                 this.setState({ currentUserId: currentUser });
             });
+        api.getRoom(this.props.roomId).then((room) => {
+            this.setState({
+                room: room
+            })
+        })
     }
 
     render() {
@@ -40,10 +48,12 @@ export default class MessagesLayout extends Component {
         let currentUserId = this.state.currentUserId;
         let myAvatar = this.state.myAvatar;
         let incomingMessageAvatar = this.state.incomingMessageAvatar;
+        let roomData = this.state.room;
+
         return (
             <div className='messages-layout'>
                 <div className='messages-layout__header'>
-                    <Header/>
+                    <Header chatName={roomData && roomData.name}/>
                 </div>
                 <div className='messages-layout__messages' id='messages-layout__messages'>
                     {messages && messages.map(function(message){
@@ -61,3 +71,11 @@ export default class MessagesLayout extends Component {
         )
     }
 }
+
+export default connect(
+    state => ({
+        roomId: state.chat.currentChatId
+    }), {
+        joinChat
+    }
+)(MessagesLayout)
