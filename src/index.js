@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import LoginLayout from "./components/LoginLayout/LoginLayout";
-
-//import api from './api';
+import MessagesLayout from "./components/MessagesLayout/MessagesLayout";
+import api from './api';
 //
 // Example of usage API
 //
@@ -86,6 +86,20 @@ import LoginLayout from "./components/LoginLayout/LoginLayout";
 //    console.log(api);
 //})();
 //
+// (async () => {
+//   let rooms = await api.getRooms();
+//   console.log('rooms',rooms);
+//
+//   let room = await api.currentUserJoinRoom("5abf516b099ef81828a8801f");
+//   console.log('room',room);
+//
+//    // let message = await api.sendMessage("5abf516b099ef81828a8801f", 'aaaaaaaaaaaa');
+//    // console.log('message', message);
+//
+//    let messages = await api.getRoomMessages('5abf516b099ef81828a8801f');
+//    console.log(messages);
+// })();
+
   ReactDOM.render(
-    <App />,
+    <MessagesLayout roomId={'5abf516b099ef81828a8801f'}/>,
   document.getElementById('root'));

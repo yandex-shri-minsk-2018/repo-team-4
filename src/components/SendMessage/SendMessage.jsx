@@ -9,7 +9,7 @@ class SendMessage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: this.props.roomId
+      text: ''
     }
     this.clickTextHundler = this.clickTextHundler.bind(this);
   }
@@ -20,12 +20,12 @@ class SendMessage extends Component {
     console.log(valueText);
 
   (async () => {
-    let rooms = await api.getRooms();
-    console.log(rooms);
-    let room = await api.currentUserJoinRoom(this.state.text);
-    console.log(room);
-     console.log(valueText);
-     let message = await api.sendMessage(this.state.text, valueText);
+    // let rooms = await api.getRooms();
+    // console.log(rooms);
+    // let room = await api.currentUserJoinRoom(this.props.roomId);
+    // console.log(room);
+    //  console.log(valueText);
+     let message = await api.sendMessage(this.props.roomId, valueText);
   })();
 }
 
