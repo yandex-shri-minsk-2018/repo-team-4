@@ -5,7 +5,9 @@ class Spinner extends Component {
 
     render() {
         return (
-            <div className="spinner"></div>
+            <div className='spinnerContainer'>
+                <div className="spinner"></div>
+            </div>
         );
     }
 }

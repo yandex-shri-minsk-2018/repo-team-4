@@ -6,6 +6,7 @@ import {changeLayout} from '../../reducers/navigation/action';
 import LoginLayout from "../LoginLayout/LoginLayout";
 import ChatListLayout from "../ChatListLayout/ChatListLayout";
 import MessagesLayout from "../MessagesLayout/MessagesLayout";
+import Profile from "../Profile/Profile";
 
 class App extends Component {
     render() {
@@ -22,6 +23,9 @@ class App extends Component {
                 break;
             case 'contacts':
                 layout = <Contacts/>;
+                break;
+            case 'profile':
+                layout = <Profile/>;
                 break;
             default:
                 layout = <LoginLayout/>;

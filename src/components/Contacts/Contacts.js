@@ -2,44 +2,29 @@ import React, {Component} from 'react';
 import './Contacts.css';
 import '../ContactItem/ContactItem';
 import ContactItem from "../ContactItem/ContactItem";
+import ContactsList from "../ContactsList/ContactsList";
 import HeaderTemplate from "../HeaderTemplate/HeaderTemplate";
 
 import api from '../../api';
 import Spinner from "../Loaders/Spinner/Spinner";
+import {connect} from "react-redux";
+import {changeLayout} from "../../reducers/navigation/action";
+import {joinChat} from "../../reducers/chat/action";
 
 class Contacts extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {loading: false};
-    }
 
-    componentDidMount() {
-        api.getUsers().then((users) => {
-            this.setState({
-                users: users.items,
-                loading: true
-            })
-        });
+    onFooterClick() {
+        this.props.changeLayout("chatListLayout");
     }
 
     render() {
-        if (!this.state.loading) {
-            return (
-                <div className="contacts">
-                    <HeaderTemplate title='Контакты'/>
-                    <Spinner/>
-                </div>
-            )
-        }
 
-        let users = this.state.users;
         return (
             <div className="contacts">
                 <HeaderTemplate title='Контакты'/>
-                {users && users.map(function (user) {
-                    return <ContactItem key={user._id} name={user.name} userId={user._id}/>
-                })}
+                <ContactsList />
+                <div className='footer' onClick={this.onFooterClick.bind(this)}>Чаты</div>
             </div>
         );
 
@@ -47,4 +32,10 @@ class Contacts extends Component {
     }
 }
 
-export default Contacts;
+export default connect(
+    state => ({
+        layout: state.navigation.layout
+    }), {
+        changeLayout,
+    }
+)(Contacts)

@@ -15,7 +15,8 @@ export default function reducer(state = initialState, action) {
         case "SET_ROOMS": {
             return {
                 ...state,
-                rooms: action.rooms
+                rooms: action.rooms,
+                messages: action.messages
             }
         }
         default: {

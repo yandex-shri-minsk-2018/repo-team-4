@@ -3,6 +3,9 @@ import api from "../../api";
 //TODO При создании часа с контактом создать на его стороне тоже
 export function joinChat(userId) {
     return (dispatch, getState) => {
+        api.getCurrentUser().then(user => {
+            console.log(user);
+        });
         api.getUser(userId)
             .then((user) => {
                 return api.createRoom({name: user.name, users: [user._id]})
@@ -43,12 +46,14 @@ export function joinExistingChat(roomId) {
 }
 
 export function getRooms() {
-    return(dispatch, getState) => {
-        api.getCurrentUserRooms().then((rooms) => {
-            dispatch({
-                type: 'SET_ROOMS',
-                rooms: rooms.items
+    return (dispatch, getState) => {
+        api.getCurrentUserRooms()
+            .then((rooms) => {
+                dispatch({
+                    type: 'SET_ROOMS',
+                    rooms: rooms.items
+                })
+
             })
-        })
     }
 }
