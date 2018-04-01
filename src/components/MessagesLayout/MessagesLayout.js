@@ -49,7 +49,6 @@ class MessagesLayout extends Component {
         let myAvatar = this.state.myAvatar;
         let incomingMessageAvatar = this.state.incomingMessageAvatar;
         let roomData = this.state.room;
-
         return (
             <div className='messages-layout'>
                 <div className='messages-layout__header'>

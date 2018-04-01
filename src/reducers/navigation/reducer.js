@@ -1,4 +1,5 @@
 const initialState = {
+    // layout: "autorization",
     layout: "autorization",
     prevLayout: null
 };

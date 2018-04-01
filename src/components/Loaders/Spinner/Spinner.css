@@ -1,0 +1,32 @@
+.spinner{
+    width: 40px;
+    height: 40px;
+    border: 3px solid #ddd;
+    border-top: 4px solid #f25a41;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: spinner 1s infinite linear, opacity 0.2s;
+}
+
+@keyframes spinner{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes opacity{
+    from{
+        opacity: 0
+    }
+    to{
+        opacity: 1
+    }
+}
