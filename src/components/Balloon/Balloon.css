@@ -1,10 +1,10 @@
 .balloon {
   max-width: 233px;
-  padding: 17px 8px 17px 28px;
+  padding: 10px 15px 10px 15px;
   display: flex;
   flex-direction: column;
-  background: #F13564;
-  box-shadow: 0 13px 25px 0 rgba(0,0,0,0.12);
+  background: #f25a41;
+  box-shadow: 0 3px 10px 0 rgba(0,0,0,0.12);
   border-radius: 16px;
 }
 .balloon__content {
@@ -25,5 +25,5 @@
 }
 
 .styleballoon .data-message {
-  color: #F13564;
+  color: #f25a41;
 }
