@@ -13,7 +13,7 @@ class MessageAttachementsList extends Component {
     }
 
     render() {
-        if(this.props.isOpen != this.state.isOpen) {
+        if(this.props.isOpen !== this.state.isOpen) {
             this.setState({
                 isOpen: !this.state.isOpen
             })

@@ -15,8 +15,6 @@ class ChatTitle extends React.Component {
 
   render() {
     let title = this.state.isGroup ? <NumberOfUsers number={6}/> : <OnlineInfo online={this.state.online} time={"12:30"}>Private</OnlineInfo>;
-    let name = "Yahor Kutz";
-
     return(
         <div>
           <ChatName online={this.state.isGroup ? false : this.state.online} name={this.props.chatName}/>

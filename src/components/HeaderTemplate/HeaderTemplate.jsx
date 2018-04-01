@@ -1,15 +1,7 @@
 import React from 'react';
 import './HeaderTemplate.css';
 import '../ChatTitle/ChatName/ChatName'
-import ChatTitle from "../ChatTitle/ChatTitle";
 
-
-/*TODO Components:
-button1,
-button2,
-ChatNameTitle,
-LastVisit privateChat: visitTime; GroupChat: number of members
-*/
 class ChatListHeader extends React.Component {
 
 

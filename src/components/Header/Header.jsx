@@ -3,7 +3,6 @@ import './Header.css';
 import '../ChatTitle/ChatName/ChatName'
 import ChatTitle from "../ChatTitle/ChatTitle";
 import {connect} from "react-redux";
-import {joinChat} from "../../reducers/chat/action";
 import {goPrevLayout} from "../../reducers/navigation/action";
 
 
