@@ -5,7 +5,7 @@ import HeaderTemplate from "../HeaderTemplate/HeaderTemplate";
 
 import {connect} from 'react-redux'
 import {changeLayout} from '../../reducers/navigation/action';
-
+import {joinChat} from "../../reducers/chat/action";
 
 class ChatListLayout extends React.Component {
 
@@ -28,6 +28,7 @@ export default connect(
     state => ({
         layout: state.navigation.layout
     }), {
-        changeLayout
+        changeLayout,
+        joinChat
     }
 )(ChatListLayout)

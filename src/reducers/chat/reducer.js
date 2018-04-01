@@ -1,6 +1,7 @@
 const initialState = {
     currentChatId: null,
-    chatList: []
+    chatList: [],
+    rooms: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -9,6 +10,12 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 currentChatId: action.id
+            }
+        }
+        case "SET_ROOMS": {
+            return {
+                ...state,
+                rooms: action.rooms
             }
         }
         default: {
