@@ -5,7 +5,7 @@ export function getRooms() {
     api.getCurrentUserRooms().then((rooms) => {
       console.log(rooms);
       dispatch({
-        type: 'SET_ROOMS',
+        type: 'GET_ROOMS_SUCCESS',
         rooms: rooms.items
       })
     })

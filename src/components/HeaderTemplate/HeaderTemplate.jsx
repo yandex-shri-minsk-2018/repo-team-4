@@ -6,10 +6,9 @@ class HeaderTemplate extends React.Component {
 
 
   render() {
-    let HeaderTemplateClass = "HeaderTemplate";
 
     return(
-        <div className={HeaderTemplateClass}>
+        <div className="HeaderTemplate">
           <div className="button button-1">
             <i className={this.props.leftButtonClass}></i>
           </div>

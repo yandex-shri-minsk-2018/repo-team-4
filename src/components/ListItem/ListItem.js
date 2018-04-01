@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './ListItem.css';
 import Avatar from "../Avatar/Avatar";
 import {connect} from "react-redux";
-import {joinChat,joinExistingChat} from "../../reducers/chat/action";
+import {joinExistingChat} from "../../reducers/chat/action";
 
 
 class ListItem extends Component {
@@ -45,9 +45,7 @@ class ListItem extends Component {
 
 export default connect(
     state => ({
-        layout: state.navigation.layout
     }), {
-        joinChat,
         joinExistingChat
     }
 )(ListItem)

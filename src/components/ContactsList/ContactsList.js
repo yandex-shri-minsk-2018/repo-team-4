@@ -2,36 +2,30 @@ import React from 'react';
 import './ContactsList.css';
 import ContactItem from "../ContactItem/ContactItem";
 import { connect } from 'react-redux'
-import { getRooms } from '../../reducers/chat/action';
-import api from "../../api";
+import { getContacts } from '../../reducers/chat/action';
 import Spinner from "../Loaders/Spinner/Spinner";
 
 class ContactsList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {loading: false};
+        this.state = {};
     }
 
     componentDidMount() {
-        api.getUsers().then((users) => {
-            this.setState({
-                users: users.items,
-                loading: true
-            })
-        });
+        this.props.getContacts()
     }
 
     render() {
-        if(!this.state.loading){
-            return (
+        if(this.props.loading){
+            return(
                 <Spinner/>
-            );
+            )
         }
 
-        let users = this.state.users;
+        let users = this.props.users;
         return (
-            <div>
+            <div className='contactsList'>
                 {users && users.map(function (user) {
                     return <ContactItem key={user._id} name={user.name} userId={user._id}/>
                 })}
@@ -44,8 +38,9 @@ class ContactsList extends React.Component {
 
 export default connect(
     state => ({
-
+        users: state.chat.users,
+        loading: state.chat.loading
     }), {
-
+        getContacts
     }
 )(ContactsList)

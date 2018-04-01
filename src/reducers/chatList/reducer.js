@@ -4,7 +4,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case "SET_ROOMS": {
+        case "GET_ROOMS_SUCCESS": {
             return {
                 ...state,
                 rooms: action.rooms

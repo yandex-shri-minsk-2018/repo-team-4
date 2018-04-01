@@ -38,24 +38,7 @@ class App extends Component {
                 {layout}
             </div>
         );
-
     }
-
-    // componentDidMount() {
-    //   // console.log('mount');
-    //   api.onMessage((message) => {
-    //     // console.log('New message: ', message);
-    //   });
-    // }
-    //
-    // render() {
-    //   return (
-    //     <div className="App">
-    //       <MessagesLayout roomId={'5abf4fbe53f9331578c86dfa'} />,
-    //       {/* <Contacts /> */}
-    //     </div>
-    //   );
-    // }
 }
 
 export default connect(

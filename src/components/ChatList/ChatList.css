@@ -1,3 +1,11 @@
 .chatList{
     min-height: 79vh;
+    -webkit-animation: appearance 0.5s;
+    -o-animation: appearance 0.5s;
+    animation: appearance 0.5s;
+}
+
+@keyframes appearance {
+    from {opacity: 0}
+    to {opacity: 1}
 }

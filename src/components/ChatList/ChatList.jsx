@@ -7,21 +7,17 @@ import Spinner from "../Loaders/Spinner/Spinner";
 
 class ChatList extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {loading: false};
-    }
-
     componentDidMount() {
         this.props.getRooms()
     }
 
     render() {
-        // if(!this.state.loading){
-        //     return(
-        //         <Spinner/>
-        //     )
-        // }
+        if(this.props.loading){
+            return(
+                <Spinner/>
+            )
+        }
+
         return(
             <div className='chatList'>
                 {this.props.rooms.map((room, index) => (
@@ -42,7 +38,8 @@ class ChatList extends React.Component {
 
 export default connect(
     state => ({
-        rooms: state.chat.rooms
+        rooms: state.chat.rooms,
+        loading: state.chat.loading
     }), {
         getRooms
     }

@@ -11,10 +11,9 @@ class ChatListHeader extends React.Component {
     }
 
     render() {
-        let ChatListHeaderClass = "ChatListHeader";
 
         return(
-            <div className={ChatListHeaderClass}>
+            <div className="ChatListHeader">
                 <div className="button button-1" onClick={this.clickLeftButtonHandler.bind(this)}>
                     <i className='fa fa-cog'></i>
                 </div>

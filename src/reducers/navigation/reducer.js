@@ -1,6 +1,5 @@
 const initialState = {
-    //layout: "autorization",
-    layout: "chatListLayout",
+    layout: "autorization",
     prevLayout: null
 };
 
