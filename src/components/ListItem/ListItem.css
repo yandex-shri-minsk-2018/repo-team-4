@@ -36,7 +36,6 @@
   color: #46454c;
   font-weight: 700;
   white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
 }
 .listItem .listItem__leftInfo .listItem__leftInfo__userInfo .listItem__leftInfo__userInfo__lastMessage {

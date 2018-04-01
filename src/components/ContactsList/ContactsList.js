@@ -27,7 +27,12 @@ class ContactsList extends React.Component {
         return (
             <div className='contactsList'>
                 {users && users.map(function (user) {
-                    return <ContactItem key={user._id} name={user.name} userId={user._id}/>
+                    return <ContactItem
+                        sizeAvatar={"small"}
+                        key={user._id}
+                        name={user.name}
+                        lastMessage={user.phone}
+                        userId={user._id}/>
                 })}
             </div>
         );
