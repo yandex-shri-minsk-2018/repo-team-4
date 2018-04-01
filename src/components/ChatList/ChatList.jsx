@@ -6,8 +6,13 @@ import { getRooms } from '../../reducers/chat/action';
 
 class ChatList extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {loading: false};
+    }
+
     componentDidMount() {
-        this.props.getRooms();
+        this.props.getRooms()
     }
 
     render() {

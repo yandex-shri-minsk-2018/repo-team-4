@@ -27,7 +27,7 @@ export function joinExistingChat(roomId) {
     return (dispatch, getState) => {
         api.getRoom(roomId)
             .then((room) => {
-                console.log(room);
+
                 dispatch({
                     type: "JOIN_CHAT",
                     id: room._id
@@ -45,8 +45,6 @@ export function joinExistingChat(roomId) {
 export function getRooms() {
     return(dispatch, getState) => {
         api.getCurrentUserRooms().then((rooms) => {
-            //console.log(rooms);
-            //console.log(rooms);
             dispatch({
                 type: 'SET_ROOMS',
                 rooms: rooms.items
