@@ -1,11 +1,9 @@
 import React from 'react';
 import './ChatListLayout.css';
 import ChatList from "../ChatList/ChatList";
-import HeaderTemplate from "../HeaderTemplate/HeaderTemplate";
-
 import {connect} from 'react-redux'
 import {changeLayout} from '../../reducers/navigation/action';
-
+import ChatListHeader from "../ChatListHeader/ChatListHeader";
 
 class ChatListLayout extends React.Component {
 
@@ -16,9 +14,9 @@ class ChatListLayout extends React.Component {
     render() {
         return (
             <div>
-                <HeaderTemplate title='Диалоги'/>
+                <ChatListHeader/>
                 <ChatList/>
-                <div className='mockFooter' onClick={this.onFooterClick.bind(this)}>Контакты</div>
+                <div className='footer' onClick={this.onFooterClick.bind(this)}>Контакты</div>
             </div>
         );
     }
@@ -26,7 +24,6 @@ class ChatListLayout extends React.Component {
 
 export default connect(
     state => ({
-        layout: state.navigation.layout
     }), {
         changeLayout
     }

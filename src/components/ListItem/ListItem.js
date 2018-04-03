@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import './ListItem.css';
 import Avatar from "../Avatar/Avatar";
+import {connect} from "react-redux";
+import {joinExistingChat} from "../../reducers/chat/action";
 
 
 class ListItem extends Component {
+
+    clickHandler(){
+        this.props.joinExistingChat(this.props.roomId);
+    }
+
     render() {
         return (
-            <div className="listItem">
+            <div className="listItem" onClick={this.clickHandler.bind(this)}>
                 <div className="listItem__leftInfo">
                     <Avatar size={this.props.sizeAvatar} url={this.props.urlAvatar}/>
                     <div className="listItem__leftInfo__userInfo">
@@ -35,4 +42,10 @@ class ListItem extends Component {
     }
 }
 
-export default ListItem;
+
+export default connect(
+    state => ({
+    }), {
+        joinExistingChat
+    }
+)(ListItem)

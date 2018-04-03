@@ -1,4 +1,4 @@
-.chatListHeader{
+.HeaderTemplate{
   font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: row;
@@ -6,7 +6,7 @@
   text-align: center;
   padding: 1em 2em;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.09);
-  margin-bottom: 34px;
+  margin-bottom: 1em;
 }
 
 .header h2{

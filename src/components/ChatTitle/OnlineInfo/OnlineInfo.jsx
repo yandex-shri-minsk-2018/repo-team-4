@@ -2,9 +2,6 @@ import React from 'react';
 import './OnlineInfo.css';
 
 class OnlineInfo extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     if(this.props.online){
