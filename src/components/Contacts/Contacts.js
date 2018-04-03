@@ -27,7 +27,6 @@ class Contacts extends Component {
 
 export default connect(
     state => ({
-        layout: state.navigation.layout
     }), {
         changeLayout,
     }

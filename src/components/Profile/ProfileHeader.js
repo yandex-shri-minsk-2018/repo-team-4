@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SendMessage from '../SendMessage/SendMessage';
 import './Profile.css';
 
 const IconBack = () => (

@@ -24,7 +24,6 @@ class ChatListLayout extends React.Component {
 
 export default connect(
     state => ({
-        layout: state.navigation.layout
     }), {
         changeLayout
     }

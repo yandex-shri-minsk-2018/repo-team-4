@@ -37,12 +37,3 @@ export default connect(
         joinChat
     }
 )(ContactItem)
-
-/*
-<div className="contactItem" onClick={this.clickHandler.bind(this)}>
-                <Avatar size="medium" url={this.props.url}/>
-                <span className="name">
-                    {this.props.name}
-                </span>
-            </div>
- */
