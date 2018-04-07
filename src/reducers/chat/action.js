@@ -8,6 +8,15 @@ export function joinChat(userId) {
                 return api.createRoom({name: user.name, users: [user._id]})
             })
             .then((room) => {
+                api.currentUserJoinRoom(room._id)
+                    .then(() => {
+                        api.onMessage((mess) => {
+                            dispatch({
+                                type: "NEW_MESSAGE",
+                                newMessage: mess
+                            });
+                        })
+                    });
 
                 dispatch({
                     type: "JOIN_CHAT",
@@ -27,6 +36,15 @@ export function joinExistingChat(roomId) {
     return (dispatch, getState) => {
         api.getRoom(roomId)
             .then((room) => {
+                api.currentUserJoinRoom(room._id)
+                    .then((room) => {
+                        api.onMessage((mess) => {
+                            dispatch({
+                                type: "ON_NEW_MESSAGE",
+                                newMessage: mess
+                            });
+                        })
+                    });
 
                 dispatch({
                     type: "JOIN_CHAT",
@@ -51,9 +69,23 @@ export function getRooms() {
                     type: 'GET_ROOMS_SUCCESS',
                     rooms: rooms.items
                 })
-
             }).catch((error) => {
             dispatch({ type: 'GET_ROOMS_FAIL' })
+        })
+    }
+}
+
+export function getRoomMessages(roomId) {
+    return (dispatch, getState) => {
+        dispatch({type: 'GET_MESSAGES'});
+        api.getRoomMessages(roomId)
+            .then((messages) => {
+                dispatch({
+                    type: 'GET_MESSAGES_SUCCESS',
+                    messages: messages.items
+                })
+            }).catch((error) => {
+            dispatch({ type: 'GET_MESSAGES_FAIL' })
         })
     }
 }
@@ -69,6 +101,17 @@ export function getContacts() {
 
         }).catch((error) => {
             dispatch({ type: 'GET_CONTACTS_FAIL' })
+        })
+    }
+}
+
+export function sendMessage(roomId, message) {
+    return (dispatch, getState) => {
+        api.sendMessage(roomId, message).then((message) => {
+            dispatch({
+                type: "ON_NEW_MESSAGE",
+                newMessage: message
+            });
         })
     }
 }

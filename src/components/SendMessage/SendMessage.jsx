@@ -3,6 +3,8 @@ import MessageAttachement from '../MessageAttachement/MessageAttachement';
 import MessageInput from '../MessageInput/MessageInput';
 import api from '../../api';
 import './SendMessage.css';
+import {sendMessage} from "../../reducers/chat/action";
+import {connect} from "react-redux";
 
 
 class SendMessage extends Component {
@@ -10,10 +12,7 @@ class SendMessage extends Component {
         const valueText = document.querySelector('.sendmessage__textarea').value;
         document.querySelector('.sendmessage__textarea').value = '';
 
-        (async () => {
-            await api.currentUserJoinRoom(this.props.roomId);
-            await api.sendMessage(this.props.roomId, valueText);
-        })();
+        this.props.sendMessage(this.props.roomId, valueText);
     }
 
 
@@ -32,4 +31,11 @@ class SendMessage extends Component {
     }
 }
 
-export default SendMessage
+export default connect(
+    state => ({
+        roomId: state.chat.currentChatId,
+        messages: state.chat.messages
+    }), {
+        sendMessage
+    }
+)(SendMessage)

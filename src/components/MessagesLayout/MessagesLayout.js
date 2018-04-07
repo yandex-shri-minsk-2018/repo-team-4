@@ -8,7 +8,7 @@ import './MessagesLayout.css';
 import api from '../../api';
 
 import {connect} from "react-redux";
-import {joinChat} from "../../reducers/chat/action";
+import {getRoomMessages, joinChat} from "../../reducers/chat/action";
 
 class MessagesLayout extends Component {
     /**
@@ -25,12 +25,12 @@ class MessagesLayout extends Component {
     };
 
     componentDidMount() {
-        api.getRoomMessages(this.props.roomId)
-            .then((messages) => {
-                this.setState({ messages: messages.items.reverse() });
-                document.getElementById('messages-layout__messages')
-                    .scrollTo(0, document.getElementById('messages-layout__messages').scrollHeight);
-            });
+        this.props.getRoomMessages(this.props.roomId);
+
+        // TODO
+        // document.getElementById('messages-layout__messages')
+        //     .scrollTo(0, document.getElementById('messages-layout__messages').scrollHeight);
+
         api.getCurrentUser()
             .then((user) => {
                 const currentUser = user._id;
@@ -43,8 +43,13 @@ class MessagesLayout extends Component {
         })
     }
 
+    componentDidUpdate(){
+        document.getElementById('messages-layout__messages')
+            .scrollTo(0, document.getElementById('messages-layout__messages').scrollHeight);
+    }
+
     render() {
-        let messages = this.state.messages;
+        let messages = this.props.messages;
         let currentUserId = this.state.currentUserId;
         let myAvatar = this.state.myAvatar;
         let incomingMessageAvatar = this.state.incomingMessageAvatar;
@@ -73,8 +78,10 @@ class MessagesLayout extends Component {
 
 export default connect(
     state => ({
-        roomId: state.chat.currentChatId
+        roomId: state.chat.currentChatId,
+        messages: state.chat.messages
     }), {
-        joinChat
+        joinChat,
+        getRoomMessages
     }
 )(MessagesLayout)
