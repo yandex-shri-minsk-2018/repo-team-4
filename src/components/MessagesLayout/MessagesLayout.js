@@ -61,7 +61,7 @@ class MessagesLayout extends Component {
                         return <Message
                             key={message._id}
                             url={message.userId === currentUserId ? myAvatar : incomingMessageAvatar}
-                            messageText={message.message}
+                            message={message}
                             isMyMessage={message.userId === currentUserId}/>
                     })}
                 </div>

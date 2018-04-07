@@ -60,13 +60,13 @@
   color: #f25a41;
 }
 .listItem .listItem__newMessages .listItem__newMessages__quantity {
-  height: 22px;
-  width: 22px;
+  height: 33px;
+  width: 33px;
   background: #f25a41;
   border-radius: 50%;
   font-family: Roboto;
   color: #fff;
-  line-height: 22px;
+  line-height: 33px;
   font-size: 16px;
   text-align: center;
   margin: 0.5em;

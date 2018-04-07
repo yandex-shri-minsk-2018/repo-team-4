@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import MessageAttachement from '../MessageAttachement/MessageAttachement';
 import MessageInput from '../MessageInput/MessageInput';
-import api from '../../api';
+
 import './SendMessage.css';
 import {sendMessage} from "../../reducers/chat/action";
 import {connect} from "react-redux";

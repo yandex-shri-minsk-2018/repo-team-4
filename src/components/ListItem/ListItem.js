@@ -32,7 +32,7 @@ class ListItem extends Component {
                     </span>
                     {this.props.newMessages && this.props.date &&
                     <span className="listItem__newMessages__quantity">
-                        {this.props.newMessages}
+                        {this.props.newMessages > 99 ? '99+' : this.props.newMessages}
                     </span>
                     }
                 </div>

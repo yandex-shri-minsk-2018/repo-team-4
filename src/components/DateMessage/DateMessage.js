@@ -9,7 +9,7 @@ class DateMessage extends Component {
             {this.props.dateMessage}
         </span>
         <span className='data-message'>
-            minutes ago
+
         </span>
       </div>
       );

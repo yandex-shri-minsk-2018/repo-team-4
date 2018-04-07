@@ -25,7 +25,7 @@ class ChatList extends React.Component {
                               sizeAvatar={"small"}
                               name={room.name}
                               lastMessage={room._id}
-                              newMessages={5}
+                              newMessages={10}
                               date={"5 минут назад"}
                               roomId={room._id}
                     />
