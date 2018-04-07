@@ -27,9 +27,6 @@ class MessagesLayout extends Component {
     componentDidMount() {
         this.props.getRoomMessages(this.props.roomId);
 
-        // TODO
-        // document.getElementById('messages-layout__messages')
-        //     .scrollTo(0, document.getElementById('messages-layout__messages').scrollHeight);
 
         api.getCurrentUser()
             .then((user) => {

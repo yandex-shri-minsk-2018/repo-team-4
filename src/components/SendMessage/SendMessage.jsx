@@ -8,17 +8,22 @@ import {connect} from "react-redux";
 
 
 class SendMessage extends Component {
-    clickTextHundler() {
+
+    clickTextHundler(){
         const valueText = document.querySelector('.sendmessage__textarea').value;
         document.querySelector('.sendmessage__textarea').value = '';
-
         this.props.sendMessage(this.props.roomId, valueText);
     }
 
+    handleKeyPress(e){
+        if (e.key === 'Enter') {
+            this.clickTextHundler()
+        }
+    }
 
     render() {
         return (
-            <div className="sendmessage">
+            <div className="sendmessage" onKeyPress={(e) => this.handleKeyPress(e)}>
                 <MessageAttachement />
                 <MessageInput />
                 <div className="sendmessage__send-button">

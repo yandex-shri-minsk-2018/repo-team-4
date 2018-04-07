@@ -41,7 +41,7 @@ export function joinExistingChat(roomId) {
                         api.onMessage((mess) => {
                             dispatch({
                                 type: "ON_NEW_MESSAGE",
-                                newMessage: mess
+                                newMessage: [mess]
                             });
                         })
                     });
@@ -82,7 +82,7 @@ export function getRoomMessages(roomId) {
             .then((messages) => {
                 dispatch({
                     type: 'GET_MESSAGES_SUCCESS',
-                    messages: messages.items
+                    messages: messages.items.reverse()
                 })
             }).catch((error) => {
             dispatch({ type: 'GET_MESSAGES_FAIL' })
@@ -110,7 +110,7 @@ export function sendMessage(roomId, message) {
         api.sendMessage(roomId, message).then((message) => {
             dispatch({
                 type: "ON_NEW_MESSAGE",
-                newMessage: message
+                newMessage: [message]
             });
         })
     }
