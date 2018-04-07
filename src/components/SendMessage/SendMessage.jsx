@@ -8,12 +8,15 @@ import './SendMessage.css';
 class SendMessage extends Component {
     clickTextHundler() {
         const valueText = document.querySelector('.sendmessage__textarea').value;
-        // console.log(valueText);
+        document.querySelector('.sendmessage__textarea').value = '';
+
         (async () => {
             await api.currentUserJoinRoom(this.props.roomId);
             await api.sendMessage(this.props.roomId, valueText);
         })();
     }
+
+
     render() {
         return (
             <div className="sendmessage">
