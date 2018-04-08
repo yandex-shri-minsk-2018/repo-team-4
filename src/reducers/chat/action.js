@@ -15,7 +15,7 @@ export function joinChat(userId) {
                                 type: "NEW_MESSAGE",
                                 newMessage: mess
                             });
-                        })
+                        });
                     });
 
                 dispatch({
@@ -43,7 +43,7 @@ export function joinExistingChat(roomId) {
                                 type: "ON_NEW_MESSAGE",
                                 newMessage: [mess]
                             });
-                        })
+                        });
                     });
 
                 dispatch({
@@ -69,31 +69,31 @@ export function getRooms() {
                 Promise.all(rooms.items.map(setLastMessageToRoom)).then((result) => {
                     rooms.items.sort(compareRooms);
                     dispatch({
-                        type: 'GET_ROOMS_SUCCESS',
+                        type: "GET_ROOMS_SUCCESS",
                         rooms: rooms.items
                     });
                 }).catch((error) => {
-                    dispatch({type: 'GET_ROOMS_FAIL'})
-                })
+                    dispatch({type: "GET_ROOMS_FAIL"});
+                });
 
-            })
+            });
 
-    }
+    };
 }
 
 export function getRoomMessages(roomId) {
     return (dispatch, getState) => {
-        dispatch({type: 'GET_MESSAGES'});
+        dispatch({type: "GET_MESSAGES"});
         api.getRoomMessages(roomId)
             .then((messages) => {
                 dispatch({
-                    type: 'GET_MESSAGES_SUCCESS',
+                    type: "GET_MESSAGES_SUCCESS",
                     messages: messages.items.reverse()
-                })
+                });
             }).catch((error) => {
-            dispatch({type: 'GET_MESSAGES_FAIL'})
-        })
-    }
+                dispatch({type: "GET_MESSAGES_FAIL"});
+            });
+    };
 }
 
 export function getContacts() {
@@ -118,34 +118,34 @@ export function sendMessage(roomId, message) {
                 type: "ON_NEW_MESSAGE",
                 newMessage: [message]
             });
-        })
-    }
+        });
+    };
 }
 
 function setLastMessageToRoom(room) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         api.getRoomMessages(room._id).then((messages) => {
             room.lastMessage = messages.items[0];
             resolve(room);
-        })
-    })
+        });
+    });
 }
 
-function compareRooms(firstRoom,secondRoom) {
-    if(firstRoom.lastMessage && secondRoom.lastMessage){
+function compareRooms(firstRoom, secondRoom) {
+    if (firstRoom.lastMessage && secondRoom.lastMessage) {
         if (firstRoom.lastMessage.created_at < secondRoom.lastMessage.created_at)
             return 1;
         if (firstRoom.lastMessage.created_at > secondRoom.lastMessage.created_at)
             return -1;
         return 0;
     }
-    else if(firstRoom.lastMessage){
+    else if (firstRoom.lastMessage) {
         return -1;
     }
-    else if(secondRoom.lastMessage){
+    else if (secondRoom.lastMessage) {
         return 1;
     }
-    else if(!firstRoom.lastMessage && !secondRoom.lastMessage){
+    else if (!firstRoom.lastMessage && !secondRoom.lastMessage) {
         return 0;
     }
 

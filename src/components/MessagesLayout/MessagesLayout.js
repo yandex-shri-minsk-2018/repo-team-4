@@ -3,10 +3,9 @@ import React, {Component} from "react";
 import Header from "../Header/Header";
 import SendMessage from "../SendMessage/SendMessage";
 import {Message} from "../Message/Message";
-
 import "./MessagesLayout.css";
 import api from "../../api";
-
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getRoomMessages, joinChat} from "../../reducers/chat/action";
 
@@ -40,9 +39,9 @@ class MessagesLayout extends Component {
         });
     }
 
-    componentDidUpdate(){
-        document.getElementById('messages-layout__messages')
-            .scrollTo(0, document.getElementById('messages-layout__messages').scrollHeight);
+    componentDidUpdate() {
+        document.getElementById("messages-layout__messages")
+            .scrollTo(0, document.getElementById("messages-layout__messages").scrollHeight);
     }
 
     render() {
@@ -62,7 +61,7 @@ class MessagesLayout extends Component {
                             key={message._id}
                             url={message.userId === currentUserId ? myAvatar : incomingMessageAvatar}
                             message={message}
-                            isMyMessage={message.userId === currentUserId}/>
+                            isMyMessage={message.userId === currentUserId}/>;
                     })}
                 </div>
                 <div className='messages-layout__send-message'>
@@ -72,7 +71,11 @@ class MessagesLayout extends Component {
         );
     }
 }
-
+MessagesLayout.propTypes = {
+    getRoomMessages: PropTypes.func,
+    roomId: PropTypes.string,
+    messages: PropTypes.array
+};
 export default connect(
     state => ({
         roomId: state.chat.currentChatId,

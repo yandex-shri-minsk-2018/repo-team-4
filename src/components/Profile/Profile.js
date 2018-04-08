@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "./Profile.css";
 import ProfileHeader from "./ProfileHeader";
 import Avatar from "../Avatar/Avatar";
-
+import PropTypes from "prop-types";
 
 class Profile extends Component {
     render() {
@@ -27,5 +27,7 @@ class Profile extends Component {
         );
     }
 }
-
+Profile.propTypes = {
+    name: PropTypes.string
+};
 export default Profile;

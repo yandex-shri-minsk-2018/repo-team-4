@@ -2,6 +2,7 @@ import React from "react";
 import "./LoginLayout.css";
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
+import PropTypes from "prop-types";
 
 class LoginLayout extends React.Component {
     constructor(props) {
@@ -39,6 +40,9 @@ class LoginLayout extends React.Component {
         );
     }
 }
+LoginLayout.propTypes = {
+    changeLayout: PropTypes.func
+};
 
 export default connect(
     state => ({

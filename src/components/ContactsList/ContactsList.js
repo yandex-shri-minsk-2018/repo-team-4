@@ -4,6 +4,7 @@ import ContactItem from "../ContactItem/ContactItem";
 import {connect} from "react-redux";
 import {getContacts} from "../../reducers/chat/action";
 import Spinner from "../Loaders/Spinner/Spinner";
+import PropTypes from "prop-types";
 
 class ContactsList extends React.Component {
 
@@ -40,6 +41,13 @@ class ContactsList extends React.Component {
 
     }
 }
+
+ContactsList.propTypes = {
+    getContacts: PropTypes.func,
+    loading: PropTypes.bool,
+    users: PropTypes.array
+};
+
 
 export default connect(
     state => ({

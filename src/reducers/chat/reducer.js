@@ -37,50 +37,50 @@ export default function reducer(state = initialState, action) {
         };
     }
 
-        case "GET_CONTACTS_SUCCESS": {
-            return {
-                ...state,
-                users: action.users,
-                loading: false,
-            }
-        }
-        case "GET_CONTACTS": {
-            return {
-                ...state,
-                loading: true,
-            }
-        }
-        case "GET_CONTACTS_FAIL": {
-            console.log('Ошибка загрузки чатов');
-            return {
-                ...state,
-                loading: false,
-            }
-        }
-        case "GET_MESSAGES_SUCCESS": {
-            return {
-                ...state,
-                messages: action.messages,
-            }
-        }
-        case "GET_MESSAGES": {
-            return {
-                ...state,
-            }
-        }
-        case "GET_MESSAGES_FAIL": {
-            console.log('Ошибка загрузки чатов');
-            return {
-                ...state,
-            }
-        }
+    case "GET_CONTACTS_SUCCESS": {
+        return {
+            ...state,
+            users: action.users,
+            loading: false,
+        };
+    }
+    case "GET_CONTACTS": {
+        return {
+            ...state,
+            loading: true,
+        };
+    }
+    case "GET_CONTACTS_FAIL": {
+        console.log("Ошибка загрузки чатов");
+        return {
+            ...state,
+            loading: false,
+        };
+    }
+    case "GET_MESSAGES_SUCCESS": {
+        return {
+            ...state,
+            messages: action.messages,
+        };
+    }
+    case "GET_MESSAGES": {
+        return {
+            ...state,
+        };
+    }
+    case "GET_MESSAGES_FAIL": {
+        console.log("Ошибка загрузки чатов");
+        return {
+            ...state,
+        };
+    }
 
-        case "ON_NEW_MESSAGE": {
-            return {
-                ...state,
-                messages: state.messages.concat(action.newMessage)
-            }
-        }
+    case "ON_NEW_MESSAGE": {
+        return {
+            ...state,
+            messages: state.messages.concat(action.newMessage)
+        };
+    }
 
 
     default: {
