@@ -57,8 +57,6 @@ export default function reducer(state = initialState, action) {
                 loading: false,
             }
         }
-
-
         case "GET_MESSAGES_SUCCESS": {
             return {
                 ...state,

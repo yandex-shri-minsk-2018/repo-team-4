@@ -24,7 +24,6 @@ class Balloon extends Component {
             let month = messageDate.getMonth();
             month++;
             month = month < 10 ? '0'+month : month;
-            let year = messageDate.getFullYear();
             let hour = messageDate.getHours() < 10 ? '0'+messageDate.getHours() : messageDate.getHours();
             let minutes = messageDate.getMinutes() < 10 ? '0'+messageDate.getMinutes() : messageDate.getMinutes();
             let seconds = messageDate.getSeconds() < 10 ? '0'+messageDate.getSeconds() : messageDate.getSeconds();

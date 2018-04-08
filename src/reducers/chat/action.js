@@ -65,13 +65,19 @@ export function getRooms() {
         dispatch({type: 'GET_ROOMS'});
         api.getCurrentUserRooms()
             .then((rooms) => {
-                dispatch({
-                    type: 'GET_ROOMS_SUCCESS',
-                    rooms: rooms.items
+
+                Promise.all(rooms.items.map(setLastMessageToRoom)).then((result) => {
+                    rooms.items.sort(compareRooms);
+                    dispatch({
+                        type: 'GET_ROOMS_SUCCESS',
+                        rooms: rooms.items
+                    });
+                }).catch((error) => {
+                    dispatch({type: 'GET_ROOMS_FAIL'})
                 })
-            }).catch((error) => {
-            dispatch({ type: 'GET_ROOMS_FAIL' })
-        })
+
+            })
+
     }
 }
 
@@ -85,7 +91,7 @@ export function getRoomMessages(roomId) {
                     messages: messages.items.reverse()
                 })
             }).catch((error) => {
-            dispatch({ type: 'GET_MESSAGES_FAIL' })
+            dispatch({type: 'GET_MESSAGES_FAIL'})
         })
     }
 }
@@ -100,7 +106,7 @@ export function getContacts() {
             })
 
         }).catch((error) => {
-            dispatch({ type: 'GET_CONTACTS_FAIL' })
+            dispatch({type: 'GET_CONTACTS_FAIL'})
         })
     }
 }
@@ -114,4 +120,33 @@ export function sendMessage(roomId, message) {
             });
         })
     }
+}
+
+function setLastMessageToRoom(room) {
+    return new Promise(function(resolve, reject) {
+        api.getRoomMessages(room._id).then((messages) => {
+            room.lastMessage = messages.items[0];
+            resolve(room);
+        })
+    })
+}
+
+function compareRooms(firstRoom,secondRoom) {
+    if(firstRoom.lastMessage && secondRoom.lastMessage){
+        if (firstRoom.lastMessage.created_at < secondRoom.lastMessage.created_at)
+            return 1;
+        if (firstRoom.lastMessage.created_at > secondRoom.lastMessage.created_at)
+            return -1;
+        return 0;
+    }
+    else if(firstRoom.lastMessage){
+        return -1;
+    }
+    else if(secondRoom.lastMessage){
+        return 1;
+    }
+    else if(!firstRoom.lastMessage && !secondRoom.lastMessage){
+        return 0;
+    }
+
 }
