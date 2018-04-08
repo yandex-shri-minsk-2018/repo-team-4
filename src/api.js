@@ -1,15 +1,15 @@
-import io from 'socket.io-client';
-import * as MESSAGES from './server/messages';
+import io from "socket.io-client";
+import * as MESSAGES from "./server/messages";
 
 class Api {
 
     constructor() {
         this.uniqueId = 0;
 
-        this._connectPromise = fetch('/api/auth', {credentials: 'same-origin'})
+        this._connectPromise = fetch("/api/auth", {credentials: "same-origin"})
             .then(() => this._setupSocket())
             .catch((err) => {
-                console.error('Auth problems: ' + err.message);
+                console.error("Auth problems: " + err.message);
 
                 throw err;
             });
@@ -24,7 +24,7 @@ class Api {
         this.io = io();
 
         return new Promise((resolve) => {
-            this.io.on('connect', resolve);
+            this.io.on("connect", resolve);
         });
     }
 
@@ -88,7 +88,7 @@ class Api {
         return this._requestResponse(MESSAGES.CREATE_ROOM, room)
             .then((room) => {
                 if (room.error) {
-                    throw new Error(room.error)
+                    throw new Error(room.error);
                 }
 
                 return room;

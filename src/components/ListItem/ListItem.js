@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './ListItem.css';
+import React, {Component} from "react";
+import "./ListItem.css";
 import Avatar from "../Avatar/Avatar";
 import {connect} from "react-redux";
 import {joinExistingChat} from "../../reducers/chat/action";
@@ -7,7 +7,7 @@ import {joinExistingChat} from "../../reducers/chat/action";
 
 class ListItem extends Component {
 
-    clickHandler(){
+    clickHandler() {
         this.props.joinExistingChat(this.props.roomId);
     }
 
@@ -78,8 +78,7 @@ class ListItem extends Component {
 
 
 export default connect(
-    state => ({
-    }), {
+    state => ({}), {
         joinExistingChat
     }
-)(ListItem)
+)(ListItem);

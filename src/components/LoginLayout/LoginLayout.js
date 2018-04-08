@@ -1,7 +1,7 @@
-import React from 'react';
-import './LoginLayout.css';
-import { connect } from 'react-redux'
-import { changeLayout } from '../../reducers/navigation/action';
+import React from "react";
+import "./LoginLayout.css";
+import {connect} from "react-redux";
+import {changeLayout} from "../../reducers/navigation/action";
 
 class LoginLayout extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class LoginLayout extends React.Component {
     }
 
     render() {
-        return(
+        return (
             <div className='loginPage'>
                 <div className='loginContainer'>
                     <div className='inputContainer'>
@@ -46,4 +46,4 @@ export default connect(
     }), {
         changeLayout
     }
-)(LoginLayout)
+)(LoginLayout);

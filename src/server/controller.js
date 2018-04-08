@@ -1,7 +1,7 @@
-const {findUserBySid, getUsers} = require('./database/user');
-const {joinRoom, leaveRoom, getRooms, getUserRooms, createRoom} = require('./database/room');
-const {getMessages, sendMessage} = require('./database/messages');
-const TYPES = require('./messages');
+const {findUserBySid, getUsers} = require("./database/user");
+const {joinRoom, leaveRoom, getRooms, getUserRooms, createRoom} = require("./database/room");
+const {getMessages, sendMessage} = require("./database/messages");
+const TYPES = require("./messages");
 
 /**
  * @param {Db} db
@@ -23,11 +23,11 @@ module.exports = function (db, io) {
     /**
      * Connection is created
      */
-    io.on('connection', function (socket) {
+    io.on("connection", function (socket) {
         let {sid} = socket.request.cookies,
             isDisconnected = false;
 
-        socket.join('broadcast');
+        socket.join("broadcast");
 
         /**
          * Invoke callback and handle errors
@@ -79,7 +79,7 @@ module.exports = function (db, io) {
          * @param {string} roomId
          */
         function joinToRoomChannel(roomId) {
-            socket.join('room:' + roomId);
+            socket.join("room:" + roomId);
         }
 
         /**
@@ -88,7 +88,7 @@ module.exports = function (db, io) {
          * @param {string} roomId
          */
         function leaveRoomChannel(roomId) {
-            socket.leave('room:' + roomId);
+            socket.leave("room:" + roomId);
         }
 
         /**
@@ -98,7 +98,7 @@ module.exports = function (db, io) {
          * @param {string} roomId
          */
         function userWasJoinedToRoom({userId, roomId}) {
-            socket.to('room:' + roomId).emit(TYPES.USER_JOINED, {userId, roomId});
+            socket.to("room:" + roomId).emit(TYPES.USER_JOINED, {userId, roomId});
         }
 
         /**
@@ -108,7 +108,7 @@ module.exports = function (db, io) {
          * @param {string} roomId
          */
         function userLeaveRoom({userId, roomId}) {
-            socket.to('room:' + roomId).emit(TYPES.USER_LEAVED, {userId, roomId});
+            socket.to("room:" + roomId).emit(TYPES.USER_LEAVED, {userId, roomId});
         }
 
         /**
@@ -117,7 +117,7 @@ module.exports = function (db, io) {
          * @param {Message} message
          */
         function newMessage(message) {
-            socket.to('room:' + message.roomId).emit(TYPES.MESSAGE, message);
+            socket.to("room:" + message.roomId).emit(TYPES.MESSAGE, message);
         }
 
         // Load user information for next usage
@@ -222,7 +222,7 @@ module.exports = function (db, io) {
             });
         });
 
-        socket.on('disconnect', async () => {
+        socket.on("disconnect", async () => {
             isDisconnected = true;
             let user = await userPromise;
 

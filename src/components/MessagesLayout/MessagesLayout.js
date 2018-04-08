@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
-import Header from '../Header/Header'
-import SendMessage from '../SendMessage/SendMessage'
-import {Message} from '../Message/Message'
+import Header from "../Header/Header";
+import SendMessage from "../SendMessage/SendMessage";
+import {Message} from "../Message/Message";
 
-import './MessagesLayout.css';
-import api from '../../api';
+import "./MessagesLayout.css";
+import api from "../../api";
 
 import {connect} from "react-redux";
 import {getRoomMessages, joinChat} from "../../reducers/chat/action";
@@ -18,10 +18,10 @@ class MessagesLayout extends Component {
      */
 
     state = {
-        messages : [],
-        currentUserId: '',
-        incomingMessageAvatar: 'https://dcnt5qvi2hv76.cloudfront.net/b833369/resize_cache/74316/2e7fb5fb2ab1ebdd663145ea3b6c2c2e/main/e51/e51a3c0243a0c3463d729bea7c5b18b7/photo.jpg?h=ncaby.bitrix24.by',
-        myAvatar: 'https://vignette.wikia.nocookie.net/borderlands/images/1/13/Awesome.png/revision/latest?cb=20091026223409'
+        messages: [],
+        currentUserId: "",
+        incomingMessageAvatar: "https://dcnt5qvi2hv76.cloudfront.net/b833369/resize_cache/74316/2e7fb5fb2ab1ebdd663145ea3b6c2c2e/main/e51/e51a3c0243a0c3463d729bea7c5b18b7/photo.jpg?h=ncaby.bitrix24.by",
+        myAvatar: "https://vignette.wikia.nocookie.net/borderlands/images/1/13/Awesome.png/revision/latest?cb=20091026223409"
     };
 
     componentDidMount() {
@@ -31,13 +31,13 @@ class MessagesLayout extends Component {
         api.getCurrentUser()
             .then((user) => {
                 const currentUser = user._id;
-                this.setState({ currentUserId: currentUser });
+                this.setState({currentUserId: currentUser});
             });
         api.getRoom(this.props.roomId).then((room) => {
             this.setState({
                 room: room
-            })
-        })
+            });
+        });
     }
 
     componentDidUpdate(){
@@ -57,7 +57,7 @@ class MessagesLayout extends Component {
                     <Header chatName={roomData && roomData.name}/>
                 </div>
                 <div className='messages-layout__messages' id='messages-layout__messages'>
-                    {messages && messages.map(function(message){
+                    {messages && messages.map(function (message) {
                         return <Message
                             key={message._id}
                             url={message.userId === currentUserId ? myAvatar : incomingMessageAvatar}
@@ -69,7 +69,7 @@ class MessagesLayout extends Component {
                 </div>
                 <SendMessage roomId={this.props.roomId}/>
             </div>
-        )
+        );
     }
 }
 
@@ -81,4 +81,4 @@ export default connect(
         joinChat,
         getRoomMessages
     }
-)(MessagesLayout)
+)(MessagesLayout);

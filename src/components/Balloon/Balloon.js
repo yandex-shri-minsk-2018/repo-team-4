@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import DateMessage from '../DateMessage/DateMessage'
-import './Balloon.css';
+import React, {Component} from "react";
+import DateMessage from "../DateMessage/DateMessage";
+import "./Balloon.css";
 
 class Balloon extends Component {
     render() {

@@ -5,7 +5,7 @@ export function joinChat(userId) {
     return (dispatch, getState) => {
         api.getUser(userId)
             .then((user) => {
-                return api.createRoom({name: user.name, users: [user._id]})
+                return api.createRoom({name: user.name, users: [user._id]});
             })
             .then((room) => {
                 api.currentUserJoinRoom(room._id)
@@ -25,11 +25,11 @@ export function joinChat(userId) {
 
                 dispatch({
                     type: "CHANGE_LAYOUT",
-                    layout: 'messagesLayout'
+                    layout: "messagesLayout"
                 });
-            })
+            });
 
-    }
+    };
 }
 
 export function joinExistingChat(roomId) {
@@ -53,16 +53,16 @@ export function joinExistingChat(roomId) {
 
                 dispatch({
                     type: "CHANGE_LAYOUT",
-                    layout: 'messagesLayout'
+                    layout: "messagesLayout"
                 });
-            })
+            });
 
-    }
+    };
 }
 
 export function getRooms() {
     return (dispatch, getState) => {
-        dispatch({type: 'GET_ROOMS'});
+        dispatch({type: "GET_ROOMS"});
         api.getCurrentUserRooms()
             .then((rooms) => {
 
@@ -98,17 +98,17 @@ export function getRoomMessages(roomId) {
 
 export function getContacts() {
     return (dispatch, getState) => {
-        dispatch({type: 'GET_CONTACTS'});
+        dispatch({type: "GET_CONTACTS"});
         api.getUsers().then((users) => {
             dispatch({
-                type: 'GET_CONTACTS_SUCCESS',
+                type: "GET_CONTACTS_SUCCESS",
                 users: users.items
-            })
+            });
 
         }).catch((error) => {
-            dispatch({type: 'GET_CONTACTS_FAIL'})
-        })
-    }
+            dispatch({type: "GET_CONTACTS_FAIL"});
+        });
+    };
 }
 
 export function sendMessage(roomId, message) {

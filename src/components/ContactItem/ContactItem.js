@@ -1,6 +1,6 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent} from "react";
 import Avatar from "../Avatar/Avatar";
-import './ContactItem.css';
+import "./ContactItem.css";
 import {connect} from "react-redux";
 import {joinChat} from "../../reducers/chat/action";
 
@@ -36,4 +36,4 @@ export default connect(
     }), {
         joinChat
     }
-)(ContactItem)
+)(ContactItem);

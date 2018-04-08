@@ -1,6 +1,6 @@
+import React, {Component} from "react";
+import "./dataMessage.css";
 
-import React, { Component } from 'react';
-import './dataMessage.css';
 class DateMessage extends Component {
   render() {
     return (

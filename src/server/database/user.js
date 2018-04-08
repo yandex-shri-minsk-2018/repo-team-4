@@ -1,10 +1,10 @@
-const {ObjectId} = require('mongodb');
+const {ObjectId} = require("mongodb");
 
-const {getSessionInfo, saveSessionInfo} = require('./session');
-const {pageableCollection, insertOrUpdateEntity} = require('./helpers');
-const faker = require('faker');
+const {getSessionInfo, saveSessionInfo} = require("./session");
+const {pageableCollection, insertOrUpdateEntity} = require("./helpers");
+const faker = require("faker");
 
-const TABLE = 'users';
+const TABLE = "users";
 
 /**
  * @typedef {{

@@ -1,8 +1,8 @@
-import React from 'react';
-import './ContactsList.css';
+import React from "react";
+import "./ContactsList.css";
 import ContactItem from "../ContactItem/ContactItem";
-import { connect } from 'react-redux'
-import { getContacts } from '../../reducers/chat/action';
+import {connect} from "react-redux";
+import {getContacts} from "../../reducers/chat/action";
 import Spinner from "../Loaders/Spinner/Spinner";
 
 class ContactsList extends React.Component {
@@ -13,14 +13,14 @@ class ContactsList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getContacts()
+        this.props.getContacts();
     }
 
     render() {
-        if(this.props.loading){
-            return(
+        if (this.props.loading) {
+            return (
                 <Spinner/>
-            )
+            );
         }
 
         let users = this.props.users;
@@ -32,7 +32,7 @@ class ContactsList extends React.Component {
                         key={user._id}
                         name={user.name}
                         lastMessage={user.phone}
-                        userId={user._id}/>
+                        userId={user._id}/>;
                 })}
             </div>
         );
@@ -48,4 +48,4 @@ export default connect(
     }), {
         getContacts
     }
-)(ContactsList)
+)(ContactsList);

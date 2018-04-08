@@ -3,8 +3,8 @@ export function changeLayout(layout) {
         dispatch({
             type: "CHANGE_LAYOUT",
             layout
-        })
-    }
+        });
+    };
 }
 
 export function goPrevLayout() {
@@ -12,6 +12,6 @@ export function goPrevLayout() {
 
         dispatch({
             type: "PREV_LAYOUT"
-        })
-    }
+        });
+    };
 }
