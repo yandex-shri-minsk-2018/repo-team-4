@@ -1,8 +1,8 @@
 import React from 'react';
 import './ChatList.css';
 import ListItem from "../ListItem/ListItem";
-import { connect } from 'react-redux'
-import { getRooms } from '../../reducers/chat/action';
+import {connect} from 'react-redux'
+import {getRooms} from '../../reducers/chat/action';
 import Spinner from "../Loaders/Spinner/Spinner";
 
 class ChatList extends React.Component {
@@ -12,21 +12,21 @@ class ChatList extends React.Component {
     }
 
     render() {
-        if(this.props.loading){
-            return(
+        if (this.props.loading) {
+            return (
                 <Spinner/>
             )
         }
 
-        return(
+        return (
             <div className='chatList'>
                 {this.props.rooms.map((room, index) => (
                     <ListItem key={index}
                               sizeAvatar={"small"}
                               name={room.name}
-                              lastMessage={room._id}
-                              newMessages={5}
-                              date={"5 минут назад"}
+                              lastMessage={room.lastMessage && room.lastMessage.message}
+                              newMessages={10}
+                              date={room.lastMessage && room.lastMessage.created_at}
                               roomId={room._id}
                     />
                 ))}
@@ -35,10 +35,9 @@ class ChatList extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
+export default connect(state => ({
         rooms: state.chat.rooms,
-        loading: state.chat.loading
+        loading: state.chat.loading,
     }), {
         getRooms
     }

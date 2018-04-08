@@ -15,7 +15,7 @@ class LoginLayout extends React.Component {
 
     //TODO пока что остыль, в будущем сделать авторизацию
     componentWillMount() {
-        //this.props.changeLayout('contacts');
+        this.props.changeLayout('chatListLayout');
     }
 
     render() {

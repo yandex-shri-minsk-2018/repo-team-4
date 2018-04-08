@@ -10,7 +10,7 @@ import OnlineInfo from "./OnlineInfo/OnlineInfo";
 class ChatTitle extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isGroup: false, online: false};
+    this.state = {isGroup: false, online: true};
   }
 
   render() {

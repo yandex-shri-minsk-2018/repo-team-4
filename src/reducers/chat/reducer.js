@@ -3,7 +3,9 @@ const initialState = {
     chatList: [],
     rooms: [],
     loading: true,
-    users: []
+    users: [],
+    messages: [],
+    newMessage: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -53,6 +55,30 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
+            }
+        }
+        case "GET_MESSAGES_SUCCESS": {
+            return {
+                ...state,
+                messages: action.messages,
+            }
+        }
+        case "GET_MESSAGES": {
+            return {
+                ...state,
+            }
+        }
+        case "GET_MESSAGES_FAIL": {
+            console.log('Ошибка загрузки чатов');
+            return {
+                ...state,
+            }
+        }
+
+        case "ON_NEW_MESSAGE": {
+            return {
+                ...state,
+                messages: state.messages.concat(action.newMessage)
             }
         }
 

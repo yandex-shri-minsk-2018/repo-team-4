@@ -11,7 +11,7 @@ export class Message extends Component {
             <div className={this.props.isMyMessage ?
                 'outgoing-message  messages-layout__message' : 'incoming-message messages-layout__message'}>
                 <Avatar url={this.props.url} size='small'/>
-                <Balloon message={this.props.messageText} typeMessage={!this.props.isMyMessage}/>
+                <Balloon message={this.props.message.message} typeMessage={!this.props.isMyMessage} dateMessage={this.props.message.created_at}/>
             </div>
         )
     }
