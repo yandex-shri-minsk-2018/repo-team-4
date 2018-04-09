@@ -16,7 +16,7 @@ class LoginLayout extends React.Component {
 
     //TODO пока что остыль, в будущем сделать авторизацию
     componentWillMount() {
-        this.props.changeLayout('chatListLayout');
+        this.props.changeLayout("chatListLayout");
     }
 
     render() {
@@ -40,6 +40,7 @@ class LoginLayout extends React.Component {
         );
     }
 }
+
 LoginLayout.propTypes = {
     changeLayout: PropTypes.func
 };

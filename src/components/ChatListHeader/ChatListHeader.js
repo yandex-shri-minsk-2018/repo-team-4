@@ -31,7 +31,7 @@ ChatListHeader.propTypes = {
     changeLayout: PropTypes.func
 };
 export default connect(
-    state => ({}), {
+    () => ({}), {
         changeLayout
     }
 )(ChatListHeader);

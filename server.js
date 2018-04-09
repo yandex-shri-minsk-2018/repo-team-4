@@ -7,8 +7,8 @@ const {
     MONGO_DATABSE = "repoteam4",
     MONGO_HOST = "ds157538.mlab.com",
     MONGO_PORT = 57538,
-    SERVER_HOST = "localhost",
-    SERVER_PORT = 3001
+    // SERVER_HOST = "localhost",
+    // SERVER_PORT = 3001
 } = process.env;
 
 /**

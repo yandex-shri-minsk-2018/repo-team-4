@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es6": true
+        "es6": true,
+        "mocha": true
     },
 
 
@@ -14,7 +15,6 @@
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "jsx": true
         },
         "ecmaVersion": 2017,
@@ -40,6 +40,13 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        //явно включить no-console после того как всё будет нормально работать
+        "no-console": "off",
+        "react-redux/connect-prefer-named-arguments" : "off",
+        "react-redux/prefer-separate-component-file" : "off"
+    },
+    "globals": {
+        "process": false
     }
 }

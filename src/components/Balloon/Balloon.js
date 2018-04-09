@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 class Balloon extends Component {
     render() {
         let style = this.props.typeMessage ? "styleballoon" : " ";
-        console.log("render");
         let currentTime = new Date();
 
         let dateMessage;

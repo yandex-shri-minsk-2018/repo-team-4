@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import "./dataMessage.css";
+import PropTypes from "prop-types";
+
 
 class DateMessage extends Component {
     render() {
@@ -13,5 +15,7 @@ class DateMessage extends Component {
         );
     }
 }
-
+DateMessage.propTypes = {
+    dateMessage: PropTypes.string
+};
 export default DateMessage;

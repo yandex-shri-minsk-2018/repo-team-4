@@ -1,5 +1,5 @@
 export function changeLayout(layout) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch({
             type: "CHANGE_LAYOUT",
             layout
@@ -8,7 +8,7 @@ export function changeLayout(layout) {
 }
 
 export function goPrevLayout() {
-    return (dispatch, getState) => {
+    return (dispatch) => {
 
         dispatch({
             type: "PREV_LAYOUT"

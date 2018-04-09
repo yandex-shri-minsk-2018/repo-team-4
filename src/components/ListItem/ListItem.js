@@ -89,7 +89,7 @@ ListItem.propTypes = {
 
 
 export default connect(
-    state => ({}), {
+    () => ({}), {
         joinExistingChat
     }
 )(ListItem);

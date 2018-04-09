@@ -45,7 +45,7 @@ exports.createServer = function (serverConfig, databaseConfig) {
 
             app.use((req, res, next) => {
                 let index = "build/index.html";
-                stat(index, (err, result) => {
+                stat(index, (err) => {
                     if (err) {
                         next();
                     } else {

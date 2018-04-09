@@ -44,10 +44,10 @@ class App extends Component {
 App.propTypes = {
     layout: PropTypes.string
 };
-function mapStateToProps(state) {
-    return {layout: state.navigation.layout};
-}
-const mapDispatchToProps = changeLayout;
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
+export default connect(
+    state => ({
+        layout: state.navigation.layout
+    }), {
+        changeLayout
+    }
+)(App);

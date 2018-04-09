@@ -29,7 +29,7 @@ Contacts.propTypes = {
     changeLayout: PropTypes.func
 };
 export default connect(
-    state => ({}), {
+    () => ({}), {
         changeLayout,
     }
 )(Contacts);

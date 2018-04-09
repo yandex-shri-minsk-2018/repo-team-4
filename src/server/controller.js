@@ -67,7 +67,7 @@ module.exports = function (db, io) {
          * @param {string} userId
          */
         function userChangeOnlineStatus(userId) {
-            let r = socket.broadcast.emit(TYPES.ONLINE, {
+            socket.broadcast.emit(TYPES.ONLINE, {
                 status: ONLINE[userId],
                 userId
             });

@@ -2,7 +2,7 @@ import api from "../../api";
 
 //TODO При создании часа с контактом создать на его стороне тоже
 export function joinChat(userId) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         api.getUser(userId)
             .then((user) => {
                 return api.createRoom({name: user.name, users: [user._id]});
@@ -33,11 +33,11 @@ export function joinChat(userId) {
 }
 
 export function joinExistingChat(roomId) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         api.getRoom(roomId)
             .then((room) => {
                 api.currentUserJoinRoom(room._id)
-                    .then((room) => {
+                    .then(() => {
                         api.onMessage((mess) => {
                             dispatch({
                                 type: "ON_NEW_MESSAGE",
@@ -61,18 +61,18 @@ export function joinExistingChat(roomId) {
 }
 
 export function getRooms() {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch({type: "GET_ROOMS"});
         api.getCurrentUserRooms()
             .then((rooms) => {
 
-                Promise.all(rooms.items.map(setLastMessageToRoom)).then((result) => {
+                Promise.all(rooms.items.map(setLastMessageToRoom)).then(() => {
                     rooms.items.sort(compareRooms);
                     dispatch({
                         type: "GET_ROOMS_SUCCESS",
                         rooms: rooms.items
                     });
-                }).catch((error) => {
+                }).catch(() => {
                     dispatch({type: "GET_ROOMS_FAIL"});
                 });
 
@@ -82,7 +82,7 @@ export function getRooms() {
 }
 
 export function getRoomMessages(roomId) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch({type: "GET_MESSAGES"});
         api.getRoomMessages(roomId)
             .then((messages) => {
@@ -90,14 +90,14 @@ export function getRoomMessages(roomId) {
                     type: "GET_MESSAGES_SUCCESS",
                     messages: messages.items.reverse()
                 });
-            }).catch((error) => {
+            }).catch(() => {
                 dispatch({type: "GET_MESSAGES_FAIL"});
             });
     };
 }
 
 export function getContacts() {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch({type: "GET_CONTACTS"});
         api.getUsers().then((users) => {
             dispatch({
@@ -105,14 +105,14 @@ export function getContacts() {
                 users: users.items
             });
 
-        }).catch((error) => {
+        }).catch(() => {
             dispatch({type: "GET_CONTACTS_FAIL"});
         });
     };
 }
 
 export function sendMessage(roomId, message) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         api.sendMessage(roomId, message).then((message) => {
             dispatch({
                 type: "ON_NEW_MESSAGE",
@@ -123,7 +123,7 @@ export function sendMessage(roomId, message) {
 }
 
 function setLastMessageToRoom(room) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
         api.getRoomMessages(room._id).then((messages) => {
             room.lastMessage = messages.items[0];
             resolve(room);
