@@ -104,6 +104,6 @@ const store = createStore(rootReducer, composeEnhancers(
 
 ReactDOM.render(
     <Provider store={store}>
-                                <App/>
+        <App/>
     </Provider>,
     document.getElementById("root"));
