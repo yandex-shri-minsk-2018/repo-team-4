@@ -1,8 +1,10 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent} from "react";
 import Avatar from "../Avatar/Avatar";
-import './ContactItem.css';
+import "./ContactItem.css";
 import {connect} from "react-redux";
 import {joinChat} from "../../reducers/chat/action";
+import PropTypes from "prop-types";
+
 
 class ContactItem extends PureComponent {
     clickHandler() {
@@ -29,11 +31,18 @@ class ContactItem extends PureComponent {
         );
     }
 }
-
+ContactItem.propTypes = {
+    joinChat: PropTypes.func,
+    userId: PropTypes.string,
+    sizeAvatar: PropTypes.string,
+    urlAvatar: PropTypes.string,
+    name: PropTypes.string,
+    lastMessage: PropTypes.string
+};
 export default connect(
     state => ({
         layout: state.navigation.layout
     }), {
         joinChat
     }
-)(ContactItem)
+)(ContactItem);

@@ -1,18 +1,20 @@
-import React from 'react';
-import './ChatListHeader.css';
-import '../ChatTitle/ChatName/ChatName'
+import React from "react";
+import "./ChatListHeader.css";
+import PropTypes from "prop-types";
+import "../ChatTitle/ChatName/ChatName";
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
 
 class ChatListHeader extends React.Component {
 
     clickLeftButtonHandler() {
-        this.props.changeLayout('profile');
+        this.props.changeLayout("profile");
+        console.log(this.props.changeLayout);
     }
 
     render() {
 
-        return(
+        return (
             <div className="ChatListHeader">
                 <div className="button button-1" onClick={this.clickLeftButtonHandler.bind(this)}>
                     <i className='fa fa-cog'></i>
@@ -25,10 +27,11 @@ class ChatListHeader extends React.Component {
         );
     }
 }
-
+ChatListHeader.propTypes = {
+    changeLayout: PropTypes.func
+};
 export default connect(
-    state => ({
-    }), {
+    () => ({}), {
         changeLayout
     }
-)(ChatListHeader)
+)(ChatListHeader);

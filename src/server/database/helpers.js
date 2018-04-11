@@ -1,4 +1,4 @@
-const {ObjectId} = require('mongodb');
+const {ObjectId} = require("mongodb");
 
 /**
  * @typedef {{
@@ -24,7 +24,7 @@ async function pageableCollection(collection, {lastId, order, limit = 10, ...que
         };
     }
 
-    if (typeof query._id === 'string') {
+    if (typeof query._id === "string") {
         query._id = ObjectId(query._id.toString());
     }
 

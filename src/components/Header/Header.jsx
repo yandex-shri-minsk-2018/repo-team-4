@@ -1,6 +1,6 @@
-import React from 'react';
-import './Header.css';
-import '../ChatTitle/ChatName/ChatName'
+import React from "react";
+import "./Header.css";
+import "../ChatTitle/ChatName/ChatName";
 import ChatTitle from "../ChatTitle/ChatTitle";
 import {connect} from "react-redux";
 import {goPrevLayout} from "../../reducers/navigation/action";
@@ -40,5 +40,5 @@ export default connect(
     }), {
         goPrevLayout
     }
-)(Header)
+)(Header);
 

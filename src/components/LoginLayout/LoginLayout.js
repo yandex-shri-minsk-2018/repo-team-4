@@ -1,7 +1,8 @@
-import React from 'react';
-import './LoginLayout.css';
-import { connect } from 'react-redux'
-import { changeLayout } from '../../reducers/navigation/action';
+import React from "react";
+import "./LoginLayout.css";
+import {connect} from "react-redux";
+import {changeLayout} from "../../reducers/navigation/action";
+import PropTypes from "prop-types";
 
 class LoginLayout extends React.Component {
     constructor(props) {
@@ -15,11 +16,11 @@ class LoginLayout extends React.Component {
 
     //TODO пока что остыль, в будущем сделать авторизацию
     componentWillMount() {
-        this.props.changeLayout('chatListLayout');
+        this.props.changeLayout("chatListLayout");
     }
 
     render() {
-        return(
+        return (
             <div className='loginPage'>
                 <div className='loginContainer'>
                     <div className='inputContainer'>
@@ -40,10 +41,14 @@ class LoginLayout extends React.Component {
     }
 }
 
+LoginLayout.propTypes = {
+    changeLayout: PropTypes.func
+};
+
 export default connect(
     state => ({
         layout: state.navigation.layout
     }), {
         changeLayout
     }
-)(LoginLayout)
+)(LoginLayout);

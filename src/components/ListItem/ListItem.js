@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import './ListItem.css';
+import React, {Component} from "react";
+import "./ListItem.css";
 import Avatar from "../Avatar/Avatar";
 import {connect} from "react-redux";
 import {joinExistingChat} from "../../reducers/chat/action";
+import PropTypes from "prop-types";
 
 
 class ListItem extends Component {
 
-    clickHandler(){
+    clickHandler() {
         this.props.joinExistingChat(this.props.roomId);
     }
 
@@ -18,32 +19,32 @@ class ListItem extends Component {
         let dateMessage;
         let lastMessage = this.props.lastMessage;
         if ((currentTime - this.props.date) < (1000 * 60)) {
-            dateMessage = 'Только что';
+            dateMessage = "Только что";
         }
         else if ((currentTime - this.props.date) < (5000 * 60)) {
-            dateMessage = 'Минуту назад';
+            dateMessage = "Минуту назад";
         }
         else if ((currentTime - this.props.date) < (7000 * 60)) {
-            dateMessage = '5 минут назад';
+            dateMessage = "5 минут назад";
         }
         else {
             let messageDate = new Date(this.props.date);
-            let day = messageDate.getDate() < 10 ? '0'+messageDate.getDate() : messageDate.getDate();
+            let day = messageDate.getDate() < 10 ? "0" + messageDate.getDate() : messageDate.getDate();
             let month = messageDate.getMonth();
             month++;
-            month = month < 10 ? '0'+month : month;
-            let hour = messageDate.getHours() < 10 ? '0'+messageDate.getHours() : messageDate.getHours();
-            let minutes = messageDate.getMinutes() < 10 ? '0'+messageDate.getMinutes() : messageDate.getMinutes();
-            let seconds = messageDate.getSeconds() < 10 ? '0'+messageDate.getSeconds() : messageDate.getSeconds();
+            month = month < 10 ? "0" + month : month;
+            let hour = messageDate.getHours() < 10 ? "0" + messageDate.getHours() : messageDate.getHours();
+            let minutes = messageDate.getMinutes() < 10 ? "0" + messageDate.getMinutes() : messageDate.getMinutes();
+            let seconds = messageDate.getSeconds() < 10 ? "0" + messageDate.getSeconds() : messageDate.getSeconds();
 
-            let fullDate = (day + '.' + month + ' '+hour+':'+minutes+':'+seconds);
+            let fullDate = (day + "." + month + " " + hour + ":" + minutes + ":" + seconds);
             dateMessage = fullDate;
         }
 
 
-        if(!this.props.lastMessage){
-            dateMessage = '';
-            lastMessage = <small>Сообщений пока нет</small>
+        if (!this.props.lastMessage) {
+            dateMessage = "";
+            lastMessage = <small>Сообщений пока нет</small>;
         }
 
         return (
@@ -66,7 +67,7 @@ class ListItem extends Component {
                     </span>
                     {this.props.newMessages && this.props.date &&
                     <span className="listItem__newMessages__quantity">
-                        {this.props.newMessages > 99 ? '99+' : this.props.newMessages}
+                        {this.props.newMessages > 99 ? "99+" : this.props.newMessages}
                     </span>
                     }
                 </div>
@@ -75,11 +76,20 @@ class ListItem extends Component {
         );
     }
 }
+ListItem.propTypes = {
+    joinExistingChat: PropTypes.func,
+    roomId: PropTypes.string,
+    lastMessage: PropTypes.string,
+    date: PropTypes.number,
+    sizeAvatar: PropTypes.string,
+    name: PropTypes.string,
+    newMessages: PropTypes.number,
+    urlAvatar: PropTypes.string
+};
 
 
 export default connect(
-    state => ({
-    }), {
+    () => ({}), {
         joinExistingChat
     }
-)(ListItem)
+)(ListItem);
