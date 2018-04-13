@@ -122,6 +122,52 @@ export function sendMessage(roomId, message) {
     };
 }
 
+export function createRoom(roomName, usersIds) {
+    return (dispatch) => {
+        // console.log(roomName);
+        // console.log(usersIds);
+        api.createRoom({name: roomName, users: usersIds})
+            .then((room) => {
+                api.currentUserJoinRoom(room._id)
+                    .then(() => {
+                        api.onMessage((mess) => {
+                            dispatch({
+                                type: "NEW_MESSAGE",
+                                newMessage: mess
+                            });
+                        });
+                    });
+
+                dispatch({
+                    type: "JOIN_CHAT",
+                    id: room._id
+                });
+
+                dispatch({
+                    type: "CHANGE_LAYOUT",
+                    layout: "messagesLayout"
+                });
+            });
+    };
+}
+
+export function pickUser(usersArr, userId) {
+    return (dispatch) => {
+        if(usersArr.indexOf(userId)<0){
+            usersArr.push(userId)
+        }
+        else{
+            usersArr.splice(usersArr.indexOf(userId), 1)
+        }
+
+        dispatch({
+            type: "PICK_USER",
+            users: usersArr
+        });
+
+    };
+}
+
 function setLastMessageToRoom(room) {
     return new Promise(function (resolve) {
         api.getRoomMessages(room._id).then((messages) => {
@@ -150,3 +196,5 @@ function compareRooms(firstRoom, secondRoom) {
     }
 
 }
+
+
