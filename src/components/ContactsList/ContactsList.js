@@ -49,7 +49,6 @@ ContactsList.propTypes = {
     currentUser: PropTypes.object
 };
 
-
 export default connect(
     state => ({
         users: state.chat.users,

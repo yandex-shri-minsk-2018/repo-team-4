@@ -25,7 +25,6 @@ const TABLE = "users";
 async function findUserBySid(db, sid) {
     let session = await getSessionInfo(db, sid);
 
-
     if (!session.userId) {
         // Create fake user
 
@@ -56,7 +55,10 @@ async function findUserBySid(db, sid) {
 async function getUser(db, userId) {
     return db.collection(TABLE).findOne({_id: ObjectId(userId.toString())});
 }
-
+async function getUserBySid(db, sid) {
+    let session = await getSessionInfo(db, sid);
+    return db.collection(TABLE).findOne({_id: session.userId});
+}
 /**
  * @param {Db} db
  * @param {User} user
@@ -76,9 +78,13 @@ async function saveUser(db, user) {
 async function getUsers(db, filter) {
     return pageableCollection(db.collection(TABLE), filter);
 }
-
+async function getUserByName(db, name) {
+    return db.collection(TABLE).findOne({name: name});
+}
 module.exports = {
     findUserBySid,
     getUsers,
-    getUser
+    getUser,
+    getUserByName,
+    getUserBySid
 };

@@ -1,4 +1,4 @@
-const {findUserBySid, getUsers} = require("./database/user");
+const {findUserBySid, getUsers, getUserByName, getUserBySid} = require("./database/user");
 const {joinRoom, leaveRoom, getRooms, getUserRooms, createRoom} = require("./database/room");
 const {getMessages, sendMessage} = require("./database/messages");
 const TYPES = require("./messages");
@@ -131,6 +131,16 @@ module.exports = function (db, io) {
         // Return list of all users with
         requestResponse(TYPES.USERS, async (params) => {
             return fillUsersWithStatus(await getUsers(db, params || {}));
+        });
+        // Return user by name
+        requestResponse(TYPES.USER_BY_NAME, async (params) => {
+            return await getUserByName(db, params);
+        });
+
+        requestResponse(TYPES.CHECK_AUTH, async () => {
+            let {sid} = socket.request.cookies;
+            console.log("sid from controller.js", sid);
+            return await getUserBySid(db, sid);
         });
 
         // Create room
