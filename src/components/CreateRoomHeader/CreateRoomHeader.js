@@ -12,7 +12,7 @@ class CreateRoomHeader extends React.Component {
     }
 
     onCreateClick(){
-        this.props.createRoom(this.input.value, this.props.pickedUsers)
+        this.props.createRoom(this.input.value, this.props.pickedUsers);
     }
 
     render() {
@@ -31,7 +31,9 @@ class CreateRoomHeader extends React.Component {
     }
 }
 CreateRoomHeader.propTypes = {
-    changeLayout: PropTypes.func
+    changeLayout: PropTypes.func,
+    pickedUsers:  PropTypes.array,
+    createRoom: PropTypes.func
 };
 export default connect(
     () => ({}), {
