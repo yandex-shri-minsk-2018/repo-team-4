@@ -1,40 +1,40 @@
 import React from "react";
-import "./ChatListHeader.css";
+import "./CreateRoomHeader.css";
 import PropTypes from "prop-types";
 import "../ChatTitle/ChatName/ChatName";
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
 
-class ChatListHeader extends React.Component {
+class CreateRoomHeader extends React.Component {
 
     clickLeftButtonHandler() {
-        this.props.changeLayout("profile");
+        this.props.changeLayout("chatListLayout");
     }
 
-    clickRightButtonHandler() {
-        this.props.changeLayout("createRoom");
+    onCreateClick(){
+        this.props.createRoom(this.input.value, this.props.pickedUsers)
     }
 
     render() {
 
         return (
-            <div className="ChatListHeader">
+            <div className="CreateRoomHeader">
                 <div className="button button-1" onClick={this.clickLeftButtonHandler.bind(this)}>
-                    <i className='fa fa-cog'></i>
+                    <i className='fa fa-arrow-left'></i>
                 </div>
-                <h2>Диалоги</h2>
-                <div className="button button-2">
-                    <i className='fa fa-plus' onClick={this.clickRightButtonHandler.bind(this)}></i>
+                <h2>Создать чат</h2>
+                <div className="button button-2" onClick={this.onCreateClick.bind(this)}>
+                    <i className='fa fa-plus'></i>
                 </div>
             </div>
         );
     }
 }
-ChatListHeader.propTypes = {
+CreateRoomHeader.propTypes = {
     changeLayout: PropTypes.func
 };
 export default connect(
     () => ({}), {
         changeLayout
     }
-)(ChatListHeader);
+)(CreateRoomHeader);
