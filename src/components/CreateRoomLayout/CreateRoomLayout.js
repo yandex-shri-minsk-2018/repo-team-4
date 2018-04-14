@@ -17,7 +17,7 @@ class CreateRoomLayout extends React.Component {
     }
 
     onCreateClick(){
-        this.props.createRoom(this.input.value, this.props.pickedUsers)
+        this.props.createRoom(this.input.value, this.props.pickedUsers);
     }
 
     render() {
@@ -53,7 +53,11 @@ class CreateRoomLayout extends React.Component {
 }
 
 CreateRoomLayout.propTypes = {
-    changeLayout: PropTypes.func
+    changeLayout: PropTypes.func,
+    getContacts: PropTypes.func,
+    createRoom: PropTypes.func,
+    pickedUsers: PropTypes.array,
+    users: PropTypes.array
 };
 
 export default connect(

@@ -154,10 +154,10 @@ export function createRoom(roomName, usersIds) {
 export function pickUser(usersArr, userId) {
     return (dispatch) => {
         if(usersArr.indexOf(userId)<0){
-            usersArr.push(userId)
+            usersArr.push(userId);
         }
         else{
-            usersArr.splice(usersArr.indexOf(userId), 1)
+            usersArr.splice(usersArr.indexOf(userId), 1);
         }
 
         dispatch({

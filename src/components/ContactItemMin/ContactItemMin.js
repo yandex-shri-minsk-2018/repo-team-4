@@ -11,11 +11,11 @@ class contactItemMin extends PureComponent {
         this.props.pickUser(this.props.pickedUsers, this.props.userId);
 
         let nodeClass = this.node.className;
-        if(!nodeClass.includes('selected')){
-            this.node.className = nodeClass.concat(' selected');
+        if(!nodeClass.includes("selected")){
+            this.node.className = nodeClass.concat(" selected");
         }
         else{
-            this.node.className = 'contactItemMin';
+            this.node.className = "contactItemMin";
         }
     }
 
@@ -45,7 +45,9 @@ contactItemMin.propTypes = {
     sizeAvatar: PropTypes.string,
     urlAvatar: PropTypes.string,
     name: PropTypes.string,
-    lastMessage: PropTypes.string
+    lastMessage: PropTypes.string,
+    pickUser: PropTypes.func,
+    pickedUsers: PropTypes.array
 };
 export default connect(
     state => ({
