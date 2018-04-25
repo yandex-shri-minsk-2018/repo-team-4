@@ -9,32 +9,36 @@ import ChatListLayout from "../ChatListLayout/ChatListLayout";
 import MessagesLayout from "../MessagesLayout/MessagesLayout";
 import Profile from "../Profile/Profile";
 import CreateRoomLayout from "../CreateRoomLayout/CreateRoomLayout";
+import ChatSettingsLayout from "../ChatSettingsLayout/ChatSettingsLayout";
 
 class App extends Component {
     render() {
         let layout;
         switch (this.props.layout) {
-            case "autorization":
-                layout = <LoginLayout/>;
-                break;
-            case "chatListLayout":
-                layout = <ChatListLayout/>;
-                break;
-            case "messagesLayout":
-                layout = <MessagesLayout/>;
-                break;
-            case "contacts":
-                layout = <Contacts/>;
-                break;
-            case "profile":
-                layout = <Profile/>;
-                break;
-            case "createRoom":
-                layout = <CreateRoomLayout/>;
-                break;
-            default:
-                layout = <LoginLayout/>;
-                break;
+        case "autorization":
+            layout = <LoginLayout/>;
+            break;
+        case "chatListLayout":
+            layout = <ChatListLayout/>;
+            break;
+        case "messagesLayout":
+            layout = <MessagesLayout/>;
+            break;
+        case "contacts":
+            layout = <Contacts/>;
+            break;
+        case "profile":
+            layout = <Profile/>;
+            break;
+        case "createRoom":
+            layout = <CreateRoomLayout/>;
+            break;
+        case "chatSettings":
+            layout = <ChatSettingsLayout/>;
+            break;
+        default:
+            layout = <LoginLayout/>;
+            break;
         }
 
 

@@ -104,10 +104,30 @@ export function getContacts() {
                 type: "GET_CONTACTS_SUCCESS",
                 users: users.items
             });
-
         }).catch(() => {
             dispatch({type: "GET_CONTACTS_FAIL"});
         });
+    };
+}
+
+export function getRoomUsers(roomId) {
+    return (dispatch) => {
+        dispatch({type: "GET_ROOM_USERS"});
+        api.getRoom(roomId)
+            .then((room) => {
+                room.users && room.users.map((room) => (
+                    api.getUser(room).then((user) => {
+                        dispatch({
+                            type: "GET_ROOM_USERS_SUCCESS",
+                            roomUsers: user
+                        });
+                    }).catch(() => {
+                        dispatch({type: "GET_ROOM_USERS_FAIL"});
+                    })
+                ));
+            }).catch(() => {
+                dispatch({type: "GET_ROOM_USERS_FAIL"});
+            });
     };
 }
 
@@ -124,8 +144,6 @@ export function sendMessage(roomId, message) {
 
 export function createRoom(roomName, usersIds) {
     return (dispatch) => {
-        // console.log(roomName);
-        // console.log(usersIds);
         api.createRoom({name: roomName, users: usersIds})
             .then((room) => {
                 api.currentUserJoinRoom(room._id)
@@ -151,14 +169,20 @@ export function createRoom(roomName, usersIds) {
     };
 }
 
+export function addUsers(usersIds, roomId) {
+    return () => {
+        usersIds && usersIds.map((usersId) => (
+            api.userJoinRoom(usersId, roomId)
+        ));
+    };
+}
+
 export function pickUser(usersArr, userId) {
     return (dispatch) => {
-        if(usersArr.indexOf(userId)<0){
-            usersArr.push(userId)
-        }
-        else{
-            usersArr.splice(usersArr.indexOf(userId), 1)
-        }
+        if (usersArr.indexOf(userId) < 0)
+            usersArr.push(userId);
+        else
+            usersArr.splice(usersArr.indexOf(userId), 1);
 
         dispatch({
             type: "PICK_USER",
@@ -179,10 +203,12 @@ function setLastMessageToRoom(room) {
 
 function compareRooms(firstRoom, secondRoom) {
     if (firstRoom.lastMessage && secondRoom.lastMessage) {
-        if (firstRoom.lastMessage.created_at < secondRoom.lastMessage.created_at)
+        if (firstRoom.lastMessage.created_at < secondRoom.lastMessage.created_at) {
             return 1;
-        if (firstRoom.lastMessage.created_at > secondRoom.lastMessage.created_at)
+        }
+        if (firstRoom.lastMessage.created_at > secondRoom.lastMessage.created_at) {
             return -1;
+        }
         return 0;
     }
     else if (firstRoom.lastMessage) {
@@ -197,4 +223,8 @@ function compareRooms(firstRoom, secondRoom) {
 
 }
 
-
+export function leaveRoom(roomId) {
+    return () => {
+        api.currentUserLeaveRoom(roomId);
+    };
+}
