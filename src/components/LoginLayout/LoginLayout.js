@@ -14,9 +14,9 @@ class LoginLayout extends React.Component {
     componentWillMount() {
         this.props.authorization();
     }
-    onLoginClick() {
-        api.getUsers({limit:40}).then((user)=>console.log(user));
-    }
+    // onLoginClick() {
+    //     api.getUsers({limit:40}).then((user)=>console.log(user));
+    // }
 
 
 
@@ -31,7 +31,8 @@ class LoginLayout extends React.Component {
                         </input>
                     </div>
                     <div className='buttonContainer'>
-                        <div className='button' onClick={this.onLoginClick.bind(this)}>Войти</div>
+                        {/*onClick={this.onLoginClick.bind(this)}*/}
+                        <div className='button' >Войти</div> 
                     </div>
                 </div>
             </div>

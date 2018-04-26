@@ -24,6 +24,7 @@ class MessagesLayout extends Component {
     };
 
     componentDidMount() {
+        console.log("getRoomMessages");
         this.props.getRoomMessages(this.props.roomId);
 
 

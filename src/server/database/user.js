@@ -27,7 +27,7 @@ async function findUserBySid(db, sid) {
 
     if (!session.userId) {
         // Create fake user
-
+        console.log("user will create now");
         let user = {
             name: faker.name.findName(),
             email: faker.internet.email(),
