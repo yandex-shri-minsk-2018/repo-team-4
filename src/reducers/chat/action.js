@@ -179,10 +179,12 @@ export function addUsers(usersIds, roomId) {
 
 export function pickUser(usersArr, userId) {
     return (dispatch) => {
-        if (usersArr.indexOf(userId) < 0)
+        if(usersArr.indexOf(userId)<0){
             usersArr.push(userId);
-        else
+        }
+        else{
             usersArr.splice(usersArr.indexOf(userId), 1);
+        }
 
         dispatch({
             type: "PICK_USER",
