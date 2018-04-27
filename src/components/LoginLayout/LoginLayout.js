@@ -3,6 +3,8 @@ import "./LoginLayout.css";
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
 import {authorization} from "../../reducers/authorization/action";
+import {loginButtonHandler} from "../../reducers/authorization/action";
+
 import PropTypes from "prop-types";
 import api from "../../api";
 
@@ -14,9 +16,10 @@ class LoginLayout extends React.Component {
     componentWillMount() {
         this.props.authorization();
     }
-    // onLoginClick() {
-    //     api.getUsers({limit:40}).then((user)=>console.log(user));
-    // }
+    onLoginClick() {
+        api.getUsers({limit:20}).then((user)=>console.log(user));
+        this.props.loginButtonHandler(document.getElementById("login").value);
+     }
 
 
 
@@ -31,8 +34,7 @@ class LoginLayout extends React.Component {
                         </input>
                     </div>
                     <div className='buttonContainer'>
-                        {/*onClick={this.onLoginClick.bind(this)}*/}
-                        <div className='button' >Войти</div> 
+                        <div className='button' onClick={this.onLoginClick.bind(this)} >Войти</div>
                     </div>
                 </div>
             </div>
@@ -49,6 +51,7 @@ export default connect(
         layout: state.navigation.layout
     }), {
         changeLayout,
-        authorization
+        authorization,
+        loginButtonHandler
     }
 )(LoginLayout);

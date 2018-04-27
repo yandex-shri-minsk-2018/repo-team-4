@@ -24,27 +24,30 @@ const TABLE = "users";
  */
 async function findUserBySid(db, sid) {
     let session = await getSessionInfo(db, sid);
-
-    if (!session.userId) {
-        // Create fake user
-        console.log("user will create now");
-        let user = {
-            name: faker.name.findName(),
-            email: faker.internet.email(),
-            phone: faker.phone.phoneNumber()
-        };
-
-        user = await saveUser(db, user);
-
-        session.userId = user._id;
-
-        await saveSessionInfo(db, session);
-
-        return user;
-    } else {
-        return db.collection(TABLE).findOne({_id: session.userId});
+    console.log("session from user.js", session);
+    // if (!session.userId) {
+    //     // Create fake user
+    //     console.log("user will create now");
+    //     let user = {
+    //         name: faker.name.findName(),
+    //         email: faker.internet.email(),
+    //         phone: faker.phone.phoneNumber()
+    //     };
+    //
+    //     user = await saveUser(db, user);
+    //
+    //     session.userId = user._id;
+    //
+    //     await saveSessionInfo(db, session);
+    //
+    //     return user;
+    // } else {
+    //     return db.collection(TABLE).findOne({_id: session.userId});
+    // }
+        if(session.userId) {
+            return db.collection(TABLE).findOne({_id: session.userId});
+        }
     }
-}
 
 /**
  * @param {Db} db

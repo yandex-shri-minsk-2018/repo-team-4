@@ -15,7 +15,7 @@ class App extends Component {
     render() {
         let layout;
         switch (this.props.layout) {
-        case "autorization":
+        case "authorization":
             layout = <LoginLayout/>;
             break;
         case "chatListLayout":
