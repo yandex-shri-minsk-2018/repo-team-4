@@ -14,7 +14,6 @@ class Profile extends Component {
     }
 
     render() {
-        console.log(this.props.currentUser);
         return (
             <div className='Profile__wrapper'>
                 <div className='wrapper-background'>

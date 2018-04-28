@@ -18,7 +18,7 @@ class ProfileHeader extends Component {
                 </div>
                 <h2>Профиль</h2>
                 <div className="button button-2">
-                    <i className="fa fa-ellipsis-h"></i>
+                    <i className="fa fa-sign-out-alt"></i>
                 </div>
             </div>
         );
