@@ -10,6 +10,6 @@ export function getCurrentUserInfo() {
                     type: "GET_CURRENT_USER",
                     currentUser: user
                 });
-            })
+            });
     };
 }

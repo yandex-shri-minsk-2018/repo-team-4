@@ -23,9 +23,6 @@ class Profile extends Component {
                         <div className='Profile__avatar'>
                             <Avatar/>
                         </div>
-                        <div className='Profile__name'>
-                            {this.props.name}
-                        </div>
                         <div className='Profile__info-container'>
                             <h2>{this.props.currentUser && this.props.currentUser.name}</h2>
                             <span>{this.props.currentUser && this.props.currentUser.email}</span>
@@ -37,6 +34,12 @@ class Profile extends Component {
         );
     }
 }
+
+Profile.propTypes = {
+    name: PropTypes.string,
+    getCurrentUserInfo: PropTypes.func,
+    currentUser: PropTypes.object
+};
 
 export default connect(
     state => ({

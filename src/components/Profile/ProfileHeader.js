@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./Profile.css";
 import {connect} from "react-redux";
 import {goPrevLayout} from "../../reducers/navigation/action";
+import PropTypes from "prop-types";
 
 class ProfileHeader extends Component {
 
@@ -24,6 +25,10 @@ class ProfileHeader extends Component {
     }
 }
 
+ProfileHeader.propTypes = {
+    prevLayout: PropTypes.string,
+    goPrevLayout: PropTypes.func,
+};
 export default connect(
     state => ({
         layout: state.navigation.layout,
