@@ -12,7 +12,7 @@ export class Message extends Component {
         return (
             <div className={this.props.isMyMessage ?
                 "outgoing-message  messages-layout__message" : "incoming-message messages-layout__message"}>
-                <Avatar url={this.props.url} size='small'/>
+                <Avatar size='small'/>
                 <Balloon message={this.props.message.message} typeMessage={!this.props.isMyMessage} dateMessage={this.props.message.created_at}/>
             </div>
         );

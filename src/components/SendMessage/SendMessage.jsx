@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import MessageAttachement from '../MessageAttachement/MessageAttachement';
 import MessageInput from '../MessageInput/MessageInput';
 
 import './SendMessage.css';

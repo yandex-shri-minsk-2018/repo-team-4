@@ -18,7 +18,7 @@ class ChatSettingsHeader extends React.Component {
                 </div>
                 <h2>Настройки чата</h2>
                 <div className="chat-settings-header__button">
-                    <i className='fa fa-check'/>
+                    <i className='fa'/>
                 </div>
             </div>
         );

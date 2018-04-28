@@ -4,11 +4,17 @@ import "./ContactItem.css";
 import {connect} from "react-redux";
 import {joinChat} from "../../reducers/chat/action";
 import PropTypes from "prop-types";
+import {getCurrentUserInfo} from "../../reducers/currentUser/action";
 
 
 class ContactItem extends PureComponent {
+
+    componentWillMount(){
+        this.props.getCurrentUserInfo();
+    }
+
     clickHandler() {
-        this.props.joinChat(this.props.userId);
+        this.props.joinChat(this.props.userId, this.props.currentUser);
     }
 
     render() {
@@ -37,12 +43,16 @@ ContactItem.propTypes = {
     sizeAvatar: PropTypes.string,
     urlAvatar: PropTypes.string,
     name: PropTypes.string,
-    lastMessage: PropTypes.string
+    lastMessage: PropTypes.string,
+    getCurrentUserInfo: PropTypes.func,
+    currentUser: PropTypes.object
 };
 export default connect(
     state => ({
-        layout: state.navigation.layout
+        layout: state.navigation.layout,
+        currentUser: state.currentUser.currentUser
     }), {
-        joinChat
+        joinChat,
+        getCurrentUserInfo
     }
 )(ContactItem);

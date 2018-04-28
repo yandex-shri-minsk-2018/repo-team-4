@@ -14,7 +14,7 @@ class ContactsList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getContacts();
+        this.props.getContacts(this.props.currentUser);
     }
 
     render() {
@@ -45,14 +45,16 @@ class ContactsList extends React.Component {
 ContactsList.propTypes = {
     getContacts: PropTypes.func,
     loading: PropTypes.bool,
-    users: PropTypes.array
+    users: PropTypes.array,
+    currentUser: PropTypes.object
 };
 
 
 export default connect(
     state => ({
         users: state.chat.users,
-        loading: state.chat.loading
+        loading: state.chat.loading,
+        currentUser: state.currentUser.currentUser
     }), {
         getContacts
     }

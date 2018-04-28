@@ -47,13 +47,22 @@ class ListItem extends Component {
             lastMessage = <small>Сообщений пока нет</small>;
         }
 
+        let chatName = this.props.name;
+        if(chatName && chatName.split(", ").length>1){
+            chatName.split(", ").forEach((name) => {
+                if(name!==this.props.currentUser.name){
+                    chatName = name;
+                }
+            });
+        }
+
         return (
             <div className="listItem" onClick={this.clickHandler.bind(this)}>
                 <div className="listItem__leftInfo">
                     <Avatar size={this.props.sizeAvatar} url={this.props.urlAvatar}/>
                     <div className="listItem__leftInfo__userInfo">
                         <span className="listItem__leftInfo__userInfo__name">
-                            {this.props.name}
+                            {chatName}
                         </span>
                         <span className="listItem__leftInfo__userInfo__lastMessage">
                             {lastMessage}
@@ -80,12 +89,15 @@ ListItem.propTypes = {
     sizeAvatar: PropTypes.string,
     name: PropTypes.string,
     newMessages: PropTypes.number,
-    urlAvatar: PropTypes.string
+    urlAvatar: PropTypes.string,
+    currentUser: PropTypes.object
 };
 
 
 export default connect(
-    () => ({}), {
+    (state) => ({
+        currentUser: state.currentUser.currentUser
+    }), {
         joinExistingChat
     }
 )(ListItem);

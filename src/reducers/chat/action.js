@@ -1,11 +1,16 @@
 import api from "../../api";
 
 //TODO При создании часа с контактом создать на его стороне тоже
-export function joinChat(userId) {
+export function joinChat(userId, currentUser) {
     return (dispatch) => {
+        // api.getUsers({limit:20}).then((user)=>console.log(user));
         api.getUser(userId)
             .then((user) => {
-                return api.createRoom({name: user.name, users: [user._id]});
+
+                let names = [user.name, currentUser.name];
+                names.sort();
+                names = names[0]+", "+names[1];
+                return api.createRoom({name: names, users: [user._id]});
             })
             .then((room) => {
                 api.currentUserJoinRoom(room._id)
@@ -96,13 +101,19 @@ export function getRoomMessages(roomId) {
     };
 }
 
-export function getContacts() {
+export function getContacts(currentUser) {
     return (dispatch) => {
         dispatch({type: "GET_CONTACTS"});
         api.getUsers().then((users) => {
+            let contacts = [];
+            users.items.forEach((user) => {
+                if(user.name!==currentUser.name){
+                    contacts.push(user);
+                }
+            });
             dispatch({
                 type: "GET_CONTACTS_SUCCESS",
-                users: users.items
+                users: contacts
             });
         }).catch(() => {
             dispatch({type: "GET_CONTACTS_FAIL"});
@@ -179,12 +190,10 @@ export function addUsers(usersIds, roomId) {
 
 export function pickUser(usersArr, userId) {
     return (dispatch) => {
-        if(usersArr.indexOf(userId)<0){
+        if (usersArr.indexOf(userId) < 0)
             usersArr.push(userId);
-        }
-        else{
+        else
             usersArr.splice(usersArr.indexOf(userId), 1);
-        }
 
         dispatch({
             type: "PICK_USER",
