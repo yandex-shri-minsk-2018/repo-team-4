@@ -1,6 +1,7 @@
 .avatar__img__small{
-     width: 36px;
-     height: 36px;
+    width: 36px;
+    height: 36px;
+    margin: 0 10px;
 }
 
 .avatar__img__medium{

@@ -3,23 +3,30 @@ import "./Profile.css";
 import ProfileHeader from "./ProfileHeader";
 import Avatar from "../Avatar/Avatar";
 import PropTypes from "prop-types";
+import {changeLayout} from "../../reducers/navigation/action";
+import {connect} from "react-redux";
+import {getCurrentUserInfo} from "../../reducers/currentUser/action";
 
 class Profile extends Component {
+
+    componentWillMount(){
+        this.props.getCurrentUserInfo();
+    }
+
     render() {
-        var avatar = "https://dcnt5qvi2hv76.cloudfront.net/b833369/resize_cache/74316/2e7fb5fb2ab1ebdd663145ea3b6c2c2e/main/e51/e51a3c0243a0c3463d729bea7c5b18b7/photo.jpg?h=ncaby.bitrix24.by";
+        console.log(this.props.currentUser);
         return (
             <div className='Profile__wrapper'>
                 <div className='wrapper-background'>
                     <ProfileHeader/>
                     <div className='Profile__main'>
                         <div className='Profile__avatar'>
-                            <Avatar url={avatar}/>
+                            <Avatar/>
                         </div>
-                        <div className='Profile__name'>
-                            {this.props.name}
-                        </div>
-                        <div className='Profile__Edit'>
-                            Редактировать
+                        <div className='Profile__info-container'>
+                            <h2>{this.props.currentUser && this.props.currentUser.name}</h2>
+                            <span>{this.props.currentUser && this.props.currentUser.email}</span>
+                            <span>{this.props.currentUser && this.props.currentUser.phone}</span>
                         </div>
                     </div>
                 </div>
@@ -27,7 +34,18 @@ class Profile extends Component {
         );
     }
 }
+
 Profile.propTypes = {
-    name: PropTypes.string
+    name: PropTypes.string,
+    getCurrentUserInfo: PropTypes.func,
+    currentUser: PropTypes.object
 };
-export default Profile;
+
+export default connect(
+    state => ({
+        currentUser: state.currentUser.currentUser
+    }), {
+        changeLayout,
+        getCurrentUserInfo
+    }
+)(Profile);

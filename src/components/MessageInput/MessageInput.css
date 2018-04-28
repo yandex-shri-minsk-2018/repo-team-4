@@ -11,7 +11,7 @@
     height: 100%;
     overflow: hidden;
 
-    padding: 0.8em;
+    padding: 0.8em 0;
     box-sizing: border-box;
 
     font-size: 0.9em;
@@ -20,7 +20,7 @@
 .sendmessage__textarea {
     width: 100%;
 
-    color: white;
+    color: black;
     font-size: 1.4em;
     background: transparent;
 
@@ -31,5 +31,5 @@
 }
 
 .sendmessage__textarea::placeholder {
-    color: white;
+    color: black;
 }
