@@ -21,7 +21,7 @@
 
 .messages-layout__send-message{
     background: white;
-    min-height: 85px;
+    min-height: 75px;
     width: 100%;
     position: fixed;
     bottom: 0;

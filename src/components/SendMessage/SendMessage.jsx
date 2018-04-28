@@ -24,7 +24,6 @@ class SendMessage extends Component {
     render() {
         return (
             <div className="sendmessage" onKeyPress={(e) => this.handleKeyPress(e)}>
-                <MessageAttachement />
                 <MessageInput />
                 <div className="sendmessage__send-button">
                   <button className="send-button__button" onClick={() => this.clickTextHundler()}>

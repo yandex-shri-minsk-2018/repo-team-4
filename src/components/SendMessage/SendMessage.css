@@ -1,14 +1,13 @@
 .sendmessage {
     height: 45px;
     width: calc(100% - 40px);
-    margin: 20px;
+    margin: 15px 20px;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    padding: 0 10px;
-    background: #f25a41;
+    background: white;
     border-radius: 16px;
     color: white;
     font-family: Roboto;
@@ -19,7 +18,8 @@
 .attachement__icon>i,
 .send-button__button>i,
 .smiles__icon>i {
-    font-size: 1.4em;
+    font-size: 2em;
+    color: black;
 }
 
 .send-button__button {
