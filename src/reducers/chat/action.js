@@ -9,7 +9,7 @@ export function joinChat(userId, currentUser) {
 
                 let names = [user.name, currentUser.name];
                 names.sort();
-                names = names[0]+', '+names[1];
+                names = names[0]+", "+names[1];
                 return api.createRoom({name: names, users: [user._id]});
             })
             .then((room) => {

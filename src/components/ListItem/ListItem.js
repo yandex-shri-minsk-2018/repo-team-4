@@ -47,14 +47,13 @@ class ListItem extends Component {
             lastMessage = <small>Сообщений пока нет</small>;
         }
 
-
         let chatName = this.props.name;
-        if(chatName && chatName.split(', ').length>1){
-            chatName.split(', ').forEach((name) => {
+        if(chatName && chatName.split(", ").length>1){
+            chatName.split(", ").forEach((name) => {
                 if(name!==this.props.currentUser.name){
                     chatName = name;
                 }
-            })
+            });
         }
 
         return (
