@@ -7,15 +7,19 @@ import {loginButtonHandler} from "../../reducers/authorization/action";
 
 import PropTypes from "prop-types";
 import api from "../../api";
+import Spinner from "../Loaders/Spinner/Spinner";
 
 class LoginLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            loading: true
+        };
     }
     componentWillMount() {
         this.props.authorization();
     }
+
     onLoginClick() {
         api.getUsers({limit:20}).then((user)=>console.log(user));
         this.props.loginButtonHandler(document.getElementById("login").value);
@@ -25,21 +29,21 @@ class LoginLayout extends React.Component {
 
     render() {
         return (
-            <div className='loginPage'>
-                <div className='loginContainer'>
-                    <div className='inputContainer'>
-                        <span>Логин:</span>
-                        <input id='login' type='text'>
+        <div className='loginPage'>
+            <div className='loginContainer'>
+                <div className='inputContainer'>
+                    <span>Логин:</span>
+                    <input id='login' type='text'>
 
-                        </input>
-                    </div>
-                    <div className='buttonContainer'>
-                        <div className='button' onClick={this.onLoginClick.bind(this)} >Войти</div>
-                    </div>
+                    </input>
+                </div>
+                <div className='buttonContainer'>
+                    <div className='button' onClick={this.onLoginClick.bind(this)} >Войти</div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
+}
 }
 
 LoginLayout.propTypes = {

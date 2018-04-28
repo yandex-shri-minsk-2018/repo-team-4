@@ -15,6 +15,7 @@ export function authorization() {
 }
 
 export function loginButtonHandler(name) {
+
     return (dispatch) => {
         api.getUserByName(name).then((user)=> {
             console.log(user);

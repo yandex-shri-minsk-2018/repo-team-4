@@ -1,6 +1,6 @@
 const {ObjectId} = require("mongodb");
 
-const {getSessionInfo, saveSessionInfo} = require("./session");
+const {getSessionInfo, saveSessionInfo, getSessionInfoBy_id} = require("./session");
 const {pageableCollection, insertOrUpdateEntity} = require("./helpers");
 const faker = require("faker/locale/ru");
 
@@ -81,8 +81,12 @@ async function saveUser(db, user) {
 async function getUsers(db, filter) {
     return pageableCollection(db.collection(TABLE), filter);
 }
-async function getUserByName(db, name) {
-    return db.collection(TABLE).findOne({name: name});
+async function getUserByName(db, name, sid) {
+    let user = await db.collection(TABLE).findOne({name: name});
+    let saveses = await saveSessionInfo(db, {sid: sid, userId: user._id});
+    let session = await getSessionInfo(db, saveses._id);
+    console.log(user, saveses, session);
+    return {sid: session.sid, ...user};
 }
 module.exports = {
     findUserBySid,

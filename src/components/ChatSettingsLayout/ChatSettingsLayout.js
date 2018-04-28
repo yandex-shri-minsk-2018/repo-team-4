@@ -83,7 +83,7 @@ class ChatSettingsLayout extends React.Component {
                         </div>
                     </div>
                     <div className='buttonContainer'>
-                        <div className='button' onClick={() => this.addSelectedUsers}>Добавить</div>
+                        <div className='button' onClick={() => this.addSelectedUsers()}>Добавить</div>
                         <div className='button' onClick={() => this.setState({ addList: false })}>Отмена</div>
                     </div>
                 </div>}

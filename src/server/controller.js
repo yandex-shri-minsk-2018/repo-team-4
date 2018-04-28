@@ -138,7 +138,9 @@ module.exports = function (db, io) {
         });
         // Return user by name
         requestResponse(TYPES.USER_BY_NAME, async (params) => {
-            return await getUserByName(db, params);
+            let {sid} = socket.request.cookies;
+
+            return await getUserByName(db, params, sid);
         });
 
         requestResponse(TYPES.CHECK_AUTH, async () => {

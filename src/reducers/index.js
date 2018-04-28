@@ -7,7 +7,6 @@ import authorization from "./authorization/reducer";
 export default combineReducers({
     navigation,
     chat,
-    authorization
-    chat,
+    authorization,
     currentUser
 });
