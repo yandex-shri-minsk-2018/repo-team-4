@@ -1,8 +1,8 @@
 const {ObjectId} = require("mongodb");
 
-const {getSessionInfo, saveSessionInfo, getSessionInfoBy_id} = require("./session");
-const {pageableCollection, insertOrUpdateEntity} = require("./helpers");
-const faker = require("faker/locale/ru");
+const {getSessionInfo, saveSessionInfo} = require("./session");
+const {pageableCollection} = require("./helpers"); //insertOrUpdateEntity для создания пользователя
+// const faker = require("faker/locale/ru");
 
 const TABLE = "users";
 
@@ -44,10 +44,10 @@ async function findUserBySid(db, sid) {
     // } else {
     //     return db.collection(TABLE).findOne({_id: session.userId});
     // }
-        if(session.userId) {
-            return db.collection(TABLE).findOne({_id: session.userId});
-        }
+    if(session.userId) {
+        return db.collection(TABLE).findOne({_id: session.userId});
     }
+}
 
 /**
  * @param {Db} db
@@ -68,9 +68,9 @@ async function getUserBySid(db, sid) {
  *
  * @returns {Promise<User>}
  */
-async function saveUser(db, user) {
-    return insertOrUpdateEntity(db.collection(TABLE), user);
-}
+// async function saveUser(db, user) {
+//     return insertOrUpdateEntity(db.collection(TABLE), user);
+// }
 
 /**
  * @param {Db} db

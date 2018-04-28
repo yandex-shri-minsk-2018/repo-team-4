@@ -1,13 +1,13 @@
 import api from "../../api";
 
 export function authorization() {
-    return(dispatch) => {
-        api.checkAuth().then((user)=> {
+    return (dispatch) => {
+        api.checkAuth().then((user) => {
             console.log(user);
-            if(user !== null) {
+            if (user !== null) {
                 dispatch({
-                     type: "CHANGE_LAYOUT",
-                     layout: "chatListLayout"
+                    type: "CHANGE_LAYOUT",
+                    layout: "chatListLayout"
                 });
             }
         });
@@ -17,9 +17,9 @@ export function authorization() {
 export function loginButtonHandler(name) {
 
     return (dispatch) => {
-        api.getUserByName(name).then((user)=> {
+        api.getUserByName(name).then((user) => {
             console.log(user);
-            if(user !== null) {
+            if (user !== null) {
                 dispatch({
                     type: "CHANGE_LAYOUT",
                     layout: "chatListLayout"
