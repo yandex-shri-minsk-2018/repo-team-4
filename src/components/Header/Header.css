@@ -1,17 +1,18 @@
-.header{
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  text-align: center;
-  padding: 1em;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.09)
+.header {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    padding: 1em;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.09);
+    height: 3em;
 }
 
-.header h2{
-  margin-top: 0;
+.header h2 {
+    margin-top: 0;
 }
 
-.button{
-  align-self: center;
+.button {
+    align-self: center;
 }
