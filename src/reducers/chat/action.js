@@ -87,6 +87,7 @@ export function getRooms() {
 }
 
 export function getRoomMessages(roomId) {
+    console.log("getroom messages run here");
     return (dispatch) => {
         dispatch({type: "GET_MESSAGES"});
         api.getRoomMessages(roomId)
@@ -204,6 +205,7 @@ export function pickUser(usersArr, userId) {
 }
 
 function setLastMessageToRoom(room) {
+    console.log("123");
     return new Promise(function (resolve) {
         api.getRoomMessages(room._id).then((messages) => {
             room.lastMessage = messages.items[0];

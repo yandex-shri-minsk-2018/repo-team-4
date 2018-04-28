@@ -2,21 +2,27 @@ import React from "react";
 import "./LoginLayout.css";
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
+import {authorization} from "../../reducers/authorization/action";
+import {loginButtonHandler} from "../../reducers/authorization/action";
+
 import PropTypes from "prop-types";
+import api from "../../api";
 
 class LoginLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            loading: true
+        };
+    }
+
+    componentWillMount() {
+        this.props.authorization();
     }
 
     onLoginClick() {
-        this.props.changeLayout("chatListLayout");
-    }
-
-    //TODO пока что остыль, в будущем сделать авторизацию
-    componentWillMount() {
-        this.props.changeLayout("chatListLayout");
+        api.getUsers({limit: 20}).then((user) => console.log(user));
+        this.props.loginButtonHandler(document.getElementById("login").value);
     }
 
     render() {
@@ -25,15 +31,12 @@ class LoginLayout extends React.Component {
                 <div className='loginContainer'>
                     <div className='inputContainer'>
                         <span>Логин:</span>
-                        <input type='text'></input>
-                    </div>
-                    <div className='inputContainer'>
-                        <span>Пароль:</span>
-                        <input type='text'></input>
+                        <input id='login' type='text'>
+
+                        </input>
                     </div>
                     <div className='buttonContainer'>
                         <div className='button' onClick={this.onLoginClick.bind(this)}>Войти</div>
-                        <div className='button'>Регистрация</div>
                     </div>
                 </div>
             </div>
@@ -42,13 +45,17 @@ class LoginLayout extends React.Component {
 }
 
 LoginLayout.propTypes = {
-    changeLayout: PropTypes.func
+    changeLayout: PropTypes.func,
+    authorization: PropTypes.func,
+    loginButtonHandler: PropTypes.func,
 };
 
 export default connect(
     state => ({
         layout: state.navigation.layout
     }), {
-        changeLayout
+        changeLayout,
+        authorization,
+        loginButtonHandler
     }
 )(LoginLayout);

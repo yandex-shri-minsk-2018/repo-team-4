@@ -69,6 +69,14 @@ class Api {
         return this._requestResponse(MESSAGES.USERS, filter);
     }
 
+
+    async getUserByName(name) {
+        return this._requestResponse(MESSAGES.USER_BY_NAME, name);
+    }
+
+    async checkAuth() {
+        return this._requestResponse(MESSAGES.CHECK_AUTH);
+    }
     /**
      * Get information about user
      *
