@@ -3,7 +3,8 @@ import "./Header.css";
 import "../ChatTitle/ChatName/ChatName";
 import ChatTitle from "../ChatTitle/ChatTitle";
 import {connect} from "react-redux";
-import {goPrevLayout} from "../../reducers/navigation/action";
+import { changeLayout, goPrevLayout } from "../../reducers/navigation/action";
+import PropTypes from "prop-types";
 
 
 /*TODO Components:
@@ -18,6 +19,10 @@ class Header extends React.Component {
         this.props.goPrevLayout(this.props.prevLayout);
     }
 
+    clickRightButtonHandler() {
+        this.props.changeLayout("chatSettings");
+    }
+
     render() {
         let headerClass = "header";
         return (
@@ -27,18 +32,25 @@ class Header extends React.Component {
                 </div>
                 <ChatTitle chatName={this.props.chatName}/>
                 <div className="button button-2">
-                    <i className="fa fa-ellipsis-h"></i>
+                    <i className="fa fa-ellipsis-h" onClick={this.clickRightButtonHandler.bind(this)}></i>
                 </div>
             </div>
         );
     }
 }
 
+Header.propTypes = {
+    changeLayout: PropTypes.func,
+    goPrevLayout: PropTypes.func,
+    prevLayout: PropTypes.string,
+    chatName: PropTypes.string
+};
+
 export default connect(
     state => ({
         layout: state.navigation.layout,
     }), {
-        goPrevLayout
+        goPrevLayout,
+        changeLayout
     }
 )(Header);
-

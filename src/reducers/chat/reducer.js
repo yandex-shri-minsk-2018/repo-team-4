@@ -4,6 +4,7 @@ const initialState = {
     rooms: [],
     loading: true,
     users: [],
+    roomUsers: [],
     messages: [],
     newMessage: null,
     pickedUsers: []
@@ -32,6 +33,29 @@ export default function reducer(state = initialState, action) {
     }
     case "GET_ROOMS_FAIL": {
         console.log("Ошибка загрузки чатов");
+        return {
+            ...state
+        };
+    }
+
+    case "GET_ROOM_USERS": {
+        return {
+            ...state,
+            roomUsers: [],
+            loading: true,
+        };
+    }
+
+    case "GET_ROOM_USERS_SUCCESS": {
+        return {
+            ...state,
+            roomUsers: state.roomUsers.concat(action.roomUsers),
+            loading: false,
+        };
+    }
+
+    case "GET_ROOM_USERS_FAIL": {
+        console.log("Ошибка получения пользователей чата");
         return {
             ...state,
             loading: false,
@@ -87,8 +111,6 @@ export default function reducer(state = initialState, action) {
             pickedUsers: action.users
         };
     }
-
-
 
     default: {
         return state;

@@ -9,6 +9,7 @@ import ChatListLayout from "../ChatListLayout/ChatListLayout";
 import MessagesLayout from "../MessagesLayout/MessagesLayout";
 import Profile from "../Profile/Profile";
 import CreateRoomLayout from "../CreateRoomLayout/CreateRoomLayout";
+import ChatSettingsLayout from "../ChatSettingsLayout/ChatSettingsLayout";
 
 class App extends Component {
     render() {
@@ -31,6 +32,9 @@ class App extends Component {
             break;
         case "createRoom":
             layout = <CreateRoomLayout/>;
+            break;
+        case "chatSettings":
+            layout = <ChatSettingsLayout/>;
             break;
         default:
             layout = <LoginLayout/>;
