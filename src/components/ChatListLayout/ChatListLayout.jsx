@@ -4,14 +4,19 @@ import ChatList from "../ChatList/ChatList";
 import {connect} from 'react-redux'
 import {changeLayout} from '../../reducers/navigation/action';
 import ChatListHeader from "../ChatListHeader/ChatListHeader";
+import {getCurrentUserInfo} from "../../reducers/currentUser/action";
 
 class ChatListLayout extends React.Component {
 
+    componentWillMount(){
+        this.props.getCurrentUserInfo();
+    }
     onFooterClick() {
         this.props.changeLayout("contacts");
     }
 
     render() {
+
         return (
             <div>
                 <ChatListHeader/>
@@ -24,7 +29,9 @@ class ChatListLayout extends React.Component {
 
 export default connect(
     state => ({
+
     }), {
-        changeLayout
+        changeLayout,
+        getCurrentUserInfo
     }
 )(ChatListLayout)

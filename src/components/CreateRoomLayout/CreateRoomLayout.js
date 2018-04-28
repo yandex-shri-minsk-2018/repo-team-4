@@ -8,10 +8,6 @@ import {createRoom, getContacts} from "../../reducers/chat/action";
 import ContactItemMin from "../ContactItemMin/ContactItemMin";
 
 class CreateRoomLayout extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.getContacts();
     }
