@@ -1,5 +1,6 @@
 .contactsList{
-    min-height: 79vh;
+    height: 78vh;
+    overflow-y: scroll;
     -webkit-animation: appearance 0.5s;
     -o-animation: appearance 0.5s;
     animation: appearance 0.5s;

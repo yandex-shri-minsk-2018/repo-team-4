@@ -26,6 +26,7 @@ exports.createServer = function (serverConfig, databaseConfig) {
             app.use(cookie());
 
             app.get("/api/auth", function (req, res) {
+
                 if (!req.cookies.sid) {
                     res.cookie("sid", uuid(), {
                         httpOnly: true,
