@@ -1,7 +1,7 @@
-const {findUserBySid, getUsers} = require('./database/user');
-const {joinRoom, leaveRoom, getRooms, getUserRooms, createRoom} = require('./database/room');
-const {getMessages, sendMessage} = require('./database/messages');
-const TYPES = require('./messages');
+const {findUserBySid, getUsers} = require("./database/user");
+const {joinRoom, leaveRoom, getRooms, getUserRooms, createRoom} = require("./database/room");
+const {getMessages, sendMessage} = require("./database/messages");
+const TYPES = require("./messages");
 
 /**
  * @param {Db} db
@@ -23,11 +23,11 @@ module.exports = function (db, io) {
     /**
      * Connection is created
      */
-    io.on('connection', function (socket) {
+    io.on("connection", function (socket) {
         let {sid} = socket.request.cookies,
             isDisconnected = false;
 
-        socket.join('broadcast');
+        socket.join("broadcast");
 
         /**
          * Invoke callback and handle errors
@@ -43,14 +43,22 @@ module.exports = function (db, io) {
                         message: err.message,
                         stack: err.stack
                     });
+
+                    throw err;
                 };
 
                 try {
-                    callback(...args).catch(printErr);
+                    return callback(...args).catch(printErr);
                 } catch (err) {
                     printErr(err);
                 }
             };
+        }
+
+        function requestResponse(type, callback) {
+            socket.on(type, wrapCallback(async ({id, payload}) => {
+                socket.emit(type + id, await callback(payload));
+            }));
         }
 
         /**
@@ -59,7 +67,7 @@ module.exports = function (db, io) {
          * @param {string} userId
          */
         function userChangeOnlineStatus(userId) {
-            let r = socket.broadcast.emit(TYPES.ONLINE, {
+            socket.broadcast.emit(TYPES.ONLINE, {
                 status: ONLINE[userId],
                 userId
             });
@@ -71,7 +79,7 @@ module.exports = function (db, io) {
          * @param {string} roomId
          */
         function joinToRoomChannel(roomId) {
-            socket.join('room:' + roomId);
+            socket.join("room:" + roomId);
         }
 
         /**
@@ -80,7 +88,7 @@ module.exports = function (db, io) {
          * @param {string} roomId
          */
         function leaveRoomChannel(roomId) {
-            socket.leave('room:' + roomId);
+            socket.leave("room:" + roomId);
         }
 
         /**
@@ -90,7 +98,7 @@ module.exports = function (db, io) {
          * @param {string} roomId
          */
         function userWasJoinedToRoom({userId, roomId}) {
-            socket.to('room:' + roomId).emit(TYPES.USER_JOINED, {userId, roomId});
+            socket.to("room:" + roomId).emit(TYPES.USER_JOINED, {userId, roomId});
         }
 
         /**
@@ -100,7 +108,7 @@ module.exports = function (db, io) {
          * @param {string} roomId
          */
         function userLeaveRoom({userId, roomId}) {
-            socket.to('room:' + roomId).emit(TYPES.USER_LEAVED, {userId, roomId});
+            socket.to("room:" + roomId).emit(TYPES.USER_LEAVED, {userId, roomId});
         }
 
         /**
@@ -109,7 +117,7 @@ module.exports = function (db, io) {
          * @param {Message} message
          */
         function newMessage(message) {
-            socket.to('room:' + message.roomId).emit(TYPES.MESSAGE, message);
+            socket.to("room:" + message.roomId).emit(TYPES.MESSAGE, message);
         }
 
         // Load user information for next usage
@@ -118,59 +126,57 @@ module.exports = function (db, io) {
         });
 
         // Receive current user information
-        socket.on(TYPES.CURRENT_USER, wrapCallback(async () => {
-            socket.emit(TYPES.CURRENT_USER, await userPromise);
-        }));
+        requestResponse(TYPES.CURRENT_USER, () => userPromise);
 
         // Return list of all users with
-        socket.on(TYPES.USERS, wrapCallback(async (params) => {
-            socket.emit(TYPES.USERS, fillUsersWithStatus(await getUsers(db, params || {})));
-        }));
+        requestResponse(TYPES.USERS, async (params) => {
+            return fillUsersWithStatus(await getUsers(db, params || {}));
+        });
 
         // Create room
-        socket.on(TYPES.CREATE_ROOM, wrapCallback(async (params) => {
+        requestResponse(TYPES.CREATE_ROOM, async (params) => {
             let currentUser = await userPromise;
 
-            socket.emit(TYPES.CREATE_ROOM, await createRoom(db, currentUser, params));
-        }));
+            return createRoom(db, currentUser, params);
+        });
 
         // Create room
-        socket.on(TYPES.ROOMS, wrapCallback(async (params) => {
-            socket.emit(TYPES.ROOMS, await getRooms(db, params || {}));
-        }));
+        requestResponse(TYPES.ROOMS, (params) => {
+            return getRooms(db, params || {});
+        });
 
         // Rooms of current user
-        socket.on(TYPES.CURRENT_USER_ROOMS, wrapCallback(async (params) => {
+        requestResponse(TYPES.CURRENT_USER_ROOMS, async (params) => {
             let currentUser = await userPromise;
 
-            socket.emit(TYPES.CURRENT_USER_ROOMS, await getUserRooms(db, currentUser._id, params));
-        }));
+            return getUserRooms(db, currentUser._id, params);
+        });
 
         // Join current user to room
-        socket.on(TYPES.CURRENT_USER_JOIN_ROOM, wrapCallback(async ({roomId}) => {
+        requestResponse(TYPES.CURRENT_USER_JOIN_ROOM, async ({roomId}) => {
             let currentUser = await userPromise;
 
             let payload = {
                 roomId,
                 userId: currentUser._id
             };
-
-            socket.emit(TYPES.CURRENT_USER_JOIN_ROOM, await joinRoom(db, payload));
 
             joinToRoomChannel(roomId);
             userWasJoinedToRoom(payload);
-        }));
+
+            return joinRoom(db, payload);
+        });
 
         // Join user to room
-        socket.on(TYPES.USER_JOIN_ROOM, wrapCallback(async (payload) => {
-            socket.emit(TYPES.USER_JOIN_ROOM, await joinRoom(db, payload));
-
+        requestResponse(TYPES.USER_JOIN_ROOM, (payload) => {
             joinToRoomChannel(payload.roomId);
             userWasJoinedToRoom(payload);
-        }));
+
+            return joinRoom(db, payload);
+        });
 
         // Leave current user to room
-        socket.on(TYPES.CURRENT_USER_LEAVE_ROOM, wrapCallback(async ({roomId}) => {
+        requestResponse(TYPES.CURRENT_USER_LEAVE_ROOM, async ({roomId}) => {
             let currentUser = await userPromise;
 
             let payload = {
@@ -178,14 +184,14 @@ module.exports = function (db, io) {
                 userId: currentUser._id
             };
 
-            socket.emit(TYPES.CURRENT_USER_LEAVE_ROOM, await leaveRoom(db, payload));
-
             leaveRoomChannel(roomId);
             userLeaveRoom(payload);
-        }));
+
+            return leaveRoom(db, payload);
+        });
 
         // Send message
-        socket.on(TYPES.SEND_MESSAGE, wrapCallback(async (payload) => {
+        requestResponse(TYPES.SEND_MESSAGE, async (payload) => {
             let currentUser = await userPromise;
 
             let message = await sendMessage(db, {
@@ -193,15 +199,13 @@ module.exports = function (db, io) {
                 userId: currentUser._id
             });
 
-            socket.emit(TYPES.SEND_MESSAGE, message);
-
             newMessage(message);
-        }));
+
+            return message;
+        });
 
         // Send message
-        socket.on(TYPES.MESSAGES, wrapCallback(async (payload) => {
-            socket.emit(TYPES.MESSAGES, await getMessages(db, payload));
-        }));
+        requestResponse(TYPES.MESSAGES, (payload) => getMessages(db, payload));
 
         userPromise.then(async (user) => {
             if (!isDisconnected) {
@@ -218,7 +222,7 @@ module.exports = function (db, io) {
             });
         });
 
-        socket.on('disconnect', async () => {
+        socket.on("disconnect", async () => {
             isDisconnected = true;
             let user = await userPromise;
 

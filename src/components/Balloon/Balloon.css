@@ -1,29 +1,29 @@
 .balloon {
-  max-width: 233px;
-  padding: 17px 8px 17px 28px;
-  display: flex;
-  flex-direction: column;
-  background: #F13564;
-  box-shadow: 0 13px 25px 0 rgba(0,0,0,0.12);
-  border-radius: 16px;
-}
-.balloon__content {
-  max-width: 197px;
-  margin: 0 0 5px;
-  font-size: 14px;
-  color: #FFFFFF;
-  word-wrap: break-word;
+    max-width: 233px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    background: #f25a41;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
 }
 
+.balloon__content {
+    max-width: 197px;
+    margin: 0 0 5px;
+    font-size: 14px;
+    color: #FFFFFF;
+    word-wrap: break-word;
+}
 
 .styleballoon {
-  background: #fff;
+    background: #fff;
 }
 
 .styleballoon .balloon__content {
-  color: #46454C;
+    color: #46454C;
 }
 
 .styleballoon .data-message {
-  color: #F13564;
+    color: #f25a41;
 }

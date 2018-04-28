@@ -1,4 +1,4 @@
-const {ObjectId} = require('mongodb');
+const {ObjectId} = require("mongodb");
 
 /**
  * @typedef {{
@@ -20,18 +20,18 @@ async function pageableCollection(collection, {lastId, order, limit = 10, ...que
 
     if (lastId) {
         query._id = {
-            $gt: ObjectId(_id)
+            $gt: ObjectId(lastId.toString())
         };
+    }
+
+    if (typeof query._id === "string") {
+        query._id = ObjectId(query._id.toString());
     }
 
     let queryBuilder = collection.find(query, {limit});
 
     if (order) {
         queryBuilder = queryBuilder.sort(order);
-    }
-
-    if (query._id) {
-        query._id = ObjectId(query._id.toString());
     }
 
     let cursor = await queryBuilder,

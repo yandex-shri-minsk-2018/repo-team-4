@@ -1,21 +1,25 @@
-const {createServer} = require('./src/server/server');
+const {createServer} = require("./src/server/server");
 
 const {
-    MONGO_LOCAL,
-    MONGO_DATABSE = 'yandex-shri-minsk-2018',
-    MONGO_HOST = 'localhost',
-    MONGO_PORT = 27017,
-    SERVER_HOST = 'localhost',
-    SERVER_PORT = 3001
+    MONGO_USER = "repoteam4",
+    MONGO_PASSWORD = "repoteam4",
+    MONGO_LOCAL = "false",
+    MONGO_DATABSE = "repoteam4",
+    MONGO_HOST = "ds157538.mlab.com",
+    MONGO_PORT = 57538,
+    // SERVER_HOST = "localhost",
+    // SERVER_PORT = 3001
 } = process.env;
 
 /**
  * Setup mongo configuration
  */
 const DATABASE_CONFIG = {
+    user: MONGO_USER,
+    password: MONGO_PASSWORD,
     host: MONGO_HOST,
     port: MONGO_PORT,
-    local: MONGO_LOCAL !== 'false',
+    local: MONGO_LOCAL !== "false",
     database: MONGO_DATABSE
 };
 
@@ -23,7 +27,7 @@ const DATABASE_CONFIG = {
  * Socket.io server
  */
 const SERVER_CONFIG = {
-    host: 'localhost',
+    host: "localhost",
     port: 3001
 };
 

@@ -1,17 +1,20 @@
-.chatListHeader{
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  text-align: center;
-  padding: 1em;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.09)
+.HeaderTemplate {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    padding: 1em 2em;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.09);
+
+    height: 3em;
+    align-items: center;
 }
 
-.header h2{
-  margin-top: 0;
+.header h2 {
+    margin-top: 0;
 }
 
-.button{
-  align-self: flex-start;
+.button {
+    align-self: center;
 }

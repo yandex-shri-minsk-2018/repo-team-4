@@ -1,0 +1,55 @@
+.Profile__main {
+  display: flex;
+flex-direction: column;
+margin-top: 62px;
+}
+
+.Profile__avatar {
+  margin: 0 auto;
+  width: 192px;
+  height: 192px;
+}
+
+.Profile__avatar .avatar__img__large {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: transparent;
+}
+
+
+.Profile__info-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Profile__info-container h2{
+    padding: 1em;
+
+}
+.Profile__info-container span{
+    display: inline-block;
+    padding: 0.3em;
+}
+
+/*HEADER*/
+.header {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 1em 2em;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.09);
+    height: 3em;
+}
+
+.header h2 {
+    margin-top: 0;
+}
+
+.button {
+    align-self: center;
+}

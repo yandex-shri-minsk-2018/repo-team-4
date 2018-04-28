@@ -1,8 +1,8 @@
-const {ObjectId} = require('mongodb');
-const {insertOrUpdateEntity, pageableCollection} = require('./helpers');
-const {getUser} = require('./user');
+const {ObjectId} = require("mongodb");
+const {insertOrUpdateEntity, pageableCollection} = require("./helpers");
+const {getUser} = require("./user");
 
-const TABLE = 'rooms';
+const TABLE = "rooms";
 
 /**
  * @typedef {{
@@ -51,8 +51,8 @@ async function getRooms(db, filter) {
  */
 async function getUserRooms(db, userId, filter) {
     return pageableCollection(db.collection(TABLE), {
-        users: [ObjectId(userId.toString())],
-        ...filter
+        ...filter,
+        users: ObjectId(userId.toString())
     });
 }
 
@@ -65,7 +65,7 @@ async function getUserRooms(db, userId, filter) {
  */
 async function createRoom(db, currentUser, room) {
     if (!room.name) {
-        throw new Error('Cannot create room without name');
+        throw new Error("Cannot create room without name");
     }
 
     let collection = db.collection(TABLE),
@@ -76,15 +76,14 @@ async function createRoom(db, currentUser, room) {
         delete room._id;
 
         room.users = room.users || [];
-        room.users.push(currentUser._id);
+        room.users.push(currentUser._id.toString());
+
+        room.users = [...new Set(room.users)].map((userId) => ObjectId(userId));
 
         return insertOrUpdateEntity(collection, room);
     }
 
-    return {
-        error: 'Room with same name already exists',
-        code: 409
-    };
+    return existsRoom;
 }
 
 /**
@@ -97,11 +96,11 @@ async function createRoom(db, currentUser, room) {
  */
 async function joinRoom(db, {roomId, userId}) {
     if (!roomId) {
-        throw new Error('You must specify roomId to join');
+        throw new Error("You must specify roomId to join");
     }
 
     if (!userId) {
-        throw new Error('You must specify userId to join');
+        throw new Error("You must specify userId to join");
     }
 
     let collection = db.collection(TABLE),
@@ -141,11 +140,11 @@ async function joinRoom(db, {roomId, userId}) {
  */
 async function leaveRoom(db, {roomId, userId}) {
     if (!roomId) {
-        throw new Error('You must specify roomId to join');
+        throw new Error("You must specify roomId to join");
     }
 
     if (!userId) {
-        throw new Error('You must specify userId to join');
+        throw new Error("You must specify userId to join");
     }
 
     let collection = db.collection(TABLE),
