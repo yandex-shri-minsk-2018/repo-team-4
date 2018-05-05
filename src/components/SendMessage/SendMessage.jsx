@@ -11,7 +11,7 @@ class SendMessage extends Component {
     clickTextHundler(){
         const valueText = document.querySelector('.sendmessage__textarea').value;
         document.querySelector('.sendmessage__textarea').value = '';
-        this.props.sendMessage(this.props.roomId, valueText);
+        this.props.sendMessage(this.props.roomId, valueText, this.props.currentUser);
     }
 
     handleKeyPress(e){
@@ -37,7 +37,8 @@ class SendMessage extends Component {
 export default connect(
     state => ({
         roomId: state.chat.currentChatId,
-        messages: state.chat.messages
+        messages: state.chat.messages,
+        currentUser: state.currentUser.currentUser
     }), {
         sendMessage
     }

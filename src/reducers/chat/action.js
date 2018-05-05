@@ -92,14 +92,30 @@ export function getRoomMessages(roomId) {
         dispatch({type: "GET_MESSAGES"});
         api.getRoomMessages(roomId)
             .then((messages) => {
-                dispatch({
-                    type: "GET_MESSAGES_SUCCESS",
-                    messages: messages.items.reverse()
-                });
+                Promise.all(messages.items.map(setUserToMessage)).then(() => {
+
+                    console.log(messages);
+
+                    dispatch({
+                        type: "GET_MESSAGES_SUCCESS",
+                        messages: messages.items.reverse()
+                    });
+                })
+
+
             }).catch(() => {
                 dispatch({type: "GET_MESSAGES_FAIL"});
             });
     };
+}
+
+function setUserToMessage(message) {
+    return new Promise(function (resolve) {
+        api.getUser(message.userId).then((user) => {
+            message.user = user;
+            resolve(message);
+        });
+    });
 }
 
 export function getContacts(currentUser) {
@@ -143,9 +159,11 @@ export function getRoomUsers(roomId) {
     };
 }
 
-export function sendMessage(roomId, message) {
+export function sendMessage(roomId, message, messAuthor) {
     return (dispatch) => {
         api.sendMessage(roomId, message).then((message) => {
+            message.user = messAuthor;
+            
             dispatch({
                 type: "ON_NEW_MESSAGE",
                 newMessage: [message]
@@ -205,7 +223,6 @@ export function pickUser(usersArr, userId) {
 }
 
 function setLastMessageToRoom(room) {
-    console.log("123");
     return new Promise(function (resolve) {
         api.getRoomMessages(room._id).then((messages) => {
             room.lastMessage = messages.items[0];
