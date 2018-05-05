@@ -16,9 +16,10 @@ export function joinChat(userId, currentUser) {
                 api.currentUserJoinRoom(room._id)
                     .then(() => {
                         api.onMessage((mess) => {
+                            console.log(mess);
                             dispatch({
-                                type: "NEW_MESSAGE",
-                                newMessage: mess
+                                type: "ON_NEW_MESSAGE",
+                                newMessage: [mess]
                             });
                         });
                     });
@@ -44,10 +45,14 @@ export function joinExistingChat(roomId) {
                 api.currentUserJoinRoom(room._id)
                     .then(() => {
                         api.onMessage((mess) => {
-                            dispatch({
-                                type: "ON_NEW_MESSAGE",
-                                newMessage: [mess]
+                            api.getUser(mess.userId).then(user => {
+                                mess.user = user;
+                                dispatch({
+                                    type: "ON_NEW_MESSAGE",
+                                    newMessage: [mess]
+                                });
                             });
+
                         });
                     });
 
@@ -93,9 +98,6 @@ export function getRoomMessages(roomId) {
         api.getRoomMessages(roomId)
             .then((messages) => {
                 Promise.all(messages.items.map(setUserToMessage)).then(() => {
-
-                    console.log(messages);
-
                     dispatch({
                         type: "GET_MESSAGES_SUCCESS",
                         messages: messages.items.reverse()

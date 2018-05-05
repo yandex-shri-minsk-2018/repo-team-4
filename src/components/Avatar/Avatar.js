@@ -19,8 +19,9 @@ class Avatar extends Component {
 
         if (this.props.url)
             this.image = this.props.url;
-        if (this.props.photo)
+        if (this.props.photo){
             this.image = this.props.photo;
+        }
         else this.image = avatar_img;
     }
 
@@ -41,6 +42,7 @@ class Avatar extends Component {
 }
 Avatar.propTypes = {
     size: PropTypes.string,
+    photo: PropTypes.string,
     url: PropTypes.string
 
 };

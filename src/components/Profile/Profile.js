@@ -9,8 +9,8 @@ import {getCurrentUserInfo} from "../../reducers/currentUser/action";
 
 class Profile extends Component {
 
-    componentWillMount(){
-        this.props.getCurrentUserInfo();
+    componentDidMount(){
+        let photo = (this.props.profileUser && this.props.profileUser.photo);
     }
 
     render() {
@@ -20,12 +20,12 @@ class Profile extends Component {
                     <ProfileHeader/>
                     <div className='Profile__main'>
                         <div className='Profile__avatar'>
-                            <Avatar/>
+                            <Avatar />
                         </div>
                         <div className='Profile__info-container'>
-                            <h2>{this.props.currentUser && this.props.currentUser.name}</h2>
-                            <span>{this.props.currentUser && this.props.currentUser.email}</span>
-                            <span>{this.props.currentUser && this.props.currentUser.phone}</span>
+                            <h2>{this.props.profileUser && this.props.profileUser.name}</h2>
+                            <span>{this.props.profileUser && this.props.profileUser.email}</span>
+                            <span>{this.props.profileUser && this.props.profileUser.phone}</span>
                         </div>
                     </div>
                 </div>
@@ -35,16 +35,13 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
-    name: PropTypes.string,
-    getCurrentUserInfo: PropTypes.func,
-    currentUser: PropTypes.object
+
 };
 
 export default connect(
     state => ({
-        currentUser: state.currentUser.currentUser
+        profileUser: state.currentUser.profileUser
     }), {
         changeLayout,
-        getCurrentUserInfo
     }
 )(Profile);

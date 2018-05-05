@@ -4,11 +4,13 @@ import PropTypes from "prop-types";
 import "../ChatTitle/ChatName/ChatName";
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
+import {setProfileUser} from "../../reducers/currentUser/action";
 
 class ChatListHeader extends React.Component {
 
     clickLeftButtonHandler() {
-        this.props.changeLayout("profile");
+        this.props.setProfileUser(this.props.currentUser._id);
+        this.props.changeLayout('profile');
     }
 
     clickRightButtonHandler() {
@@ -34,7 +36,10 @@ ChatListHeader.propTypes = {
     changeLayout: PropTypes.func
 };
 export default connect(
-    () => ({}), {
-        changeLayout
+    (state) => ({
+        currentUser: state.currentUser.currentUser
+    }), {
+        changeLayout,
+        setProfileUser
     }
 )(ChatListHeader);
