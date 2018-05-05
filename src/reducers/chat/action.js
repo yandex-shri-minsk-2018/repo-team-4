@@ -163,7 +163,6 @@ export function sendMessage(roomId, message, messAuthor) {
     return (dispatch) => {
         api.sendMessage(roomId, message).then((message) => {
             message.user = messAuthor;
-            
             dispatch({
                 type: "ON_NEW_MESSAGE",
                 newMessage: [message]

@@ -1,6 +1,5 @@
 import api from "../../api";
 
-//TODO При создании часа с контактом создать на его стороне тоже
 export function getCurrentUserInfo() {
     return (dispatch) => {
         api.getCurrentUser()
@@ -8,6 +7,19 @@ export function getCurrentUserInfo() {
                 dispatch({
                     type: "GET_CURRENT_USER",
                     currentUser: user
+                });
+            });
+    };
+}
+
+
+export function setProfileUser(userId) {
+    return (dispatch) => {
+        api.getUser(userId)
+            .then((user) => {
+                dispatch({
+                    type: "SET_PROFILE_USER",
+                    profileUser: user
                 });
             });
     };
