@@ -47,11 +47,15 @@ class ListItem extends Component {
             lastMessage = <small>Сообщений пока нет</small>;
         }
 
+
+        let icon = <i className="fa fa-users" />;
         let chatName = this.props.name;
+
         if(chatName && chatName.split(", ").length>1){
             chatName.split(", ").forEach((name) => {
                 if(name!==this.props.currentUser.name){
                     chatName = name;
+                    icon = null;
                 }
             });
         }
@@ -63,6 +67,7 @@ class ListItem extends Component {
                     <div className="listItem__leftInfo__userInfo">
                         <span className="listItem__leftInfo__userInfo__name">
                             {chatName}
+                            {icon}
                         </span>
                         <span className="listItem__leftInfo__userInfo__lastMessage">
                             {lastMessage}
