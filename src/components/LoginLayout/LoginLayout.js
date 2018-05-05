@@ -18,10 +18,10 @@ class LoginLayout extends React.Component {
 
     componentWillMount() {
         this.props.authorization();
+        api.getUsers({limit: 20}).then((user) => console.log(user));
     }
 
     onLoginClick() {
-        api.getUsers({limit: 20}).then((user) => console.log(user));
         this.props.loginButtonHandler(document.getElementById("login").value);
     }
 

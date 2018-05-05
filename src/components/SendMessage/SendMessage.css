@@ -15,6 +15,11 @@
     bottom: 0;
 }
 
+.sendmessage__send-button {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .attachement__icon>i,
 .send-button__button>i,
 .smiles__icon>i {
@@ -27,9 +32,28 @@
     border: none;
     background: transparent;
     color: white;
-    
+
 }
 
 .sendmessage__attachement {
     position: relative;
+}
+.popup-emoji {
+  display: none;
+  background: #fff;
+flex-wrap: wrap;
+position: absolute;
+left: 0;
+top: -222px;
+border-radius: 6px;
+padding: 5px;
+box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+min-height: 130px;
+}
+
+.emoji-button:hover .popup-emoji {
+  display: flex;
+}
+.emoji {
+padding: 5px;
 }
