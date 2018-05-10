@@ -24,3 +24,22 @@ export function setProfileUser(userId) {
             });
     };
 }
+
+export function checkUserStatusByName(userName) {
+    return (dispatch) => {
+        api.getUsers()
+            .then((users) => {
+                users.items.forEach(user => {
+                    if(user.name===userName){
+                        console.log('Пользователь '+ user.name +' '+user.online);
+                        dispatch({
+                            type: "SET_PARTNER_STATUS",
+                            isPartnerOnline: user.online
+                        });
+                    }
+
+                })
+            });
+    };
+}
+

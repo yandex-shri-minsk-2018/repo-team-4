@@ -1,31 +1,23 @@
 import React from "react";
-import "./LoginLayout.css";
+import "./SignUpLayout.css";
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
 import {authorization} from "../../reducers/authorization/action";
 import {loginButtonHandler} from "../../reducers/authorization/action";
-
 import PropTypes from "prop-types";
-import api from "../../api";
 
-class LoginLayout extends React.Component {
+
+class SignUpLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            loading: true
-        };
-    }
-
-    componentWillMount() {
-        this.props.authorization();
-    }
-
-    onLoginClick() {
-        this.props.loginButtonHandler(document.getElementById("email").value, document.getElementById("password").value);//
     }
 
     onSignUpClick() {
-        this.props.changeLayout('signup');
+        this.props.loginButtonHandler(document.getElementById("name").value, document.getElementById("email").value, document.getElementById("password").value);
+    }
+
+    onLoginClick() {
+        this.props.changeLayout('authorization');
     }
 
     render() {
@@ -33,6 +25,9 @@ class LoginLayout extends React.Component {
             <div className='loginPage'>
                 <div className='loginContainer'>
                     <div className='inputContainer'>
+                        <span>Имя:</span>
+                        <input id='name' type='text' autoComplete='off'>
+                        </input>
                         <span>Email:</span>
                         <input id='email' type='text' autoComplete='off'>
                         </input>
@@ -41,8 +36,8 @@ class LoginLayout extends React.Component {
                         </input>
                     </div>
                     <div className='buttonContainer'>
-                        <div className='button' onClick={this.onLoginClick.bind(this)}>Вход</div>
                         <div className='button' onClick={this.onSignUpClick.bind(this)}>Регистрация</div>
+                        <div className='button' onClick={this.onLoginClick.bind(this)}>Назад</div>
                     </div>
                 </div>
             </div>
@@ -50,7 +45,7 @@ class LoginLayout extends React.Component {
     }
 }
 
-LoginLayout.propTypes = {
+SignUpLayout.propTypes = {
     changeLayout: PropTypes.func,
     authorization: PropTypes.func,
     loginButtonHandler: PropTypes.func,
@@ -64,4 +59,4 @@ export default connect(
         authorization,
         loginButtonHandler
     }
-)(LoginLayout);
+)(SignUpLayout);

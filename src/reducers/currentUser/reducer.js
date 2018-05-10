@@ -1,5 +1,6 @@
 const initialState = {
     currentUser: null,
+    isPartnerOnline: false,
     profileUser: null
 };
 
@@ -15,6 +16,12 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 profileUser: action.profileUser,
+            };
+        }
+        case "SET_PARTNER_STATUS": {
+            return {
+                ...state,
+                isPartnerOnline: action.isPartnerOnline,
             };
         }
         default: {

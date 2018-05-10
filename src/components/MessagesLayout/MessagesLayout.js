@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getRoomMessages, joinChat} from "../../reducers/chat/action";
 import Spinner from "../Loaders/Spinner/Spinner";
+import {checkUserStatusByName} from "../../reducers/currentUser/action";
 
 class MessagesLayout extends Component {
     /**
@@ -44,38 +45,54 @@ class MessagesLayout extends Component {
 
     render() {
         let messages = this.props.messages;
-        let currentUserId = this.props.currentUser._id;
+        let currentUser = this.props.currentUser;
         let myAvatar = this.state.myAvatar;
         let incomingMessageAvatar = this.state.incomingMessageAvatar;
         let roomData = this.state.room;
 
+        let chatName = roomData && roomData.name;
+        let isGroup = true;
+        let numberOfUsersInRoom;// = roomData && roomData.users && roomData.users.length;
+        let isOnline;
+        if(roomData && roomData.name.split(', ').length>1){
+            roomData && roomData.name.split(', ').forEach((name) => {
+                if(name!==currentUser.name){
+                    chatName = name;
+                    isGroup = false;
+                    this.props.checkUserStatusByName(name);
+                    isOnline = this.props.isPartnerOnline;
+                }
+            })
+        }
+
+        let chatInfo = {};
+        if(isGroup){
+            chatInfo.type='group';
+            chatInfo.numberOfUsersInRoom=roomData && roomData.users && roomData.users.length;
+        }
+        else{
+            chatInfo.type='private';
+            chatInfo.isOnline=isOnline;
+        }
+
         if (this.props.loading) {
             return (
-
-                <div className='messages-layout'>
-                    <div className='messages-layout__header'>
-                        <Header chatName={roomData && roomData.name}/>
-                    </div>
                     <Spinner />
-                    <div className='messages-layout__send-message'>
-                    </div>
-                    <SendMessage roomId={this.props.roomId}/>
-                </div>
             )
         }
 
         return (
             <div className='messages-layout'>
                 <div className='messages-layout__header'>
-                    <Header chatName={roomData && roomData.name}/>
+                    <Header chatName={chatName} chatInfo={chatInfo}/>
                 </div>
                 <div className='messages-layout__messages' id='messages-layout__messages'>
                     {messages && messages.map(function (message) {
                         return <Message
                             key={message._id}
-                            url={message.userId === currentUserId ? myAvatar : incomingMessageAvatar}
+                            url={message.userId === currentUser._id ? myAvatar : incomingMessageAvatar}
                             message={message}
-                            isMyMessage={message.userId === currentUserId}
+                            isMyMessage={message.userId === currentUser._id}
                             userId={message.userId}
                         />;
                     })}
@@ -98,9 +115,11 @@ export default connect(
         roomId: state.chat.currentChatId,
         messages: state.chat.messages,
         currentUser: state.currentUser.currentUser,
+        isPartnerOnline: state.currentUser.isPartnerOnline,
         loading: state.chat.loading
     }), {
         joinChat,
-        getRoomMessages
+        getRoomMessages,
+        checkUserStatusByName
     }
 )(MessagesLayout);

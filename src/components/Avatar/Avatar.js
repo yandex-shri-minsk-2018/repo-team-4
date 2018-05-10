@@ -19,14 +19,14 @@ class Avatar extends Component {
 
         if (this.props.url)
             this.image = this.props.url;
-        if (this.props.photo){
+        else this.image = avatar_img;
+        if (this.props.photo) {
             this.image = this.props.photo;
         }
-        else this.image = avatar_img;
     }
 
-    clickHandler(){
-        if(this.props.userId){
+    clickHandler() {
+        if (this.props.userId) {
             this.props.setProfileUser(this.props.userId);
             this.props.changeLayout('profile');
         }
@@ -40,6 +40,7 @@ class Avatar extends Component {
         );
     }
 }
+
 Avatar.propTypes = {
     size: PropTypes.string,
     photo: PropTypes.string,
@@ -47,8 +48,7 @@ Avatar.propTypes = {
 
 };
 export default connect(
-    state => ({
-    }), {
+    state => ({}), {
         changeLayout,
         setProfileUser
     }
