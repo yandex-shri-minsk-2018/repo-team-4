@@ -9,10 +9,6 @@ import {getCurrentUserInfo} from "../../reducers/currentUser/action";
 
 class Profile extends Component {
 
-    componentDidMount(){
-        let photo = (this.props.profileUser && this.props.profileUser.photo);
-    }
-
     render() {
         return (
             <div className='Profile__wrapper'>
@@ -20,7 +16,7 @@ class Profile extends Component {
                     <ProfileHeader/>
                     <div className='Profile__main'>
                         <div className='Profile__avatar'>
-                            <Avatar />
+                            <Avatar photo={this.props.profileUser && this.props.profileUser.photo}/>
                         </div>
                         <div className='Profile__info-container'>
                             <h2>{this.props.profileUser && this.props.profileUser.name}</h2>

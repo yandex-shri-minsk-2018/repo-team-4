@@ -1,9 +1,7 @@
 import api from "../../api";
 
-//TODO При создании часа с контактом создать на его стороне тоже
 export function joinChat(userId, currentUser) {
     return (dispatch) => {
-        // api.getUsers({limit:20}).then((user)=>console.log(user));
         api.getUser(userId)
             .then((user) => {
 
@@ -75,7 +73,6 @@ export function getRooms() {
         dispatch({type: "GET_ROOMS"});
         api.getCurrentUserRooms()
             .then((rooms) => {
-
                 Promise.all(rooms.items.map(setLastMessageToRoom)).then(() => {
                     rooms.items.sort(compareRooms);
                     dispatch({
@@ -92,7 +89,7 @@ export function getRooms() {
 }
 
 export function getRoomMessages(roomId) {
-    console.log("getroom messages run here");
+
     return (dispatch) => {
         dispatch({type: "GET_MESSAGES"});
         api.getRoomMessages(roomId)

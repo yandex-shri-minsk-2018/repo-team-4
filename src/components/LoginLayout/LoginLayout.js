@@ -21,8 +21,13 @@ class LoginLayout extends React.Component {
     }
 
     onLoginClick() {
-        api.getUsers({limit: 20}).then((user) => console.log(user));
-        this.props.loginButtonHandler(document.getElementById("login").value);
+        this.props.loginButtonHandler(document.getElementById("email").value, document.getElementById("password").value);//
+    }
+
+    onSignUpClick() {
+        // api.getUsers({limit: 20}).then((user) => console.log(user));
+        // this.props.loginButtonHandler(document.getElementById("login").value);
+        console.log('Sign Up mock')
     }
 
     render() {
@@ -30,13 +35,16 @@ class LoginLayout extends React.Component {
             <div className='loginPage'>
                 <div className='loginContainer'>
                     <div className='inputContainer'>
-                        <span>Логин:</span>
-                        <input id='login' type='text'>
-
+                        <span>Email:</span>
+                        <input id='email' type='text' autoComplete='off'>
+                        </input>
+                        <span>Пароль:</span>
+                        <input id='password' type='password'>
                         </input>
                     </div>
                     <div className='buttonContainer'>
                         <div className='button' onClick={this.onLoginClick.bind(this)}>Войти</div>
+                        <div className='button' onClick={this.onSignUpClick.bind(this)}>Войти</div>
                     </div>
                 </div>
             </div>

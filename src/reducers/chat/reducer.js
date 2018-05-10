@@ -86,17 +86,20 @@ export default function reducer(state = initialState, action) {
         return {
             ...state,
             messages: action.messages,
+            loading: false,
         };
     }
     case "GET_MESSAGES": {
         return {
             ...state,
+            loading: true,
         };
     }
     case "GET_MESSAGES_FAIL": {
         console.log("Ошибка загрузки чатов");
         return {
             ...state,
+            loading: false,
         };
     }
     case "ON_NEW_MESSAGE": {

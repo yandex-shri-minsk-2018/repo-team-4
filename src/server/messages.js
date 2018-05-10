@@ -13,6 +13,9 @@ module.exports = {
      * Return user by name
      */
     CHECK_AUTH: "CHECK_AUTH",
+
+    USER_AUTH: "USER_AUTH",
+
     USER_BY_NAME: "USER_BY_NAME",
     /**
      * Change online status of user
@@ -30,9 +33,19 @@ module.exports = {
     ROOMS: "ROOMS",
 
     /**
+     * Set current user information
+     */
+    SET_CURRENT_USER: 'SET_CURRENT_USER',
+
+    /**
      * Current user rooms
      */
     CURRENT_USER_ROOMS: "CURRENT_USER_ROOMS",
+
+    /**
+     * User rooms
+     */
+    USER_ROOMS: "CURRENT_USER_ROOMS",
 
     /**
      * Join current user to the room

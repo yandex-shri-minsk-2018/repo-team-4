@@ -8,6 +8,7 @@ import api from "../../api";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getRoomMessages, joinChat} from "../../reducers/chat/action";
+import Spinner from "../Loaders/Spinner/Spinner";
 
 class MessagesLayout extends Component {
     /**
@@ -26,13 +27,6 @@ class MessagesLayout extends Component {
     componentDidMount() {
         console.log("getRoomMessages");
         this.props.getRoomMessages(this.props.roomId);
-
-
-        api.getCurrentUser()
-            .then((user) => {
-                const currentUser = user._id;
-                this.setState({currentUserId: currentUser});
-            });
         api.getRoom(this.props.roomId).then((room) => {
             this.setState({
                 room: room
@@ -41,16 +35,35 @@ class MessagesLayout extends Component {
     }
 
     componentDidUpdate() {
-        document.getElementById("messages-layout__messages")
-            .scrollTo(0, document.getElementById("messages-layout__messages").scrollHeight);
+        let messagesElem = document.getElementById("messages-layout__messages");
+        if (messagesElem) {
+            messagesElem
+                .scrollTo(0, messagesElem.scrollHeight);
+        }
     }
 
     render() {
         let messages = this.props.messages;
-        let currentUserId = this.state.currentUserId;
+        let currentUserId = this.props.currentUser._id;
         let myAvatar = this.state.myAvatar;
         let incomingMessageAvatar = this.state.incomingMessageAvatar;
         let roomData = this.state.room;
+
+        if (this.props.loading) {
+            return (
+
+                <div className='messages-layout'>
+                    <div className='messages-layout__header'>
+                        <Header chatName={roomData && roomData.name}/>
+                    </div>
+                    <Spinner />
+                    <div className='messages-layout__send-message'>
+                    </div>
+                    <SendMessage roomId={this.props.roomId}/>
+                </div>
+            )
+        }
+
         return (
             <div className='messages-layout'>
                 <div className='messages-layout__header'>
@@ -63,7 +76,7 @@ class MessagesLayout extends Component {
                             url={message.userId === currentUserId ? myAvatar : incomingMessageAvatar}
                             message={message}
                             isMyMessage={message.userId === currentUserId}
-                            userId = {message.userId}
+                            userId={message.userId}
                         />;
                     })}
                 </div>
@@ -74,6 +87,7 @@ class MessagesLayout extends Component {
         );
     }
 }
+
 MessagesLayout.propTypes = {
     getRoomMessages: PropTypes.func,
     roomId: PropTypes.string,
@@ -82,7 +96,9 @@ MessagesLayout.propTypes = {
 export default connect(
     state => ({
         roomId: state.chat.currentChatId,
-        messages: state.chat.messages
+        messages: state.chat.messages,
+        currentUser: state.currentUser.currentUser,
+        loading: state.chat.loading
     }), {
         joinChat,
         getRoomMessages
