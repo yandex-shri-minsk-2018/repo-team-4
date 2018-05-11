@@ -5,7 +5,7 @@ class ChatName extends React.Component {
 
     render() {
         return (
-            <h2>{this.props.name}</h2>
+            <h2 className={this.props.online ? 'online' : ''}>{this.props.name}</h2>
         );
     }
 }

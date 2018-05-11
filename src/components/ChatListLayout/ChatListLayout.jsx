@@ -16,7 +16,6 @@ class ChatListLayout extends React.Component {
     }
 
     render() {
-
         return (
             <div>
                 <ChatListHeader/>

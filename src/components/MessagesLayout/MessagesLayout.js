@@ -8,6 +8,8 @@ import api from "../../api";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getRoomMessages, joinChat} from "../../reducers/chat/action";
+import Spinner from "../Loaders/Spinner/Spinner";
+import {checkUserStatusByName} from "../../reducers/currentUser/action";
 
 class MessagesLayout extends Component {
     /**
@@ -26,13 +28,6 @@ class MessagesLayout extends Component {
     componentDidMount() {
         console.log("getRoomMessages");
         this.props.getRoomMessages(this.props.roomId);
-
-
-        api.getCurrentUser()
-            .then((user) => {
-                const currentUser = user._id;
-                this.setState({currentUserId: currentUser});
-            });
         api.getRoom(this.props.roomId).then((room) => {
             this.setState({
                 room: room
@@ -41,29 +36,64 @@ class MessagesLayout extends Component {
     }
 
     componentDidUpdate() {
-        document.getElementById("messages-layout__messages")
-            .scrollTo(0, document.getElementById("messages-layout__messages").scrollHeight);
+        let messagesElem = document.getElementById("messages-layout__messages");
+        if (messagesElem) {
+            messagesElem
+                .scrollTo(0, messagesElem.scrollHeight);
+        }
     }
 
     render() {
         let messages = this.props.messages;
-        let currentUserId = this.state.currentUserId;
+        let currentUser = this.props.currentUser;
         let myAvatar = this.state.myAvatar;
         let incomingMessageAvatar = this.state.incomingMessageAvatar;
         let roomData = this.state.room;
+
+        let chatName = roomData && roomData.name;
+        let isGroup = true;
+
+        let isOnline;
+        if(roomData && roomData.name.split(", ").length>1){
+            roomData && roomData.name.split(", ").forEach((name) => {
+                if(name!==currentUser.name){
+                    chatName = name;
+                    isGroup = false;
+                    this.props.checkUserStatusByName(name);
+                    isOnline = this.props.isPartnerOnline;
+                }
+            });
+        }
+
+        let chatInfo = {};
+        if(isGroup){
+            chatInfo.type="group";
+            chatInfo.numberOfUsersInRoom=roomData && roomData.users && roomData.users.length;
+        }
+        else{
+            chatInfo.type="private";
+            chatInfo.isOnline=isOnline;
+        }
+
+        if (this.props.loading) {
+            return (
+                <Spinner />
+            );
+        }
+
         return (
             <div className='messages-layout'>
                 <div className='messages-layout__header'>
-                    <Header chatName={roomData && roomData.name}/>
+                    <Header chatName={chatName} chatInfo={chatInfo}/>
                 </div>
                 <div className='messages-layout__messages' id='messages-layout__messages'>
                     {messages && messages.map(function (message) {
                         return <Message
                             key={message._id}
-                            url={message.userId === currentUserId ? myAvatar : incomingMessageAvatar}
+                            url={message.userId === currentUser._id ? myAvatar : incomingMessageAvatar}
                             message={message}
-                            isMyMessage={message.userId === currentUserId}
-                            userId = {message.userId}
+                            isMyMessage={message.userId === currentUser._id}
+                            userId={message.userId}
                         />;
                     })}
                 </div>
@@ -74,17 +104,27 @@ class MessagesLayout extends Component {
         );
     }
 }
+
 MessagesLayout.propTypes = {
+    checkUserStatusByName: PropTypes.func,
+    joinChat: PropTypes.func,
     getRoomMessages: PropTypes.func,
     roomId: PropTypes.string,
-    messages: PropTypes.array
+    messages: PropTypes.array,
+    currentUser: PropTypes.object,
+    isPartnerOnline: PropTypes.object,
+    loading: PropTypes.object,
 };
 export default connect(
     state => ({
         roomId: state.chat.currentChatId,
-        messages: state.chat.messages
+        messages: state.chat.messages,
+        currentUser: state.currentUser.currentUser,
+        isPartnerOnline: state.currentUser.isPartnerOnline,
+        loading: state.chat.loading
     }), {
         joinChat,
-        getRoomMessages
+        getRoomMessages,
+        checkUserStatusByName
     }
 )(MessagesLayout);

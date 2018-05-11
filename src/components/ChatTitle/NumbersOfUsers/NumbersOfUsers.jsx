@@ -9,7 +9,7 @@ class NumberOfUsers extends React.Component {
 
   render() {
     return(
-        <span>Members: {this.props.number}</span>
+        <span>Людей в чате: {this.props.number}</span>
     );
   }
 }

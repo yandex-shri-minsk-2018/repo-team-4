@@ -1,5 +1,5 @@
 const initialState = {
-    user: []
+    user: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -10,6 +10,12 @@ export default function reducer(state = initialState, action) {
             return {state};
         }
         break;
+    }
+    case "SET_CURRENT_USER": {
+        return {
+            ...state,
+            user: action.user
+        };
     }
     default: {
         return state;

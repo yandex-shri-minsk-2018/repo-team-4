@@ -1,8 +1,8 @@
 const {ObjectId} = require("mongodb");
 
-const {getSessionInfo, saveSessionInfo} = require("./session");
-const {pageableCollection} = require("./helpers"); //insertOrUpdateEntity для создания пользователя
-// const faker = require("faker/locale/ru");
+const {getSessionInfo, saveSessionInfo, deleteSessionInfo} = require("./session");
+const {pageableCollection, insertOrUpdateEntity} = require("./helpers"); //insertOrUpdateEntity для создания пользователя
+//const faker = require("faker/locale/ru");
 
 const TABLE = "users";
 
@@ -24,7 +24,12 @@ const TABLE = "users";
  */
 async function findUserBySid(db, sid) {
     let session = await getSessionInfo(db, sid);
+
     console.log("session from user.js", session);
+
+    console.log("СЕССИЯ userid: " + session.userId);
+    return db.collection(TABLE).findOne({_id: session.userId});
+
     // if (!session.userId) {
     //     // Create fake user
     //     console.log("user will create now");
@@ -44,9 +49,9 @@ async function findUserBySid(db, sid) {
     // } else {
     //     return db.collection(TABLE).findOne({_id: session.userId});
     // }
-    if(session.userId) {
-        return db.collection(TABLE).findOne({_id: session.userId});
-    }
+    // if(session.userId) {
+    //     return db.collection(TABLE).findOne({_id: session.userId});
+    // }
 }
 
 /**
@@ -56,8 +61,28 @@ async function findUserBySid(db, sid) {
  * @returns {Promise<User>}
  */
 async function getUser(db, userId) {
+    if (!userId){
+        return null;
+    }
+    // return db.collection(TABLE).findOne({_id: session.userId});
     return db.collection(TABLE).findOne({_id: ObjectId(userId.toString())});
 }
+
+
+/**
+ * @param {Db} db
+ * @param {User} user
+ *
+ * @return {Promise<User>}
+ */
+async function addUser(db, user) {
+    return insertOrUpdateEntity(db.collection(TABLE), user);
+}
+
+
+
+
+
 async function getUserBySid(db, sid) {
     let session = await getSessionInfo(db, sid);
     return db.collection(TABLE).findOne({_id: session.userId});
@@ -88,10 +113,37 @@ async function getUserByName(db, name, sid) {
     console.log(user, saveses, session);
     return {sid: session.sid, ...user};
 }
+
+/**
+ * @param {Db} db
+ * @param {String} userId
+ * @param {String} sid
+ *
+ * @returns {Promise<User>}
+ */
+async function setCurrentUser(db, { userId, sid }) {
+    if (!userId) {
+        throw new Error("User id required");
+    }
+
+    if (!sid) {
+        throw new Error("Session id required");
+    }
+
+    await deleteSessionInfo(db, sid);
+    let session = {
+        userId: ObjectId(userId),
+        sid: sid,
+    };
+    await saveSessionInfo(db, session);
+    return await findUserBySid(db, sid);
+}
 module.exports = {
     findUserBySid,
     getUsers,
     getUser,
     getUserByName,
-    getUserBySid
+    getUserBySid,
+    setCurrentUser,
+    addUser
 };

@@ -1,4 +1,4 @@
-const {findUserBySid, getUsers, getUserByName, getUserBySid} = require("./database/user");
+const {findUserBySid, getUsers, getUserByName, getUserBySid,setCurrentUser, addUser} = require("./database/user");
 const {joinRoom, leaveRoom, getRooms, getUserRooms, createRoom} = require("./database/room");
 const {getMessages, sendMessage} = require("./database/messages");
 const TYPES = require("./messages");
@@ -125,11 +125,11 @@ module.exports = function (db, io) {
             throw new Error(`Cannot load user: ${error}`);
         });
 
+
         // Receive current user information
         requestResponse(TYPES.CURRENT_USER, () => {
             console.log("current user");
             return userPromise;
-
         });
 
         // Return list of all users with
@@ -141,6 +141,15 @@ module.exports = function (db, io) {
             let {sid} = socket.request.cookies;
 
             return await getUserByName(db, params, sid);
+        });
+
+        // Set a current user
+        requestResponse(TYPES.SET_CURRENT_USER, async (payload) => {
+            payload = {
+                ...payload,
+                sid: sid,
+            };
+            return await setCurrentUser(db, payload);
         });
 
         requestResponse(TYPES.CHECK_AUTH, async () => {
@@ -162,6 +171,12 @@ module.exports = function (db, io) {
             return getRooms(db, params || {});
         });
 
+        // Create user
+        requestResponse(TYPES.ADD_USER, (params) => {
+            return addUser(db, params);
+        });
+
+
         // Rooms of current user
         requestResponse(TYPES.CURRENT_USER_ROOMS, async (params) => {
             console.log("current user rooms");
@@ -169,6 +184,7 @@ module.exports = function (db, io) {
 
             return getUserRooms(db, currentUser._id, params);
         });
+
 
         // Join current user to room
         requestResponse(TYPES.CURRENT_USER_JOIN_ROOM, async ({roomId}) => {

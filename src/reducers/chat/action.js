@@ -1,9 +1,7 @@
 import api from "../../api";
 
-//TODO При создании часа с контактом создать на его стороне тоже
 export function joinChat(userId, currentUser) {
     return (dispatch) => {
-        // api.getUsers({limit:20}).then((user)=>console.log(user));
         api.getUser(userId)
             .then((user) => {
 
@@ -16,9 +14,10 @@ export function joinChat(userId, currentUser) {
                 api.currentUserJoinRoom(room._id)
                     .then(() => {
                         api.onMessage((mess) => {
+                            console.log(mess);
                             dispatch({
-                                type: "NEW_MESSAGE",
-                                newMessage: mess
+                                type: "ON_NEW_MESSAGE",
+                                newMessage: [mess]
                             });
                         });
                     });
@@ -44,10 +43,14 @@ export function joinExistingChat(roomId) {
                 api.currentUserJoinRoom(room._id)
                     .then(() => {
                         api.onMessage((mess) => {
-                            dispatch({
-                                type: "ON_NEW_MESSAGE",
-                                newMessage: [mess]
+                            api.getUser(mess.userId).then(user => {
+                                mess.user = user;
+                                dispatch({
+                                    type: "ON_NEW_MESSAGE",
+                                    newMessage: [mess]
+                                });
                             });
+
                         });
                     });
 
@@ -70,7 +73,6 @@ export function getRooms() {
         dispatch({type: "GET_ROOMS"});
         api.getCurrentUserRooms()
             .then((rooms) => {
-
                 Promise.all(rooms.items.map(setLastMessageToRoom)).then(() => {
                     rooms.items.sort(compareRooms);
                     dispatch({
@@ -87,19 +89,32 @@ export function getRooms() {
 }
 
 export function getRoomMessages(roomId) {
-    console.log("getroom messages run here");
+
     return (dispatch) => {
         dispatch({type: "GET_MESSAGES"});
         api.getRoomMessages(roomId)
             .then((messages) => {
-                dispatch({
-                    type: "GET_MESSAGES_SUCCESS",
-                    messages: messages.items.reverse()
+                Promise.all(messages.items.map(setUserToMessage)).then(() => {
+                    dispatch({
+                        type: "GET_MESSAGES_SUCCESS",
+                        messages: messages.items.reverse()
+                    });
                 });
+
+
             }).catch(() => {
                 dispatch({type: "GET_MESSAGES_FAIL"});
             });
     };
+}
+
+function setUserToMessage(message) {
+    return new Promise(function (resolve) {
+        api.getUser(message.userId).then((user) => {
+            message.user = user;
+            resolve(message);
+        });
+    });
 }
 
 export function getContacts(currentUser) {
@@ -143,9 +158,10 @@ export function getRoomUsers(roomId) {
     };
 }
 
-export function sendMessage(roomId, message) {
+export function sendMessage(roomId, message, messAuthor) {
     return (dispatch) => {
         api.sendMessage(roomId, message).then((message) => {
+            message.user = messAuthor;
             dispatch({
                 type: "ON_NEW_MESSAGE",
                 newMessage: [message]
@@ -205,7 +221,6 @@ export function pickUser(usersArr, userId) {
 }
 
 function setLastMessageToRoom(room) {
-    console.log("123");
     return new Promise(function (resolve) {
         api.getRoomMessages(room._id).then((messages) => {
             room.lastMessage = messages.items[0];

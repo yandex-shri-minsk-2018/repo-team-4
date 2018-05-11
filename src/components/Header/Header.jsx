@@ -26,20 +26,12 @@ class Header extends React.Component {
 
     render() {
         let headerClass = "header";
-        let chatName = this.props.chatName;
-        if(this.props.chatName && this.props.chatName.split(', ').length>1){
-            this.props.chatName.split(', ').forEach((name) => {
-                if(name!==this.props.currentUser.name){
-                    chatName = name;
-                }
-            })
-        }
         return (
             <div className={headerClass}>
                 <div className="button button-1" onClick={this.clickGoBackButtonHandler.bind(this)}>
                     <i className="fa fa-arrow-left"></i>
                 </div>
-                <ChatTitle chatName={chatName}/>
+                <ChatTitle chatName={this.props.chatName} chatInfo={this.props.chatInfo}/>
                 <div className="button button-2">
                     <i className="fa fa-ellipsis-h" onClick={this.clickRightButtonHandler.bind(this)}></i>
                 </div>

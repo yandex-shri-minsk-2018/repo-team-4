@@ -33,8 +33,9 @@ class Balloon extends Component {
         }
         return (
             <div className={"balloon " + style}>
+                <span className='mess-author'>{this.props.message.user && this.props.message.user.name}</span>
                 <div className='balloon__content' message=''>
-                    {this.props.message}
+                    {this.props.message.message}
                 </div>
                 <DateMessage dateMessage={dateMessage}/>
             </div>

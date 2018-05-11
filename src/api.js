@@ -10,7 +10,6 @@ class Api {
             .then(() => this._setupSocket())
             .catch((err) => {
                 console.error("Auth problems: " + err.message);
-
                 throw err;
             });
     }
@@ -77,6 +76,8 @@ class Api {
     async checkAuth() {
         return this._requestResponse(MESSAGES.CHECK_AUTH);
     }
+
+
     /**
      * Get information about user
      *
@@ -85,6 +86,19 @@ class Api {
      */
     async getUser(userId) {
         return this.getUsers({_id: userId}).then((result) => result.items[0]);
+    }
+
+    async addUser(user) {
+        return this._requestResponse(MESSAGES.ADD_USER, user);
+    }
+
+    /**
+     * Set current user
+     * @param {string} userId
+     * @return {Promise<User>}
+     * */
+    async setCurrentUser(userId) {
+        return this._requestResponse(MESSAGES.SET_CURRENT_USER, { userId: userId });
     }
 
     /**
@@ -134,6 +148,17 @@ class Api {
      */
     async getCurrentUserRooms(filter) {
         return this._requestResponse(MESSAGES.CURRENT_USER_ROOMS, filter);
+    }
+
+    /**
+     * Return list of rooms for user
+     *
+     * @param {{ limit: number }} [filter]
+     *
+     * @return {Promise<Pagination<Room>>}
+     */
+    async getUserRooms(userId, filter) {
+        return this._requestResponse(MESSAGES.USER_ROOMS, filter);
     }
 
     /**

@@ -29,8 +29,13 @@ async function saveSessionInfo(db, session) {
     return insertOrUpdateEntity(db.collection(TABLE), session);
 }
 
+async function deleteSessionInfo(db, sid) {
+    return db.collection(TABLE).deleteMany({ sid: sid }).then(result => result || false);
+}
+
 module.exports = {
     getSessionInfo,
     saveSessionInfo,
-    getSessionInfoBy_id
+    getSessionInfoBy_id,
+    deleteSessionInfo
 };

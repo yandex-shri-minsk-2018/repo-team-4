@@ -11,7 +11,7 @@ class OnlineInfo extends React.Component {
     }
     else{
       return(
-          <span>Last visit: {this.props.time}</span>
+          <span>Не в сети</span>
       );
     }
   }

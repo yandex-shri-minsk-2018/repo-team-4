@@ -10,6 +10,7 @@ import MessagesLayout from "../MessagesLayout/MessagesLayout";
 import Profile from "../Profile/Profile";
 import CreateRoomLayout from "../CreateRoomLayout/CreateRoomLayout";
 import ChatSettingsLayout from "../ChatSettingsLayout/ChatSettingsLayout";
+import SignUpLayout from "../SignUpLayout/SignUpLayout";
 
 class App extends Component {
     render() {
@@ -26,6 +27,9 @@ class App extends Component {
             break;
         case "contacts":
             layout = <Contacts/>;
+            break;
+        case "signup":
+            layout = <SignUpLayout/>;
             break;
         case "profile":
             layout = <Profile/>;
