@@ -3,11 +3,13 @@ import "./ChatSettingsHeader.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { goPrevLayout } from "../../reducers/navigation/action";
+import {backToChat} from "../../reducers/chat/action";
 
 class ChatSettingsHeader extends React.Component {
 
     clickLeftButtonHandler = () => {
         this.props.goPrevLayout(this.props.prevLayout);
+        this.props.backToChat();
     };
 
     render() {
@@ -31,6 +33,7 @@ ChatSettingsHeader.propTypes = {
 };
 export default connect(
     () => ({}), {
-        goPrevLayout
+        goPrevLayout,
+        backToChat
     }
 )(ChatSettingsHeader);

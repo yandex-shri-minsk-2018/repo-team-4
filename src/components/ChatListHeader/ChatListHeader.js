@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import "../ChatTitle/ChatName/ChatName";
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
-import api from "../../api";
+
 
 class ChatListHeader extends React.Component {
 

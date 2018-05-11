@@ -9,6 +9,10 @@ export function authorization() {
                     type: "CHANGE_LAYOUT",
                     layout: "chatListLayout"
                 });
+            } else {
+                dispatch({
+                    type: "LOADING"
+                });
             }
         });
     };

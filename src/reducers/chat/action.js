@@ -1,9 +1,7 @@
 import api from "../../api";
 
-//TODO При создании часа с контактом создать на его стороне тоже
 export function joinChat(userId, currentUser) {
     return (dispatch) => {
-        // api.getUsers({limit:20}).then((user)=>console.log(user));
         api.getUser(userId)
             .then((user) => {
 
@@ -64,31 +62,11 @@ export function joinExistingChat(roomId) {
 
     };
 }
-export function leaveExistingChat(roomId) {
+export function backToChat() {
     return (dispatch) => {
-        api.getRoom(roomId)
-            .then((room) => {
-                api.currentUserJoinRoom(room._id)
-                    .then(() => {
-                        api.onMessage((mess) => {
-                            dispatch({
-                                type: "ON_NEW_MESSAGE",
-                                newMessage: [mess]
-                            });
-                        });
-                    });
-
-                dispatch({
-                    type: "JOIN_CHAT",
-                    id: room._id
-                });
-
-                dispatch({
-                    type: "CHANGE_LAYOUT",
-                    layout: "messagesLayout"
-                });
-            });
-
+        dispatch({
+            type: "BACK_TO_CHAT"
+        });
     };
 }
 
