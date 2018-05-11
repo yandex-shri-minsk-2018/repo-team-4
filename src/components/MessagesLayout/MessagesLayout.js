@@ -52,33 +52,33 @@ class MessagesLayout extends Component {
 
         let chatName = roomData && roomData.name;
         let isGroup = true;
-        let numberOfUsersInRoom;// = roomData && roomData.users && roomData.users.length;
+
         let isOnline;
-        if(roomData && roomData.name.split(', ').length>1){
-            roomData && roomData.name.split(', ').forEach((name) => {
+        if(roomData && roomData.name.split(", ").length>1){
+            roomData && roomData.name.split(", ").forEach((name) => {
                 if(name!==currentUser.name){
                     chatName = name;
                     isGroup = false;
                     this.props.checkUserStatusByName(name);
                     isOnline = this.props.isPartnerOnline;
                 }
-            })
+            });
         }
 
         let chatInfo = {};
         if(isGroup){
-            chatInfo.type='group';
+            chatInfo.type="group";
             chatInfo.numberOfUsersInRoom=roomData && roomData.users && roomData.users.length;
         }
         else{
-            chatInfo.type='private';
+            chatInfo.type="private";
             chatInfo.isOnline=isOnline;
         }
 
         if (this.props.loading) {
             return (
-                    <Spinner />
-            )
+                <Spinner />
+            );
         }
 
         return (

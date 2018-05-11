@@ -3,7 +3,6 @@ import api from "../../api";
 export function authorization() {
     return (dispatch) => {
         api.checkAuth().then((user) => {
-            console.log(user);
             if (user !== null) {
                 dispatch({
                     type: "CHANGE_LAYOUT",
@@ -36,7 +35,7 @@ export function loginButtonHandler(name) {
         api.getUsers().then(users => {
             users.items.forEach(user => {
                 if (user.name === name) {
-                    // api.getUserByName(user.name);
+
                     api.setCurrentUser(user._id).then((user) => {
                         dispatch({
                             type: "SET_CURRENT_USER",

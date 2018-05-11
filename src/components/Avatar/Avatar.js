@@ -3,7 +3,7 @@ import avatar_img from "./default-avatar.png";
 import "./Avatar.css";
 import PropTypes from "prop-types";
 import {changeLayout} from "../../reducers/navigation/action";
-import {getCurrentUserInfo, setProfileUser} from "../../reducers/currentUser/action";
+import {setProfileUser} from "../../reducers/currentUser/action";
 import {connect} from "react-redux";
 
 class Avatar extends Component {
@@ -28,7 +28,7 @@ class Avatar extends Component {
     clickHandler() {
         if (this.props.userId) {
             this.props.setProfileUser(this.props.userId);
-            this.props.changeLayout('profile');
+            this.props.changeLayout("profile");
         }
     }
 
@@ -44,11 +44,14 @@ class Avatar extends Component {
 Avatar.propTypes = {
     size: PropTypes.string,
     photo: PropTypes.string,
-    url: PropTypes.string
+    url: PropTypes.string,
+    userId: PropTypes.string,
+    changeLayout: PropTypes.func,
+    setProfileUser: PropTypes.func
 
 };
 export default connect(
-    state => ({}), {
+    () => ({}), {
         changeLayout,
         setProfileUser
     }

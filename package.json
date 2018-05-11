@@ -31,7 +31,7 @@
     "eject": "react-scripts eject",
     "client": "react-scripts start",
     "server": "nodemon -w server.js -w src/server server.js",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "precommit": "npm run lint"
   },
   "devDependencies": {

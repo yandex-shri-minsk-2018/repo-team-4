@@ -16,33 +16,33 @@ class App extends Component {
     render() {
         let layout;
         switch (this.props.layout) {
-            case "authorization":
-                layout = <LoginLayout/>;
-                break;
-            case "chatListLayout":
-                layout = <ChatListLayout/>;
-                break;
-            case "messagesLayout":
-                layout = <MessagesLayout/>;
-                break;
-            case "contacts":
-                layout = <Contacts/>;
-                break;
-            case "signup":
-                layout = <SignUpLayout/>;
-                break;
-            case "profile":
-                layout = <Profile/>;
-                break;
-            case "createRoom":
-                layout = <CreateRoomLayout/>;
-                break;
-            case "chatSettings":
-                layout = <ChatSettingsLayout/>;
-                break;
-            default:
-                layout = <LoginLayout/>;
-                break;
+        case "authorization":
+            layout = <LoginLayout/>;
+            break;
+        case "chatListLayout":
+            layout = <ChatListLayout/>;
+            break;
+        case "messagesLayout":
+            layout = <MessagesLayout/>;
+            break;
+        case "contacts":
+            layout = <Contacts/>;
+            break;
+        case "signup":
+            layout = <SignUpLayout/>;
+            break;
+        case "profile":
+            layout = <Profile/>;
+            break;
+        case "createRoom":
+            layout = <CreateRoomLayout/>;
+            break;
+        case "chatSettings":
+            layout = <ChatSettingsLayout/>;
+            break;
+        default:
+            layout = <LoginLayout/>;
+            break;
         }
 
 

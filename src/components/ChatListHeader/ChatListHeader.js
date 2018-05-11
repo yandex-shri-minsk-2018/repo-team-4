@@ -10,7 +10,7 @@ class ChatListHeader extends React.Component {
 
     clickLeftButtonHandler() {
         this.props.setProfileUser(this.props.currentUser._id);
-        this.props.changeLayout('profile');
+        this.props.changeLayout("profile");
     }
 
     clickRightButtonHandler() {
@@ -33,7 +33,9 @@ class ChatListHeader extends React.Component {
     }
 }
 ChatListHeader.propTypes = {
-    changeLayout: PropTypes.func
+    changeLayout: PropTypes.func,
+    setProfileUser: PropTypes.func,
+    currentUser: PropTypes.obj,
 };
 export default connect(
     (state) => ({

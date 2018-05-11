@@ -29,7 +29,7 @@ class Profile extends Component {
     }
 }
 
-SignUpLayout.propTypes = {
+Profile.propTypes = {
     changeLayout: PropTypes.func,
     profileUser: PropTypes.object,
 };

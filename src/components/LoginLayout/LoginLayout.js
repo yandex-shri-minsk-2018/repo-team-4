@@ -6,7 +6,7 @@ import {authorization} from "../../reducers/authorization/action";
 import {loginButtonHandler} from "../../reducers/authorization/action";
 
 import PropTypes from "prop-types";
-import api from "../../api";
+
 
 class LoginLayout extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class LoginLayout extends React.Component {
     }
 
     onSignUpClick() {
-        this.props.changeLayout('signup');
+        this.props.changeLayout("signup");
     }
 
     render() {
