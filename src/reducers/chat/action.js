@@ -64,25 +64,54 @@ export function joinExistingChat(roomId) {
 
     };
 }
+export function leaveExistingChat(roomId) {
+    return (dispatch) => {
+        api.getRoom(roomId)
+            .then((room) => {
+                api.currentUserJoinRoom(room._id)
+                    .then(() => {
+                        api.onMessage((mess) => {
+                            dispatch({
+                                type: "ON_NEW_MESSAGE",
+                                newMessage: [mess]
+                            });
+                        });
+                    });
+
+                dispatch({
+                    type: "JOIN_CHAT",
+                    id: room._id
+                });
+
+                dispatch({
+                    type: "CHANGE_LAYOUT",
+                    layout: "messagesLayout"
+                });
+            });
+
+    };
+}
 
 export function getRooms() {
     return (dispatch) => {
         dispatch({type: "GET_ROOMS"});
+        console.log("blablabla");
         api.getCurrentUserRooms()
             .then((rooms) => {
-
+                console.log("rooms", rooms);
                 Promise.all(rooms.items.map(setLastMessageToRoom)).then(() => {
                     rooms.items.sort(compareRooms);
                     dispatch({
                         type: "GET_ROOMS_SUCCESS",
                         rooms: rooms.items
                     });
-                }).catch(() => {
+                }).catch((error) => {
+                    console.log(error, "error from action chat");
                     dispatch({type: "GET_ROOMS_FAIL"});
                 });
 
-            });
-
+            })
+            .catch((error) => console.log(error, "error from action chat"));
     };
 }
 

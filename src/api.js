@@ -133,6 +133,7 @@ class Api {
      * @return {Promise<Pagination<Room>>}
      */
     async getCurrentUserRooms(filter) {
+        console.log("getCurrentUserRooms return from api.js", this._requestResponse(MESSAGES.CURRENT_USER_ROOMS, filter));
         return this._requestResponse(MESSAGES.CURRENT_USER_ROOMS, filter);
     }
 
@@ -252,8 +253,10 @@ class Api {
      */
     async onMessage(callback) {
         await this._connectPromise;
-
         this.io.on(MESSAGES.MESSAGE, callback);
+    }
+    async unMessage(callback) {
+        this.io.off(MESSAGES.MESSAGE, callback);
     }
 }
 

@@ -23,10 +23,11 @@ module.exports = function (db, io) {
     /**
      * Connection is created
      */
+
     io.on("connection", function (socket) {
         let {sid} = socket.request.cookies,
             isDisconnected = false;
-
+        console.log("sid from controllet js after io connection",sid);
         socket.join("broadcast");
 
         /**
@@ -129,7 +130,6 @@ module.exports = function (db, io) {
         requestResponse(TYPES.CURRENT_USER, () => {
             console.log("current user");
             return userPromise;
-
         });
 
         // Return list of all users with

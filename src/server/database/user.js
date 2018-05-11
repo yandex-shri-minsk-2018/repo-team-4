@@ -1,8 +1,8 @@
 const {ObjectId} = require("mongodb");
 
 const {getSessionInfo, saveSessionInfo} = require("./session");
-const {pageableCollection} = require("./helpers"); //insertOrUpdateEntity для создания пользователя
-// const faker = require("faker/locale/ru");
+const {pageableCollection, insertOrUpdateEntity} = require("./helpers"); //insertOrUpdateEntity для создания пользователя
+const faker = require("faker/locale/ru");
 
 const TABLE = "users";
 
@@ -68,9 +68,9 @@ async function getUserBySid(db, sid) {
  *
  * @returns {Promise<User>}
  */
-// async function saveUser(db, user) {
-//     return insertOrUpdateEntity(db.collection(TABLE), user);
-// }
+async function saveUser(db, user) {
+    return insertOrUpdateEntity(db.collection(TABLE), user);
+}
 
 /**
  * @param {Db} db
@@ -81,11 +81,24 @@ async function getUserBySid(db, sid) {
 async function getUsers(db, filter) {
     return pageableCollection(db.collection(TABLE), filter);
 }
+
 async function getUserByName(db, name, sid) {
+    let session = await getSessionInfo(db, sid);
     let user = await db.collection(TABLE).findOne({name: name});
+    if (user === null && name !=="") {
+        user = {
+            name: name,
+            email: faker.internet.email(),
+            phone: faker.phone.phoneNumber()
+        };
+        user = await saveUser(db, user);
+        session.userId = user._id;
+        await saveSessionInfo(db, session);
+        return user;
+    }
+
     let saveses = await saveSessionInfo(db, {sid: sid, userId: user._id});
-    let session = await getSessionInfo(db, saveses._id);
-    console.log(user, saveses, session);
+    session = await getSessionInfo(db, saveses._id);
     return {sid: session.sid, ...user};
 }
 module.exports = {
