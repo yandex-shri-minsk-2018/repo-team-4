@@ -2,7 +2,7 @@ import React from "react";
 import "./SignUpLayout.css";
 import {connect} from "react-redux";
 import {changeLayout} from "../../reducers/navigation/action";
-import {authorization} from "../../reducers/authorization/action";
+import {authorization, signUp} from "../../reducers/authorization/action";
 import {loginButtonHandler} from "../../reducers/authorization/action";
 import PropTypes from "prop-types";
 
@@ -13,7 +13,8 @@ class SignUpLayout extends React.Component {
     }
 
     onSignUpClick() {
-        this.props.loginButtonHandler(document.getElementById("name").value, document.getElementById("email").value, document.getElementById("password").value);
+        this.props.signUp(document.getElementById("name").value, document.getElementById("email").value, document.getElementById("password").value);
+        // this.props.signUp('name', 'email', 'password');
     }
 
     onLoginClick() {
@@ -57,6 +58,7 @@ export default connect(
     }), {
         changeLayout,
         authorization,
-        loginButtonHandler
+        loginButtonHandler,
+        signUp
     }
 )(SignUpLayout);

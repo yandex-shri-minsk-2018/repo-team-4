@@ -28,6 +28,11 @@ module.exports = {
     CREATE_ROOM: "CREATE_ROOM",
 
     /**
+     * Create new user
+     */
+    ADD_USER: "CREATE_ROOM",
+
+    /**
      * Return all rooms
      */
     ROOMS: "ROOMS",

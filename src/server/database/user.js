@@ -1,7 +1,7 @@
 const {ObjectId} = require("mongodb");
 
 const {getSessionInfo, saveSessionInfo, deleteSessionInfo} = require("./session");
-const {pageableCollection} = require("./helpers"); //insertOrUpdateEntity для создания пользователя
+const {pageableCollection, insertOrUpdateEntity} = require("./helpers"); //insertOrUpdateEntity для создания пользователя
 const faker = require("faker/locale/ru");
 
 const TABLE = "users";
@@ -66,6 +66,17 @@ async function getUser(db, userId) {
     }
     // return db.collection(TABLE).findOne({_id: session.userId});
     return db.collection(TABLE).findOne({_id: ObjectId(userId.toString())});
+}
+
+
+/**
+ * @param {Db} db
+ * @param {User} user
+ *
+ * @return {Promise<User>}
+ */
+async function addUser(db, user) {
+    return insertOrUpdateEntity(db.collection(TABLE), user);
 }
 
 async function setCurrentUser(db, { userId, sid }) {
@@ -149,5 +160,6 @@ module.exports = {
     getUser,
     getUserByName,
     getUserBySid,
-    setCurrentUser
+    setCurrentUser,
+    addUser
 };

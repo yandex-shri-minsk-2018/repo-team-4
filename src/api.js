@@ -88,6 +88,10 @@ class Api {
         return this.getUsers({_id: userId}).then((result) => result.items[0]);
     }
 
+    async addUser(user) {
+        return this._requestResponse(MESSAGES.ADD_USER, user);
+    }
+
     /**
      * Set current user
      * @param {string} userId

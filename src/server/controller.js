@@ -1,4 +1,4 @@
-const {findUserBySid, getUsers, getUserByName, getUserBySid,setCurrentUser} = require("./database/user");
+const {findUserBySid, getUsers, getUserByName, getUserBySid,setCurrentUser, addUser} = require("./database/user");
 const {joinRoom, leaveRoom, getRooms, getUserRooms, createRoom} = require("./database/room");
 const {getMessages, sendMessage} = require("./database/messages");
 const TYPES = require("./messages");
@@ -169,6 +169,11 @@ module.exports = function (db, io) {
         // Create room
         requestResponse(TYPES.ROOMS, (params) => {
             return getRooms(db, params || {});
+        });
+
+        // Create user
+        requestResponse(TYPES.ADD_USER, (params) => {
+            return addUser(db, params);
         });
 
 
