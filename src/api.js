@@ -133,7 +133,6 @@ class Api {
      * @return {Promise<Pagination<Room>>}
      */
     async getCurrentUserRooms(filter) {
-        console.log("getCurrentUserRooms return from api.js", this._requestResponse(MESSAGES.CURRENT_USER_ROOMS, filter));
         return this._requestResponse(MESSAGES.CURRENT_USER_ROOMS, filter);
     }
 

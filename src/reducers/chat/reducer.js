@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action) {
         };
     }
     case "GET_ROOMS_SUCCESS": {
-        console.log("get rooms success");
+
         return {
             ...state,
             rooms: action.rooms,
@@ -28,7 +28,6 @@ export default function reducer(state = initialState, action) {
         };
     }
     case "GET_ROOMS": {
-        console.log("get rooms");
         return {
             ...state,
             loading: true
@@ -104,7 +103,6 @@ export default function reducer(state = initialState, action) {
         };
     }
     case "GET_MESSAGES_FAIL": {
-        console.log("Ошибка загрузки чатов");
         return {
             ...state,
         };

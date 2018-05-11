@@ -22,7 +22,6 @@ class LoginLayout extends React.Component {
     }
 
     onLoginClick() {
-        api.getUsers({limit: 20}).then((user) => console.log(user));
         this.props.loginButtonHandler(document.getElementById("login").value);
     }
 
@@ -53,6 +52,7 @@ LoginLayout.propTypes = {
     changeLayout: PropTypes.func,
     authorization: PropTypes.func,
     loginButtonHandler: PropTypes.func,
+    loading: PropTypes.bool
 };
 
 export default connect(

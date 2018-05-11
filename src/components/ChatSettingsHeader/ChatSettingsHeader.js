@@ -29,7 +29,8 @@ class ChatSettingsHeader extends React.Component {
 
 ChatSettingsHeader.propTypes = {
     goPrevLayout: PropTypes.func,
-    prevLayout: PropTypes.string
+    prevLayout: PropTypes.string,
+    backToChat: PropTypes.func
 };
 export default connect(
     () => ({}), {

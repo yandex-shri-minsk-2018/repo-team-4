@@ -26,7 +26,6 @@ class MessagesLayout extends Component {
     };
 
     componentDidMount() {
-        console.log("getRoomMessages");
         this.props.getRoomMessages(this.props.roomId);
 
         api.getCurrentUser()
@@ -86,7 +85,8 @@ class MessagesLayout extends Component {
 MessagesLayout.propTypes = {
     getRoomMessages: PropTypes.func,
     roomId: PropTypes.string,
-    messages: PropTypes.array
+    messages: PropTypes.array,
+    loading: PropTypes.bool
 };
 export default connect(
     state => ({

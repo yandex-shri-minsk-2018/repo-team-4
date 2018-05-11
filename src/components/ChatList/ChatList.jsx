@@ -8,7 +8,7 @@ import Spinner from "../Loaders/Spinner/Spinner";
 class ChatList extends React.Component {
 
     componentDidMount() {
-        console.log("component chatlist didMount");
+
         this.props.getRooms();
     }
 

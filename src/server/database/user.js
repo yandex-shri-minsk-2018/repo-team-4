@@ -24,7 +24,6 @@ const TABLE = "users";
  */
 async function findUserBySid(db, sid) {
     let session = await getSessionInfo(db, sid);
-    console.log("session from user.js", session);
     // if (!session.userId) {
     //     // Create fake user
     //     console.log("user will create now");

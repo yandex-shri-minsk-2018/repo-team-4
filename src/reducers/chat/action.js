@@ -73,18 +73,16 @@ export function backToChat() {
 export function getRooms() {
     return (dispatch) => {
         dispatch({type: "GET_ROOMS"});
-        console.log("blablabla");
+
         api.getCurrentUserRooms()
             .then((rooms) => {
-                console.log("rooms", rooms);
                 Promise.all(rooms.items.map(setLastMessageToRoom)).then(() => {
                     rooms.items.sort(compareRooms);
                     dispatch({
                         type: "GET_ROOMS_SUCCESS",
                         rooms: rooms.items
                     });
-                }).catch((error) => {
-                    console.log(error, "error from action chat");
+                }).catch(() => {
                     dispatch({type: "GET_ROOMS_FAIL"});
                 });
 
@@ -94,7 +92,6 @@ export function getRooms() {
 }
 
 export function getRoomMessages(roomId) {
-    console.log("getroom messages run here");
     return (dispatch) => {
         dispatch({type: "GET_MESSAGES"});
         api.getRoomMessages(roomId)
@@ -212,7 +209,6 @@ export function pickUser(usersArr, userId) {
 }
 
 function setLastMessageToRoom(room) {
-    console.log("123");
     return new Promise(function (resolve) {
         api.getRoomMessages(room._id).then((messages) => {
             room.lastMessage = messages.items[0];
