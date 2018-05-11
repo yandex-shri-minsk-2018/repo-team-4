@@ -31,14 +31,14 @@ export function checkUserStatusByName(userName) {
             .then((users) => {
                 users.items.forEach(user => {
                     if(user.name===userName){
-                        console.log('Пользователь '+ user.name +' '+user.online);
+                        console.log("Пользователь "+ user.name +" "+user.online);
                         dispatch({
                             type: "SET_PARTNER_STATUS",
                             isPartnerOnline: user.online
                         });
                     }
 
-                })
+                });
             });
     };
 }

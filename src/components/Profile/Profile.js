@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 import "./Profile.css";
 import ProfileHeader from "./ProfileHeader";
-import Avatar from "../Avatar/Avatar";
-import PropTypes from "prop-types";
 import {changeLayout} from "../../reducers/navigation/action";
 import {connect} from "react-redux";
-import {getCurrentUserInfo} from "../../reducers/currentUser/action";
+import PropTypes from "prop-types";
 
 class Profile extends Component {
 
@@ -31,8 +29,9 @@ class Profile extends Component {
     }
 }
 
-Profile.propTypes = {
-
+SignUpLayout.propTypes = {
+    changeLayout: PropTypes.func,
+    profileUser: PropTypes.object,
 };
 
 export default connect(

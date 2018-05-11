@@ -106,9 +106,14 @@ class MessagesLayout extends Component {
 }
 
 MessagesLayout.propTypes = {
+    checkUserStatusByName: PropTypes.func,
+    joinChat: PropTypes.func,
     getRoomMessages: PropTypes.func,
     roomId: PropTypes.string,
-    messages: PropTypes.array
+    messages: PropTypes.array,
+    currentUser: PropTypes.object,
+    isPartnerOnline: PropTypes.object,
+    loading: PropTypes.object,
 };
 export default connect(
     state => ({

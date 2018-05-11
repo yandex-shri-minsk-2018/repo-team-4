@@ -4,3 +4,8 @@ node_js:
 
 script:
   - npm run lint
+
+deploy:
+  provider: heroku
+  api_key: "28d7072d-50f2-41e9-ab4f-150e1ce0004e"
+  app: Messenger

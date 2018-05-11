@@ -18,7 +18,7 @@ class SignUpLayout extends React.Component {
     }
 
     onLoginClick() {
-        this.props.changeLayout('authorization');
+        this.props.changeLayout("authorization");
     }
 
     render() {
@@ -47,9 +47,10 @@ class SignUpLayout extends React.Component {
 }
 
 SignUpLayout.propTypes = {
-    changeLayout: PropTypes.func,
     authorization: PropTypes.func,
     loginButtonHandler: PropTypes.func,
+    changeLayout: PropTypes.func,
+    signUp: PropTypes.func,
 };
 
 export default connect(

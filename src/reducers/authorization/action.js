@@ -47,9 +47,9 @@ export function loginButtonHandler(name) {
                             layout: "chatListLayout"
                         });
 
-                    })
+                    });
                 }
-            })
+            });
         });
     };
 }

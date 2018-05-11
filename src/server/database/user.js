@@ -2,7 +2,7 @@ const {ObjectId} = require("mongodb");
 
 const {getSessionInfo, saveSessionInfo, deleteSessionInfo} = require("./session");
 const {pageableCollection, insertOrUpdateEntity} = require("./helpers"); //insertOrUpdateEntity для создания пользователя
-const faker = require("faker/locale/ru");
+//const faker = require("faker/locale/ru");
 
 const TABLE = "users";
 
@@ -79,23 +79,7 @@ async function addUser(db, user) {
     return insertOrUpdateEntity(db.collection(TABLE), user);
 }
 
-async function setCurrentUser(db, { userId, sid }) {
-    if (!userId) {
-        throw new Error('User id required');
-    }
 
-    if (!sid) {
-        throw new Error('Session id required');
-    }
-
-    await deleteSessionInfo(db, sid);
-    let session = {
-        userId: ObjectId(userId),
-        sid: sid,
-    };
-    await saveSessionInfo(db, session);
-    return await findUserBySid(db, sid);
-}
 
 
 
@@ -139,11 +123,11 @@ async function getUserByName(db, name, sid) {
  */
 async function setCurrentUser(db, { userId, sid }) {
     if (!userId) {
-        throw new Error('User id required');
+        throw new Error("User id required");
     }
 
     if (!sid) {
-        throw new Error('Session id required');
+        throw new Error("Session id required");
     }
 
     await deleteSessionInfo(db, sid);

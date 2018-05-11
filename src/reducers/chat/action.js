@@ -99,7 +99,7 @@ export function getRoomMessages(roomId) {
                         type: "GET_MESSAGES_SUCCESS",
                         messages: messages.items.reverse()
                     });
-                })
+                });
 
 
             }).catch(() => {
